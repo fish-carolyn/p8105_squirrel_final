@@ -27,3 +27,22 @@ of squirrel sightings in Central Park using 2018 Squirrel Census data2.
 A descriptive report of Central Park squirrel demography and behavior.
 Results will also be shared via a GitHub hosted Webpage and a short
 explanatory video.
+
+#### Data sources
+
+Squirrel census data is publicly available for download here: Squirrel
+Census Data.
+
+#### Analyses/ Visualizations
+
+We anticipate our analysis of Central Park squirrels will generate: -
+Squirrel demography table (fur color, age, fur highlight color) -
+Descriptive table of squirrel activity and time of survey (AM/PM,
+location, activity, vocalizations) - A density cluster map of Central
+Park squirrel sightings (Central Park in whole, by zipcode, by community
+district)
+
+#### References
+
+<https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels>
+<https://www.thesquirrelcensus.com/data>
