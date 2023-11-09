@@ -56,6 +56,13 @@ Census data. Joining of these data sets may require additional tidying
 and research to ensure variables were reproducibly measured for each
 survey.
 
+#### Planned Timeline
+
+09Nov23 - 17Nov23: Proposal development 18Nov23 - 26Nov23: Exploratory
+analysis, table construction 27Nov23 - 08Dec23: Crunch Time (Write
+report, statistical analyses, final figure development) 09Dec23: Project
+report, website, webcast, and team evals due
+
 #### References
 
 <https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels>
