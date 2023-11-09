@@ -1,0 +1,23 @@
+P8105 FINAL PROJECT PROPOSAL
+================
+2023-11-09
+
+#### Group members
+
+Selina Hsuan (sh4354), Ghislaine Jumonville (gj2356), Carolyn Fish
+(csf2135), Camille Okonkwo (co2554), Sanika Sule (ss6692)
+
+#### Project title
+
+Getting to know Central Park’s Squirrels: An analysis of the demographic
+and behavioral patterns of NYC squirrels
+
+#### Motivation/ Statement of Purpose
+
+Squirrels are familiar neighbors to all New Yorkers. Central Park
+provides over 800 acres of prime habitat for approximately 2,300
+squirrels (roughly 2.74 squirrels per acre)1. Given the high prevalence
+of squirrels in New York City and their versatile role as friends,
+pests, vectors for diseases, such as rabies, and snacks to local
+predators, we aim to describe behavioral trends and spatial distribution
+of squirrel sightings in Central Park using 2018 Squirrel Census data2.
