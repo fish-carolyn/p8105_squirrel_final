@@ -16,11 +16,12 @@ and behavioral patterns of NYC squirrels
 
 Squirrels are familiar neighbors to all New Yorkers. Central Park
 provides over 800 acres of prime habitat for approximately 2,300
-squirrels (roughly 2.74 squirrels per acre)1. Given the high prevalence
-of squirrels in New York City and their versatile role as friends,
-pests, vectors for diseases, such as rabies, and snacks to local
-predators, we aim to describe behavioral trends and spatial distribution
-of squirrel sightings in Central Park using 2018 Squirrel Census data2.
+squirrels (roughly 2.74 squirrels per acre)<sup>1</sup>. Given the high
+prevalence of squirrels in New York City and their versatile role as
+friends, pests, vectors for diseases, such as rabies, and snacks to
+local predators, we aim to describe behavioral trends and spatial
+distribution of squirrel sightings in Central Park using 2018 Squirrel
+Census data<sup>2</sup>.
 
 #### Intended final product
 
@@ -35,12 +36,14 @@ Census Data.
 
 #### Analyses/ Visualizations
 
-We anticipate our analysis of Central Park squirrels will generate: -
-Squirrel demography table (fur color, age, fur highlight color) -
-Descriptive table of squirrel activity and time of survey (AM/PM,
-location, activity, vocalizations) - A density cluster map of Central
-Park squirrel sightings (Central Park in whole, by zipcode, by community
-district)
+We anticipate our analysis of Central Park squirrels will generate:
+
+- **Table 1:** Squirrel demography table (fur color, age, fur highlight
+  color)
+- **Table 2:** Descriptive table of squirrel activity and time of survey
+  (AM/PM, location, activity, vocalizations)
+- **Figure 1:** A density cluster map of Central Park squirrel sightings
+  (Central Park in whole, by zipcode, by community district)
 
 *Additional figures will likely be derived from the descriptive tables
 to better demonstrate any interesting findings that we observe in the
@@ -58,12 +61,13 @@ survey.
 
 #### Planned Timeline
 
-09Nov23 - 17Nov23: Proposal development 18Nov23 - 26Nov23: Exploratory
-analysis, table construction 27Nov23 - 08Dec23: Crunch Time (Write
-report, statistical analyses, final figure development) 09Dec23: Project
-report, website, webcast, and team evals due
+- *09Nov23 - 17Nov23*: Proposal development
+- *18Nov23 - 26Nov23*: Exploratory analysis, table construction
+- *27Nov23 - 08Dec23*: Crunch Time (Write report, statistical analyses,
+  final figure development)
+- *09Dec23*: Project report, website, webcast, and team evals due
 
-#### References
+#### Reference links
 
-<https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels>
-<https://www.thesquirrelcensus.com/data>
+1.  <https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels>
+2.  <https://www.thesquirrelcensus.com/data>
