@@ -21,3 +21,9 @@ of squirrels in New York City and their versatile role as friends,
 pests, vectors for diseases, such as rabies, and snacks to local
 predators, we aim to describe behavioral trends and spatial distribution
 of squirrel sightings in Central Park using 2018 Squirrel Census data2.
+
+#### Intended final product
+
+A descriptive report of Central Park squirrel demography and behavior.
+Results will also be shared via a GitHub hosted Webpage and a short
+explanatory video.
