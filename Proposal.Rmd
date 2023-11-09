@@ -28,6 +28,10 @@ We anticipate our analysis of Central Park squirrels will generate:
 -       Descriptive table of squirrel activity and time of survey (AM/PM, location, activity, vocalizations)
 -       A density cluster map of Central Park squirrel sightings (Central Park in whole, by zipcode, by community district)
 
+*Additional figures will likely be derived from the descriptive tables to better demonstrate any interesting findings that we observe in the data.*
+ 
+#### Coding challenges
+We anticipate the data will require substantial cleaning and the ability to appropriately test significance in demographic, behavioral, or spatial distributions may be limited by small sample size. If the 2018 census sample is insufficient, we may have to bring in 2020 Squirrel Census data. Joining of these data sets may require additional tidying and research to ensure variables were reproducibly measured for each survey. 
 
 
 #### References 
