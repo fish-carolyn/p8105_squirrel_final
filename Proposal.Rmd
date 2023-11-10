@@ -17,10 +17,10 @@ Getting to know Central Park’s Squirrels: An analysis of the demographic and b
 Squirrels are familiar neighbors to all New Yorkers. Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)^1^. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral trends and spatial distribution of squirrel sightings in Central Park using 2018 Squirrel Census data^2^. 
  
 #### Intended final product
-A descriptive report of Central Park squirrel demography and behavior. Results will also be shared via a GitHub hosted Webpage and a short explanatory video.  
+A descriptive report of Central Park squirrel demography and behavior, including observed trends from our analyses. Results will also be shared via a GitHub hosted Webpage and a short explanatory video.  
  
 #### Data sources
-Squirrel census data is publicly available for download here: Squirrel Census Data.
+The 2018 Squirrel Census data is publicly available for download here: https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw. 
  
 #### Analyses/ Visualizations
 We anticipate our analysis of Central Park squirrels will generate: 

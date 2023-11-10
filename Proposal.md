@@ -1,6 +1,6 @@
 P8105 FINAL PROJECT PROPOSAL
 ================
-2023-11-09
+2023-11-10
 
 #### Group members
 
@@ -25,14 +25,14 @@ Census data<sup>2</sup>.
 
 #### Intended final product
 
-A descriptive report of Central Park squirrel demography and behavior.
-Results will also be shared via a GitHub hosted Webpage and a short
-explanatory video.
+A descriptive report of Central Park squirrel demography and behavior,
+including observed trends from our analyses. Results will also be shared
+via a GitHub hosted Webpage and a short explanatory video.
 
 #### Data sources
 
-Squirrel census data is publicly available for download here: Squirrel
-Census Data.
+The 2018 Squirrel Census data is publicly available for download here:
+<https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw>.
 
 #### Analyses/ Visualizations
 
