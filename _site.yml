@@ -1,0 +1,18 @@
+name: "The Squirrels of Central Park"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - text: "Squirreling the Stats: A Demographic Tale"
+      href: descriptives.html
+    - text: "Nesting Nooks: Exploring Squirrel Habitat"
+      href: habitat.html
+    - text: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
+      href: activities.html
+    - icon: fa-github fa-lg
+      href: https://github.com/fish-carolyn/p8105_squirrel_final.git
+output:
+  html_document:
+    theme: cerulean
