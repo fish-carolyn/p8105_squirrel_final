@@ -2,6 +2,7 @@ name: "The Squirrels of Central Park"
 output_dir: "."
 navbar:
   title: "Home"
+  href: index.html
   right:
     - text: "About"
       href: about.html
