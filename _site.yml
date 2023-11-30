@@ -4,7 +4,7 @@ navbar:
   title: "Home"
   href: index.html
   right:
-    - text: "About"
+    - text: "The Nuts (and Bolts) of the Project"
       href: About.html
     - text: "Squirreling the Stats: A Demographic Tale"
       href: descriptives.html
