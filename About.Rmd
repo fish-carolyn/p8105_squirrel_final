@@ -2,6 +2,14 @@
 title: "The Nuts (and Bolts)"
 ---
 
-maybe where the data is from, how it was collected and our motivations for doing the project? 
+## Byte-Sized Beginnings: Digging up Data ##
 
+maybe where the data is from, how it was collected and cleaned
 
+## Cracking the Code: Our Motivations ##
+
+our motivations for the project
+
+## Squirrel Savants: Meet the Nutty Minds Behind the Data Delve ##
+
+our about us section
