@@ -5,7 +5,7 @@ navbar:
   href: index.html
   right:
     - text: "About"
-      href: about.html
+      href: About.html
     - text: "Squirreling the Stats: A Demographic Tale"
       href: descriptives.html
     - text: "Nesting Nooks: Exploring Squirrel Habitat"
