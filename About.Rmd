@@ -1,5 +1,5 @@
 ---
-title: "The Nuts (and Bolts) of the Project"
+title: "The Nuts (and Bolts)"
 ---
 
 maybe where the data is from, how it was collected and our motivations for doing the project? 
