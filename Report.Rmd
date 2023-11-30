@@ -1,0 +1,9 @@
+---
+title: "P8105 FINAL PROJECT REPORT"
+date: '`r format(Sys.time(), "%Y-%m-%d")`'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+```
