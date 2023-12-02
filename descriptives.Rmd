@@ -32,3 +32,19 @@ squirrel_census |>
   )
 ```
 
+Lets also look at primary fur color.
+
+```{r}
+squirrel_census |> 
+  filter(!(primary_fur_color %in% c("N/A", "?"))) |> 
+  group_by(primary_fur_color) |> 
+  count(primary_fur_color) |> 
+  mutate(primary_fur_color = fct_reorder(primary_fur_color, n)) |> 
+  plot_ly (x = ~primary_fur_color, y = ~n, color = ~primary_fur_color,
+         type = "bar") |> 
+  layout(
+    xaxis = list(title = "Primary Fur Color"),   
+    yaxis = list(title = "Number of Squirrels") 
+  )
+```
+

@@ -291,13 +291,13 @@ Tale</h1>
 
 <p>alternative name: “Tales from Treetops”?</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.3     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
 ## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
@@ -321,7 +321,7 @@ Tale</h1>
   read_csv(&quot;data/squirrel.csv&quot;) |&gt; 
   janitor::clean_names()</code></pre>
 <pre><code>## Rows: 3023 Columns: 31
-## ── Column specification ────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (14): Unique Squirrel ID, Hectare, Shift, Age, Primary Fur Color, Highli...
 ## dbl  (4): X, Y, Date, Hectare Squirrel Number
@@ -347,8 +347,23 @@ fur color and age.</p>
 <pre><code>## Warning in RColorBrewer::brewer.pal(N, &quot;Set2&quot;): minimal value for n is 3, returning requested palette with 3 different levels
 
 ## Warning in RColorBrewer::brewer.pal(N, &quot;Set2&quot;): minimal value for n is 3, returning requested palette with 3 different levels</code></pre>
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-76c76c7e3f2a011de95a" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-76c76c7e3f2a011de95a">{"x":{"visdat":{"12d7c6d8eccee":["function () ","plotlyVisDat"]},"cur_data":"12d7c6d8eccee","attrs":{"12d7c6d8eccee":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Age","type":"category","categoryorder":"array","categoryarray":["Adult","Juvenile"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Squirrels"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Adult"],"y":[2568],"type":"bar","name":"Adult","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Juvenile"],"y":[330],"type":"bar","name":"Juvenile","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c522e878b1ecc678c41a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c522e878b1ecc678c41a">{"x":{"visdat":{"1316054907da2":["function () ","plotlyVisDat"]},"cur_data":"1316054907da2","attrs":{"1316054907da2":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Age","type":"category","categoryorder":"array","categoryarray":["Adult","Juvenile"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Squirrels"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Adult"],"y":[2568],"type":"bar","name":"Adult","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Juvenile"],"y":[330],"type":"bar","name":"Juvenile","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>Lets also look at primary fur color.</p>
+<pre class="r"><code>squirrel_census |&gt; 
+  filter(!(primary_fur_color %in% c(&quot;N/A&quot;, &quot;?&quot;))) |&gt; 
+  group_by(primary_fur_color) |&gt; 
+  count(primary_fur_color) |&gt; 
+  mutate(primary_fur_color = fct_reorder(primary_fur_color, n)) |&gt; 
+  plot_ly (x = ~primary_fur_color, y = ~n, color = ~primary_fur_color,
+         type = &quot;bar&quot;) |&gt; 
+  layout(
+    xaxis = list(title = &quot;Primary Fur Color&quot;),   
+    yaxis = list(title = &quot;Number of Squirrels&quot;) 
+  )</code></pre>
+<pre><code>## Warning: Ignoring 1 observations</code></pre>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-2dd20fb781ad19ea00f2" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2dd20fb781ad19ea00f2">{"x":{"visdat":{"1316090891b9":["function () ","plotlyVisDat"]},"cur_data":"1316090891b9","attrs":{"1316090891b9":{"x":{},"y":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Primary Fur Color","type":"category","categoryorder":"array","categoryarray":["Black","Cinnamon","Gray"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Squirrels"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Black"],"y":[103],"type":"bar","name":"Black","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Cinnamon"],"y":[392],"type":"bar","name":"Cinnamon","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Gray"],"y":[2473],"type":"bar","name":"Gray","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 
 
