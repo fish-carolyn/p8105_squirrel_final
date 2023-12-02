@@ -3,4 +3,32 @@ title: "Squirreling the Stats: A Demographic Tale"
 ---
 alternative name: "Tales from Treetops"?
 
-tables and whatever about "who the squirrels are"
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+First, we will import the squirrel data. 
+
+```{r}
+squirrel_census = 
+  read_csv("data/squirrel.csv") |> 
+  janitor::clean_names()
+```
+In this section, we will be looking at squirrel demographics, such as fur color and age. 
+
+Lets first explore squirrel ages 
+```{r}
+squirrel_census |> 
+  filter(!(age %in% c("N/A", "?"))) |> 
+  group_by(age) |> 
+  count(age) |> 
+  mutate(Age = fct_reorder(age, n)) |> 
+  plot_ly (x = ~age, y = ~n, color = ~age,
+         type = "bar") |> 
+  layout(
+    xaxis = list(title = "Age"),   
+    yaxis = list(title = "Number of Squirrels") 
+  )
+```
+
