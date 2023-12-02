@@ -4,6 +4,22 @@ date: '`r format(Sys.time(), "%Y-%m-%d")`'
 output: github_document
 ---
 
+**Data cleaning check list:**
+
+* every squirrel has a unique ID [x]
+* every squirrel has geodata (`hectare`, `x`, `y`) [x]
+* non-missing data for: 
+  * primary fur color [x]
+  * age [x]
+  * location description [x]
+  * activity descriptions  [x]
+  * date [x]
+* continuous variables as numeric [x]
+* recode binary variables with more meaningful character descriptions []
+* create binary for movement, eating related, vocalizations, reactions []
+* document number of squirrels that fit all criteria []
+* ensure any missing values are coded appropriately for tables, etc. []
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(viridis)
@@ -11,6 +27,7 @@ library(viridis)
 knitr::opts_chunk$set(
 	echo = TRUE,
 	warning = FALSE,
+	message = FALSE, 
 	fig.width = 8, 
   fig.height = 6,
   out.width = "90%"
@@ -27,13 +44,63 @@ scale_fill_discrete = scale_fill_viridis_d
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
+#### get data
 Read in 2018 Squirrel Census data from:  https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw. 
 
 ```{r}
-df_dirty_squirrel <- read_csv("data/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20231202.csv")
+df_dirty_squirrel <- read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20231202.csv")
 ```
+
+Use skimmr to check variable completeness, types, etc. 
+```{r}
+skimr::skim(df_dirty_squirrel)
+```
+
+#### clean variable names and remove missing data 
+```{r}
+df_washing_squirrel = df_dirty_squirrel |> 
+  janitor::clean_names() |> 
+  filter(
+    complete.cases(unique_squirrel_id, 
+                   x, y, 
+                   primary_fur_color, 
+                   age, 
+                   location
+                   )
+  ) |> 
+  mutate(
+    x = as.numeric(x), 
+    y= as.numeric(y), 
+    day = as.numeric(substr(date, 3, 4)),     #date results in a lot of parsing failures so I'm using a work around
+    month = as.numeric(substr(date, 1, 2)),  
+    year = as.numeric(substr(date, 5, 11)), 
+    date_assembled = paste(month, day, year, sep = "-") 
+  ) |> 
+  mutate(
+    date = lubridate::mdy(date_assembled)
+  ) |> 
+  filter(!is.na(date))
+
+
+df_washing_squirrel |> 
+  select(
+    running:eating
+  ) |> count()
+
+max(df_washing_squirrel |>  pull(date))
+
+```
+
+In the cleaner version of the data for which only squirrels with non-missing data have been kept there are data for `r df_washing_squirrel |> select (unique_squirrel_id) |> distinct() |> count()` distinct squirrels. The data was collected between `r max(df_washing_squirrel |>  pull(date))` and `r min(df_washing_squirrel |>  pull(date))`. 
+
+
 
 ```{r}
 
 ```
+
+
+
+
+
 
