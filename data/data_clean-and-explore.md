@@ -2,7 +2,14 @@ Data cleaning & exploration
 ================
 2023-12-02
 
-**Data cleaning check list:**
+*Summary*
+
+The `clean_squirrel_2018` data is a wide data set with one row per
+squirrel. These squirrels have non-missing data for the most critical
+variables for analysis (identifier, geodata, fur color, age, activity,
+date).
+
+### Data cleaning check list:
 
 - every squirrel has a unique ID \[x\]
 - every squirrel has geodata (`hectare`, `x`, `y`) \[x\]
@@ -13,15 +20,9 @@ Data cleaning & exploration
   - activity descriptions \[x\]
   - date \[x\]
 - continuous variables as numeric \[x\]
-- recode binary variables with more meaningful character descriptions
-  \[\]
-- create binary for movement, eating related, vocalizations, reactions
-  \[\]
-- document number of squirrels that fit all criteria \[\]
-- ensure any missing values are coded appropriately for tables, etc.
-  \[\]
+- document number of squirrels that fit all criteria \[x\]
 
-#### get data
+### Get data
 
 Read in 2018 Squirrel Census data from:
 <https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw>.
@@ -97,10 +98,10 @@ Data summary
 | Date                    |         0 |             1 | 10119487.40 | 42466.71 | 10062018.00 | 10082018.00 | 10122018.00 | 10142018.00 | 10202018.00 | ▇▂▇▂▃ |
 | Hectare Squirrel Number |         0 |             1 |        4.12 |     3.10 |        1.00 |        2.00 |        3.00 |        6.00 |       23.00 | ▇▂▁▁▁ |
 
-#### clean variable names and remove missing data
+### Clean variable names and remove missing data
 
 ``` r
-df_washing_squirrel = df_dirty_squirrel |> 
+df_clean_squirrel = df_dirty_squirrel |> 
   janitor::clean_names() |> 
   filter(
     complete.cases(unique_squirrel_id, 
@@ -122,25 +123,16 @@ df_washing_squirrel = df_dirty_squirrel |>
     date = lubridate::mdy(date_assembled)
   ) |> 
   filter(!is.na(date))
-
-
-df_washing_squirrel |> 
-  select(
-    running:eating
-  ) |> count()
 ```
-
-    ## # A tibble: 1 × 1
-    ##       n
-    ##   <int>
-    ## 1  2824
-
-``` r
-max(df_washing_squirrel |>  pull(date))
-```
-
-    ## [1] "2018-10-20"
 
 In the cleaner version of the data for which only squirrels with
-non-missing data have been kept there are data for 2819 distinct
-squirrels. The data was collected between 2018-10-20 and 2018-10-06.
+non-missing data have been kept, there are data for 2819 distinct
+squirrels. The data was collected between 2018-10-06 and 2018-10-20.
+
+### Export clean data
+
+``` r
+save_path = "clean_squirrel_2018.csv"
+
+write_csv(df_clean_squirrel, save_path, na="")
+```
