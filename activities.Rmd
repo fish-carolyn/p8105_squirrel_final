@@ -2,4 +2,50 @@
 title: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
 ---
 
+we could also name this "Acorn Adventures: Unraveling the Tapestry of Squirrel Activity"
+
 tables and whatever about "what squirrels do"
+
+```{r include = FALSE}
+library(tidyverse)
+library(plotly)
+library(viridis)
+```
+
+```{r import_data, message = FALSE}
+squirrel_census = 
+  read_csv("data/clean_squirrel_2018.csv") |> 
+  janitor::clean_names()
+```
+
+Squirrels are dynamic creatures with a secret language. In a bustling environment like New York City, these animals use unique signals to communicate with each other, other animals, and us. 
+
+First, let's take a look at squirrel sounds. 
+
+```{r sound_distribution}
+sounds_summary = data.frame(
+  Sound = c("Kuks", "Quaas", "Moans"),
+  Count = c(sum(squirrel_census[["kuks"]], na.rm = TRUE), 
+            sum(squirrel_census[["quaas"]], na.rm = TRUE), 
+            sum(squirrel_census[["moans"]], na.rm = TRUE))
+)
+
+# Squirrel sounds distribution 
+ggplot(sounds_summary, aes(x = Sound, y = Count, fill = Sound)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_minimal() +
+  labs(title = "Distribution of Squirrel Sounds", x = "Sound Type", y = "Count")
+```
+
+Of the three identified squirrel sounds, NYC squirrels most commonly "kuk" is the most common sound, and "moans" are rarely heard. To better understand the meaning of these sounds, let's take a look at the type of activity or interactions the squirrels who made these sounds are engaged in. 
+
+
+
+
+
+
+
+
+
+

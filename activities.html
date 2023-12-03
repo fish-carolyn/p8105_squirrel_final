@@ -244,11 +244,13 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li>
+  <a href="Report.html">Project Report</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="About.html">About</a>
+  <a href="About.html">The Nuts (and Bolts)</a>
 </li>
 <li>
   <a href="descriptives.html">Squirreling the Stats: A Demographic Tale</a>
@@ -280,7 +282,30 @@ of Squirrel Activity</h1>
 </div>
 
 
+<p>we could also name this “Acorn Adventures: Unraveling the Tapestry of
+Squirrel Activity”</p>
 <p>tables and whatever about “what squirrels do”</p>
+<pre class="r"><code>squirrel_census = 
+  read_csv(&quot;data/clean_squirrel_2018.csv&quot;) |&gt; 
+  janitor::clean_names()</code></pre>
+<p>Squirrels are dynamic creatures with a secret language. In a bustling
+environment like New York City, these animals use unique signals to
+communicate with each other, other animals, and us.</p>
+<p>First, let’s take a look at squirrel sounds.</p>
+<pre class="r"><code>sounds_summary = data.frame(
+  Sound = c(&quot;Kuks&quot;, &quot;Quaas&quot;, &quot;Moans&quot;),
+  Count = c(sum(squirrel_census$kuks, na.rm = TRUE), 
+            sum(squirrel_census$quaas, na.rm = TRUE), 
+            sum(squirrel_census$moans, na.rm = TRUE))
+)
+
+# Create a bar plot using viridis color map
+ggplot(sounds_summary, aes(x = Sound, y = Count, fill = Sound)) +
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_minimal() +
+  labs(title = &quot;Distribution of Squirrel Sounds&quot;, x = &quot;Sound Type&quot;, y = &quot;Count&quot;)</code></pre>
+<p><img src="activities_files/figure-html/sound_distribution-1.png" width="672" /></p>
 
 
 
