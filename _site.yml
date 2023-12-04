@@ -4,6 +4,8 @@ navbar:
   title: "Home"
   href: index.html
   right:
+    - text: "Project Report"
+      href: Report.html
     - text: "About"
       href: About.html
     - text: "Squirreling the Stats: A Demographic Tale"

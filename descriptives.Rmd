@@ -1,5 +1,53 @@
 ---
 title: "Squirreling the Stats: A Demographic Tale"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
+alternative name: "Tales from Treetops"?
 
-tables and whatever about "who the squirrels are"
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+First, we will import the squirrel data. 
+
+```{r}
+squirrel_census = 
+  read_csv("data/clean_squirrel_2018.csv") |> 
+  janitor::clean_names()
+```
+In this section, we will be looking at squirrel demographics, such as fur color and age. 
+
+Lets first explore squirrel ages 
+```{r}
+squirrel_census |> 
+  filter(!(age %in% c("N/A", "?"))) |> 
+  group_by(age) |> 
+  count(age) |> 
+  mutate(Age = fct_reorder(age, n)) |> 
+  plot_ly (x = ~age, y = ~n, color = ~age,
+         type = "bar") |> 
+  layout(
+    xaxis = list(title = "Age"),   
+    yaxis = list(title = "Number of Squirrels") 
+  )
+```
+
+Lets also look at primary fur color.
+
+```{r}
+squirrel_census |> 
+  filter(!(primary_fur_color %in% c("N/A", "?"))) |> 
+  group_by(primary_fur_color) |> 
+  count(primary_fur_color) |> 
+  mutate(primary_fur_color = fct_reorder(primary_fur_color, n)) |> 
+  plot_ly (x = ~primary_fur_color, y = ~n, color = ~primary_fur_color,
+         type = "bar") |> 
+  layout(
+    xaxis = list(title = "Primary Fur Color"),   
+    yaxis = list(title = "Number of Squirrels") 
+  )
+```
