@@ -1,11 +1,10 @@
-Data cleaning & exploration
+squirrel data clean and explore
 ================
-2023-12-04
 
 *Summary*
 
 The `clean_squirrel_2018` data is a wide data set with one row per
-squirrel. These squirrels have non-missing data for the most critical
+squirrel. These squirrels have nonmissing data for the most critical
 variables for analysis (identifier, geodata, fur color, age, activity,
 date).
 
@@ -27,13 +26,11 @@ date).
 Read in 2018 Squirrel Census data from:
 <https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw>.
 
-``` r
-df_dirty_squirrel <- read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20231202.csv")
-```
-
 Use skimmr to check variable completeness, types, etc.
 
 ``` r
+df_dirty_squirrel <- read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20231204.csv")
+
 skimr::skim(df_dirty_squirrel)
 ```
 
