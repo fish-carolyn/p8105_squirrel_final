@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-maybe where the data is from, how it was collected and our motivations for doing the project? 
+### A Little About Our Data
+
+The data from this project was collected from the [The Squirrel Census](https://www.thesquirrelcensus.com/), 
+
+### Why Squirrels?
