@@ -1,7 +1,5 @@
 ---
-title: "Nesting Nooks: Exploring Squirrel Habitats"
+title: "Nesting Nooks: Exploring Squirrel Habita"
 ---
 
 tables and whatever about "where the squirrels live"
-
-maybe also a map!

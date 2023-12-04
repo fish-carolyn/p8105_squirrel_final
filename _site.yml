@@ -3,11 +3,8 @@ output_dir: "."
 navbar:
   title: "Home"
   href: index.html
-  left:
-    - text: "Project Report"
-      href: Report.html
   right:
-    - text: "The Nuts (and Bolts)"
+    - text: "About"
       href: About.html
     - text: "Squirreling the Stats: A Demographic Tale"
       href: descriptives.html

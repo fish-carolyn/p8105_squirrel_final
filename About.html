@@ -11,9 +11,9 @@
 
 
 
-<title>The Nuts (and Bolts)</title>
+<title>About</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -244,13 +244,11 @@ $(document).ready(function () {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li>
-  <a href="Report.html">Project Report</a>
-</li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="About.html">The Nuts (and Bolts)</a>
+  <a href="About.html">About</a>
 </li>
 <li>
   <a href="descriptives.html">Squirreling the Stats: A Demographic Tale</a>
@@ -276,23 +274,104 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">The Nuts (and Bolts)</h1>
+<h1 class="title toc-ignore">About</h1>
 
 </div>
 
 
-<div id="byte-sized-beginnings-digging-up-data" class="section level2">
-<h2>Byte-Sized Beginnings: Digging up Data</h2>
-<p>maybe where the data is from, how it was collected and cleaned</p>
+<div id="a-little-about-our-data" class="section level3">
+<h3>A Little About Our Data</h3>
+<p>The data from this project was collected from the <a
+href="https://www.thesquirrelcensus.com/">The Squirrel Census</a>, ran
+by the Department of Data - NYC, and available for download at <a
+href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw">NYC
+OpenData</a>. The Squirrel Census is a multimedia science, design, art,
+and storytelling project focusing on the Eastern gray (Sciurus
+carolinensis). The aims of this project is to count squirrels and and
+present their findings to the public in the form of “comprehensive maps,
+data visualizations, 45-RPM records, anthropomorphic storytelling, live
+presentations, semi-true videos, and other fun stuff”. We love and
+embrace their mission of serving as a liason for the <em>believe</em>
+and <em>make-believe</em>.</p>
 </div>
-<div id="cracking-the-code-our-motivations" class="section level2">
-<h2>Cracking the Code: Our Motivations</h2>
-<p>our motivations for the project</p>
-</div>
-<div id="squirrel-savants-meet-the-nutty-minds-behind-the-data-delve"
-class="section level2">
-<h2>Squirrel Savants: Meet the Nutty Minds Behind the Data Delve</h2>
-<p>our about us section</p>
+<div id="data-dictionary" class="section level3">
+<h3>Data Dictionary</h3>
+<p>The dataset, included <a
+href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29">here</a>,
+includes 3,023 observations and includes the following variables:</p>
+<ul>
+<li><code>long</code>: Longitude</li>
+<li><code>lat</code>: Latitude</li>
+<li><code>unique_squirrel_id</code>: Identification tag for each
+squirrel sightings. The tag is comprised of “Hectare ID” + “Shift” +
+“Date” + “Hectare Squirrel Number.”</li>
+<li><code>hectare</code>: ID tag, which is derived from the hectare grid
+used to divide and count the park area. One axis that runs predominantly
+north-to-south is numerical (1-42), and the axis that runs predominantly
+east-to-west is roman characters (A-I).</li>
+<li><code>shift</code>: Value is either “AM” or “PM,” to communicate
+whether or not the sighting session occurred in the morning or late
+afternoon.</li>
+<li><code>date</code>: Concatenation of the sighting session day and
+month.</li>
+<li><code>hectare_squirrel_number</code>: Number within the
+chronological sequence of squirrel sightings for a discrete sighting
+session.</li>
+<li><code>age</code>: Value is either “Adult” or “Juvenile.”</li>
+<li><code>primary_fur_color</code>: Value is either “Gray,” “Cinnamon”
+or “Black.”</li>
+<li><code>highlight_fur_color</code>: Discrete value or string values
+comprised of “Gray,” “Cinnamon” or “Black.”</li>
+<li><code>combination_of_primary_and_highlight_color</code>: A
+combination of the previous two columns; this column gives the total
+permutations of primary and highlight colors observed.</li>
+<li><code>color_notes</code>: Sighters occasionally added commentary on
+the squirrel fur conditions. These notes are provided here.</li>
+<li><code>location</code>: Value is either “Ground Plane” or “Above
+Ground.” Sighters were instructed to indicate the location of where the
+squirrel was when first sighted.</li>
+<li><code>above_ground_sighter_measurement</code>: For squirrel
+sightings on the ground plane, fields were populated with a value of
+“FALSE.”</li>
+<li><code>specific_location</code>: Sighters occasionally added
+commentary on the squirrel location. These notes are provided here.</li>
+<li><code>running</code>: Squirrel was seen running.</li>
+<li><code>chasing</code>: Squirrel was seen chasing.</li>
+<li><code>climbing</code>: Squirrel was seen climbing.</li>
+<li><code>eating</code>: Squirrel was seen eating.</li>
+<li><code>foraging</code>: Squirrel was seen foraging.</li>
+<li><code>other_activites</code>: Other activities.</li>
+<li><code>kuks</code>: Squirrel was heard kukking, a chirpy vocal
+communication used for a variety of reasons.</li>
+<li><code>quaas</code>: Squirrel was heard quaaing, an elongated vocal
+communication which can indicate the presence of a ground predator such
+as a dog.</li>
+<li><code>moans</code>: Squirrel was heard moaning, a high-pitched vocal
+communication which can indicate the presence of an air predator such as
+a hawk.</li>
+<li><code>tail_flags</code>: Squirrel was seen flagging its tail.
+Flagging is a whipping motion used to exaggerate squirrel’s size and
+confuse rivals or predators. Looks as if the squirrel is scribbling with
+tail into the air.</li>
+<li><code>tail_twitches</code>: Squirrel was seen flagging its tail.
+Flagging is a whipping motion used to exaggerate squirrel’s size and
+confuse rivals or predators. Looks as if the squirrel is scribbling with
+tail into the air.</li>
+<li><code>approaches</code>: Squirrel was seen approaching human,
+seeking food.</li>
+<li><code>indifferent</code>: Squirrel was indifferent to human
+presence.</li>
+<li><code>runs_from</code>: Squirrel was seen running from humans,
+seeing them as a threat.</li>
+<li><code>other_interactions</code>: Sighter notes on other types of
+interactions between squirrels and humans.</li>
+<li><code>lat_long</code>: Combined lat long</li>
+<li><code>zip_codes</code>: zip codes</li>
+<li><code>community_districts</code>: Community districts</li>
+<li><code>borough_boundaries</code>: Borough boundaries</li>
+<li><code>city_council_districts</code>: City council districts</li>
+<li><code>police_precincts</code>: Police precincts</li>
+</ul>
 </div>
 
 
