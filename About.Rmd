@@ -8,7 +8,7 @@ The data from this project was collected from the [The Squirrel Census](https://
 
 ### Data Dictionary
 
-The dataset, included [here](), includes 3,023 observations and includes the following variables:
+The dataset, included [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29), includes 3,023 observations and includes the following variables:
 
 * `long`: Longitude
 * `lat`: Latitude
