@@ -1,27 +1,32 @@
 ---
 title: "Squirreling the Stats: A Demographic Tale"
-output: 
-  html_document:
-    toc: true
-    toc_float: true
 ---
-alternative name: "Tales from Treetops"?
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+```
 
 ```{r}
 library(tidyverse)
 library(plotly)
 ```
 
-First, we will import the squirrel data. 
+#### In this section, we will be looking at squirrel demographics, such as fur color and age. 
+
+First, we will import the cleaned squirrel data. 
 
 ```{r}
 squirrel_census = 
   read_csv("data/clean_squirrel_2018.csv") |> 
   janitor::clean_names()
 ```
-In this section, we will be looking at squirrel demographics, such as fur color and age. 
 
-Lets first explore squirrel ages 
+There are a total of `r nrow(squirrel_census)` squirrel observations in the data set. 
+
+
+#### Let's first explore squirrel ages. 
+
 ```{r}
 squirrel_census |> 
   filter(!(age %in% c("N/A", "?"))) |> 
@@ -35,22 +40,56 @@ squirrel_census |>
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
+It appears that the majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
 
-Lets also look at primary fur color.
+
+#### Let's also look at primary and highlight fur color.
 
 ```{r}
 squirrel_census |> 
-  filter(!(primary_fur_color %in% c("N/A", "?"))) |> 
+  filter(!(combination_of_primary_and_highlight_color %in% c("N/A", "?"))) |> 
   group_by(primary_fur_color) |> 
   count(primary_fur_color) |> 
   mutate(primary_fur_color = fct_reorder(primary_fur_color, n)) |> 
   plot_ly (x = ~primary_fur_color, y = ~n, color = ~primary_fur_color,
-         type = "bar") |> 
+         type = "bar", colors = "viridis") |> 
   layout(
     xaxis = list(title = "Primary Fur Color"),   
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
+
+```{r}
+squirrel_census |> 
+  rename(combination_fur_color = combination_of_primary_and_highlight_color) |> 
+  count(combination_fur_color) |> 
+  mutate(combination_fur_color = fct_reorder(combination_fur_color, n)) |> 
+  plot_ly (x = ~combination_fur_color, y = ~n, color = ~combination_fur_color,
+         type = "bar", colors = "viridis") |> 
+  layout(
+    xaxis = list(title = "Fur Color"),   
+    yaxis = list(title = "Number of Squirrels") 
+  )
+```
+
+#### Is there a difference in primary fur color depending on age? 
+
+```{r}
+squirrel_census |> 
+  filter(!(age %in% c("N/A", "?"))) |>
+  select(age, primary_fur_color) |> 
+  group_by(age, primary_fur_color) |> 
+  summarise(count = n()) |> 
+  mutate(percent = count / sum(count) * 100) |> 
+  plot_ly (x = ~age, y = ~percent, color = ~primary_fur_color,
+         type = "bar", colors = "viridis") |> 
+  layout(
+    xaxis = list(title = "Age"),   
+    yaxis = list(title = "Percent of Squirrels") 
+  )
+```
+
+#### Here is a map of squirrel location based on primary fur color. 
 
 ```{r squirrel_fur_plot_test}
 squirrel_fur_graph =
