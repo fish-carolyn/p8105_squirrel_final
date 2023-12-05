@@ -14,6 +14,8 @@ navbar:
       href: habitat.html
     - text: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
       href: activities.html
+    - text: "Dashboard"
+      href: dashboard.html 
     - icon: fa-github fa-lg
       href: https://github.com/fish-carolyn/p8105_squirrel_final.git
 output:

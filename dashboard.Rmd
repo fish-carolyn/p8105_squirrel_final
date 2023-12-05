@@ -1,0 +1,48 @@
+---
+title: "Squirrel Maps"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+
+library(tidyverse)
+library(plotly)
+
+```
+
+
+```{r, load data}
+squirrel_census = 
+  read_csv("data/clean_squirrel_2018.csv") |> 
+  janitor::clean_names()
+
+```
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Fur Color
+
+```{r}
+squirrel_fur_graph =
+  squirrel_census |> 
+  select(unique_squirrel_id, x, y, primary_fur_color) |>
+  filter(!is.na(primary_fur_color))
+        
+squirrel_fur_graph |> 
+  plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
