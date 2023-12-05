@@ -41,17 +41,6 @@ ggplot(sounds_summary, aes(x = Sound, y = Count, fill = Sound)) +
 Of the three identified squirrel sounds, NYC squirrels most commonly "kuk" is the most common sound, and "moans" are rarely heard. To better understand the meaning of these sounds, let's take a look at the type of activity or interactions the squirrels who made these sounds are engaged in. 
 
 
-```{r squirrel_plot_test}
-squirrel_plot =
-  squirrel_census %>% 
-  select(unique_squirrel_id, x, y) %>% 
-  filter(!is.na(unique_squirrel_id))
-
-squirrel_plot %>% 
-  plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", alpha = 0.05)
-         
-```
-
 
 
 

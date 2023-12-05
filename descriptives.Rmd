@@ -51,3 +51,15 @@ squirrel_census |>
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
+
+```{r squirrel_fur_plot_test}
+squirrel_fur_graph =
+  squirrel_census |> 
+  select(unique_squirrel_id, x, y, primary_fur_color) |>
+  filter(!is.na(primary_fur_color))
+        
+squirrel_fur_graph |> 
+  plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color)
+
+#you don't have to use this but wanted you to take a look
+```
