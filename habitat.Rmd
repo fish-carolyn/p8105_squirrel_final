@@ -21,8 +21,7 @@ library(tmaptools)
 
 ```{r}
 squirrel_census = 
-  read_csv("data/clean_squirrel_2018.csv") |> 
-  janitor::clean_names()
+  read_csv("data/clean_squirrel_2018.csv")
 ```
 
 ```{r}
