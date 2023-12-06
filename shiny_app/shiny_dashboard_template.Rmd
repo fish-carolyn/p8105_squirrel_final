@@ -1,0 +1,71 @@
+---
+title: "Shiny Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(rsconnect)
+
+squirrel_census = 
+  read_csv("data/clean_squirrel_2018.csv") |> 
+  janitor::clean_names()
+
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+fur_vec = squirrel_census |> pull(primary_fur_color) |> unique ()
+  
+selectInput (
+  inputId = "fur_choice",
+  label = "Select Fur Color",
+  choices = fur_vec
+  )
+```
+
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+renderPlotly({
+  squirrel_fur_graph =
+    squirrel_census |> 
+    select(unique_squirrel_id, x, y, primary_fur_color) |>
+    filter(!is.na(primary_fur_color))
+          
+  squirrel_fur_graph |> 
+    filter(primary_fur_color == input[["fur_choice"]]) |> 
+    plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color)
+})
+
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+

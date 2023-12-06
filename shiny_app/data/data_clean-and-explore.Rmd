@@ -1,0 +1,80 @@
+---
+title: "squirrel data clean and explore"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+
+library(tidyverse)
+library(lubridate)
+```
+
+*Summary*
+
+The `clean_squirrel_2018` data is a wide data set with one row per
+squirrel. These squirrels have nonmissing data for the most critical
+variables for analysis (identifier, geodata, fur color, age, activity,
+date).
+
+### Data cleaning check list:
+
+*   every squirrel has a unique ID [x]
+*   every squirrel has geodata (`hectare`, `x`, `y`) [x]
+*   non-missing data for:
+    *   primary fur color [x]
+    *   age [x]
+    *   location description [x]
+    *   activity descriptions [x]
+    *   date [x]
+*   continuous variables as numeric [x]
+*   document number of squirrels that fit all criteria [x]
+
+### Get data
+
+Read in 2018 Squirrel Census data from:
+<https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw>.
+
+Use skimmr to check variable completeness, types, etc.
+```{r}
+df_dirty_squirrel <- read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20231204.csv")
+
+skimr::skim(df_dirty_squirrel)
+```
+
+
+
+### Clean variable names and remove missing data
+```{r}
+df_clean_squirrel = df_dirty_squirrel |> 
+  janitor::clean_names() |> 
+  filter(
+    complete.cases(unique_squirrel_id, 
+                   x, y, 
+                   primary_fur_color, 
+                   age, 
+                   location
+                   )
+  ) |> 
+  mutate(
+    x = as.numeric(x), 
+    y= as.numeric(y), 
+    day = as.numeric(substr(date, 3, 4)),     #date results in a lot of parsing failures so I'm using a work around
+    month = as.numeric(substr(date, 1, 2)),  
+    year = as.numeric(substr(date, 5, 11)), 
+    date_assembled = paste(month, day, year, sep = "-") 
+  ) |> 
+  mutate(
+    date = lubridate::mdy(date_assembled)
+  ) |> 
+  filter(!is.na(date))
+```
+
+In the cleaner version of the data for which only squirrels with non-missing data have been kept, there are data for 2819 distinct squirrels. The data was collected between 2018-10-06 and 2018-10-20.
+
+### Export clean data
+```{r}
+save_path = "clean_squirrel_2018.csv"
+
+write_csv(df_clean_squirrel, save_path, na="")
+```

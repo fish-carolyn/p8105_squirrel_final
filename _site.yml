@@ -14,8 +14,8 @@ navbar:
       href: habitat.html
     - text: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
       href: activities.html
-    - text: "Dashboard"
-      href: dashboard.html 
+    - text: "Shiny App"
+      href: https://selinahsuan.shinyapps.io/shiny_app/ 
     - icon: fa-github fa-lg
       href: https://github.com/fish-carolyn/p8105_squirrel_final.git
 output:
