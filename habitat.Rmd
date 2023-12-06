@@ -3,13 +3,18 @@ title: "Nesting Nooks: Exploring Squirrel Habitat"
 ---
 tables and whatever about "where the squirrels live"
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 ```
 
-```{r}
+```{r, include = FALSE}
 library(tidyverse)
 library(plotly)
+library(ggmap)
+library(ggplot2)
+library(sf)
+library(tmap)
+library(tmaptools)
 ```
 
 #### Here is a map of squirrel location based on primary fur color. 
@@ -19,6 +24,28 @@ squirrel_census =
   read_csv("data/clean_squirrel_2018.csv") |> 
   janitor::clean_names()
 ```
+
+```{r}
+central_park_map = st_read(here::here('central_park', 'CentralPark.shp'))
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = central_park_map) +
+  geom_point(
+    data = squirrel_census,
+    aes(x = x, y = y, color = primary_fur_color),
+    size = 0.3) +
+  theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  labs(color = 'Primary Fur Color',
+       title = 'Squirrels')
+```
+
+
 
 ```{r fur_plot}
 squirrel_fur_graph =
