@@ -87,7 +87,7 @@ plots_list = list()
 for(activity in unique(long_data[["Activity"]])) {
   activity_data = long_data[long_data[["Activity"]] == activity, ]
   p = plot_ly(activity_data, x = ~Sound, y = ~n, type = 'bar', name = activity) |>
-    layout(title = paste('Squirrel Sounds during', activity))
+    layout(title = paste('Squirrel Sounds by Activity Type'))
   plots_list[[activity]] = p
 }
 
@@ -95,3 +95,4 @@ for(activity in unique(long_data[["Activity"]])) {
 subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE)
 ```
 
+Squirrel who `kuk` and `quaa` were very frequently seen `chasing`. In general, squirrels who `kuk` engaged in all activity types. Similar;y, squirrels who `quaa` also participated in all activities, but with less frequency. This is in line with our sounds distribution, as `quaa` is a rarer sound when compared to `kuks`. Finally we see that squirrels who `moan` were only seen `climbing` or `foraging`. Overall, this distribution gives us hints about the frequency of squirrel sounds and their potential correspondence with different types of activity. However, we do not have enough information to draw conclusions about sound meanings and activity types. 
