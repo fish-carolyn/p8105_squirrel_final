@@ -29,7 +29,7 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'))
 ```
 
 distribution of squirrel color
-```{r}
+```{r, fig.width= 6, fig.align='center'}
 ggplot() +
   geom_sf(data = central_park_map, color = "grey") +
   geom_point(
@@ -46,7 +46,7 @@ ggplot() +
   scale_color_manual(values = c("Black" = "black", "Gray" = "azure4", "Cinnamon" = "darkorange3")) 
 ```
 
-```{r}
+```{r, fig.width= 6, fig.align='center'}
 squirrel_census |> 
   filter(eating == "TRUE") |> 
   ggplot() +
@@ -64,10 +64,35 @@ squirrel_census |>
 ```
 
 
-```{r}
+```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
-  group_by(primary_fur_color) |> 
-  summarize(n())
+  mutate(
+    activity = case_when(
+      running == "TRUE" ~ "running",
+      chasing == "TRUE" ~ "chasing",
+      climbing == "TRUE" ~ "climbing",
+      foraging == "TRUE" ~ "foraging",
+      .default = "sedintary"
+    )
+  ) |> 
+  filter(activity != "sedintary") |> 
+  ggplot() +
+    geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    aes(x = x, y = y, color = activity),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  labs(
+    title = "What are they doing?",
+    color = "Squirrel Activities"
+  ) +
+  facet_grid(cols = vars(activity))
+  
+  
 ```
 
 
@@ -80,4 +105,3 @@ squirrel_fur_graph =
 squirrel_fur_graph |> 
   plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color)
 ```
-
