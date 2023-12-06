@@ -1,5 +1,9 @@
 ---
 title: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
+output: 
+  html_document:
+    code_folding: hide
+    always_allow_html: true
 ---
 
 we could also name this "Acorn Adventures: Unraveling the Tapestry of Squirrel Activity"
