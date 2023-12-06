@@ -43,7 +43,7 @@ Column {data-width=350}
 ```
 
 
-
+command to knit dashboaord (leaving this here for now, will remove before final submission): rmarkdown::render("dashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
 
 
 
