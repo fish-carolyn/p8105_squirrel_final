@@ -126,10 +126,58 @@ In the cleaner version of the data for which only squirrels with
 non-missing data have been kept, there are data for 2819 distinct
 squirrels. The data was collected between 2018-10-06 and 2018-10-20.
 
+### Adding squirrel names
+
+``` r
+squirrel_names <- c(
+  "Sparky", "Nuttail", "Cocoa", "Whiskertail", "Hazel", "Paws", "Sable", "Furryfluff", "Almond","Bushytoes", "Pecan", "Snugglewhisk", "Popcorn", "Nutbuster", "Chestnut", "Snickersnack", "Butterscotch", "Fluffpaws", "Maple", "Tangletoe", "Walnut", "Giggletail", "Acorn", "Snickersnout", "Pistachio", "Wigglesnout", "Cashew", "Sillytail", "Toffee", "Fluffernut", "Macadamia", "Wigglewhisk", "Cinnamon", "Nibbler", "Russet", "Snickerwhisk", "Caramel", "Fuzzernose", "Mocha", "Whiskernib", "S'mores", "Snickersnout", "Olive", "Gigglenose", "Mango", "Snuggletail", "Taffy", "Wigglesnout", "Marshmallow", "Nibbler", "Chestnut", "Scurrypaws", "Butter", "Pouncewhisk", "Truffle", "Fluffpounce", "Pumpkin", "Nibblesnout", "Cocoa", "Wigglepaws", "Peanut", "Whiskersnack", "Sesame", "Nuzzlenib", "Blueberry", "Fluffernibble", "Hazelnut", "Pouncetail", "Raspberry", "Whiskernibble", "Muffin", "Nutbounce", "Peach", "Snickerscuffle", "Ginger", "Fluffpounce", "Biscuit", "Nuzzlesnack", "Cherry", "Scurryfluff", "Bluebell", "Wigglewhisk", "Apricot", "Snugglesnack", "Plum", "Gigglesnout", "Sunny", "Snickersnuggle", "Banana", "Whiskerbounce", "Papaya", "Nutwhisk", "Coconut", "Snickersnuggle", "Mango", "Wiggletail", "Berry", "Gigglesnout", "Kiwi", "Pouncesnout", "Melon", "Nuzzlenose", "Tangerine", "Wigglepaws", "Plum", "Scurrywhisk", "Pumpkin", "Fluffertail", "Grape", "Nibblesnack", "Blackberry", "Pouncepaws", "Raspberry", "Nutwhisk", "Peach", "Fluffertail", "Kiwi", "Wigglepaws", "Mango", "Giggletail", "Tangerine", "Fluffernose", "Grape", "Whiskertail", "Blackberry", "Nutbounce", "Blueberry", "Scurrypaws", "Cranberry", "Wiggletail", "Mulberry", "Pouncewhisk", "Orange", "Nibbler", "Pomegranate", "Nutsnack", "Strawberry", "Wigglewhisk", "Lemon", "Nuzzlenose", "Lime", "Snickerscuffle", "Watermelon", "Snickersnuggle", "Apple", "Nutbounce", "Cherry", "Whiskertail", "Grapes", "Fluffertail", "Peach", "Wigglepaws", "Sunny", "Chestnut", "Maple", "Peanut", "Hazel", "Walnut", "Oreo", "Marshmallow", "Snickers","Buttercup", "Pumpkin", "Pinecone", "Cocoa", "Blueberry", "Raspberry", "Sparky", "Furry", "Chestnut", "Pippin", "Acorn", "Pistachio", "Hazelnut", "Cinnamon", "Mocha", "Pecan", "Acorn", "Biscuit", "Almond", "S'mores", "Wiggles", "Twix", "Bubbles", "Doodle", "Wombat", "Fluffernutter", "Muffin", "Fuzzball", "Cupcake", "Wonton", "Snuggles", "Pippin", "Moonbeam", "Cheesecake", "Jigsaw", "Cashew", "Jumper", "Marmalade", "Nimbus", "Toffee", "Poppy", "Squirt", "Munchkin", "Tidbit","Jingle", "Piston", "Fandango", "Jolt", "Nectar", "Sprinkle", "Nudge", "Tickles", "Hiccup", "Sassafras", "Zippy", "Daffodil", "Raisin", "Frizzle", "Caramel", "Stardust", "Quicksilver", "Nishi", "Jeff", "Selina", "Ghislaine", "Carolyn", "Camille", "Sanika", "Z", "Will", "Bella", "Frank", "Rose", "Gerry", "Ryan", "Fuzzy", "Wuzzy", "Fern", "Rain", "Bob", "Larry", "Doug", "John", "Mimosa", "Juicy", "Megan", "Lizzie", "Santa", "Jingles", "Lucy", "Lady", "King", "Queen", "Prince", "Madam", "Sir", "Czar", "Princess", "Your Highness", "Ronald", "Tapioca", "Boba", "Candycane", "Moscato", "Shrek", "Legolas", "Adrian", "Reggie", "Sophie", "Francesca", "Spiderman", "Peter", "Super", "Henry", "Sebastian", "Frodo", "Gandalf", "Bilbo"
+)
+```
+
+``` r
+squirrel_names <- unique(squirrel_names)
+
+generated_squirrel_names <- data.frame(name = character(), stringsAsFactors = FALSE)
+
+num_iterations <- 3000 
+
+# Loop to randomly select two names, concatenate them, and store them
+for (i in 1:num_iterations) {
+
+  selected_names <- sample(squirrel_names, 2)
+  
+  new_row <- data.frame(name = paste(selected_names, collapse = " "), stringsAsFactors = FALSE)
+  generated_squirrel_names <- rbind(generated_squirrel_names, new_row)
+}
+```
+
+The squirrel names are exported as a .csv (`squirrel_names_final`). I am
+not showing this here because I do not want to overwrite the
+`squirrel_names_final` file every time this .Rmd is knit.
+
+``` r
+squirrel_names_final = read_csv("squirrel_names_final.csv")
+
+df_clean_squirrel_names <- df_clean_squirrel  |> 
+  mutate(name_key = row_number())
+
+# Randomly shuffle the rows of names
+squirrel_names_final <- squirrel_names_final |> 
+  mutate(name_key = row_number())
+
+# Merge the shuffled names_df with main_df based on the row index
+df_clean_squirrel_names <- df_clean_squirrel_names  |> 
+  left_join(squirrel_names_final, by = c("name_key"))
+
+# If you want to keep only the Squirrel_ID and Assigned_Name columns
+df_clean_squirrel_names <- df_clean_squirrel_names  |> 
+  select(-name_key)
+```
+
 ### Export clean data
 
 ``` r
 save_path = "clean_squirrel_2018.csv"
 
-write_csv(df_clean_squirrel, save_path, na="")
+write_csv(df_clean_squirrel_names, save_path, na="")
 ```
