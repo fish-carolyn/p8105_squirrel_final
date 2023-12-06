@@ -2,11 +2,12 @@
 title: "Squirrel Maps"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    theme: journal
+    social: menu
+    source_code: embed
 ---
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 
 library(tidyverse)
 library(plotly)
@@ -14,11 +15,9 @@ library(plotly)
 ```
 
 
-```{r, load data}
+```{r}
 squirrel_census = 
-  read_csv("data/clean_squirrel_2018.csv") |> 
-  janitor::clean_names()
-
+  read_csv("data/clean_squirrel_2018.csv") 
 ```
 
 
@@ -40,6 +39,8 @@ squirrel_fur_graph |>
 Column {data-width=350}
 -----------------------------------------------------------------------
 
+```{r}
+```
 
 
 
