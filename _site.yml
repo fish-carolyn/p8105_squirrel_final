@@ -20,4 +20,4 @@ navbar:
       href: https://github.com/fish-carolyn/p8105_squirrel_final.git
 output:
   html_document:
-    theme: cerulean
+      css: bootstrap.css
