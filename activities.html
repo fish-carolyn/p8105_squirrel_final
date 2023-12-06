@@ -13,7 +13,7 @@
 
 <title>Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -322,22 +322,27 @@ Squirrel Activity”</p>
 <p>tables and whatever about “what squirrels do”</p>
 <pre class="r"><code>squirrel_census = 
   read_csv(&quot;data/clean_squirrel_2018.csv&quot;)</code></pre>
-<p>Squirrels are dynamic creatures with a secret language. In a bustling
-environment like New York City, these animals use unique signals to
-communicate with each other, other animals, and us.</p>
-<p>First, let’s take a look at squirrel sounds.</p>
+<div
+id="squirrels-are-dynamic-creatures-with-a-secret-language.-in-a-bustling-environment-like-new-york-city-these-animals-use-unique-signals-to-communicate-with-each-other-other-animals-and-us."
+class="section level3">
+<h3>Squirrels are dynamic creatures with a secret language. In a
+bustling environment like New York City, these animals use unique
+signals to communicate with each other, other animals, and us.</h3>
+<div id="first-lets-take-a-look-at-squirrel-sounds."
+class="section level4">
+<h4>First, let’s take a look at squirrel sounds.</h4>
 <pre class="r"><code>sounds_summary = data.frame(
   Sound = c(&quot;Kuks&quot;, &quot;Quaas&quot;, &quot;Moans&quot;),
   Count = c(sum(squirrel_census[[&quot;kuks&quot;]], na.rm = TRUE), 
             sum(squirrel_census[[&quot;quaas&quot;]], na.rm = TRUE), 
             sum(squirrel_census[[&quot;moans&quot;]], na.rm = TRUE))
 )</code></pre>
-<pre class="r"><code>plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = &#39;bar&#39;, colors = viridis::viridis(3)) |&gt;
+<pre class="r"><code>plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = &#39;bar&#39;, colors = RColorBrewer::brewer.pal(3, &quot;Set2&quot;)) |&gt;
   layout(title = &#39;Distribution of Squirrel Sounds&#39;,
          xaxis = list(title = &#39;Sound Type&#39;),
          yaxis = list(title = &#39;Count&#39;))</code></pre>
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a2925ee0ebe0a759dcdd" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-a2925ee0ebe0a759dcdd">{"x":{"visdat":{"9f48705af7df":["function () ","plotlyVisDat"]},"cur_data":"9f48705af7df","attrs":{"9f48705af7df":{"x":{},"y":{},"color":{},"colors":["#440154FF","#21908CFF","#FDE725FF"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Squirrel Sounds","xaxis":{"domain":[0,1],"automargin":true,"title":"Sound Type","type":"category","categoryorder":"array","categoryarray":["Kuks","Moans","Quaas"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Kuks"],"y":[89],"type":"bar","name":"Kuks","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"textfont":{"color":"rgba(68,1,84,1)"},"error_y":{"color":"rgba(68,1,84,1)"},"error_x":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Moans"],"y":[1],"type":"bar","name":"Moans","marker":{"color":"rgba(33,144,140,1)","line":{"color":"rgba(33,144,140,1)"}},"textfont":{"color":"rgba(33,144,140,1)"},"error_y":{"color":"rgba(33,144,140,1)"},"error_x":{"color":"rgba(33,144,140,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Quaas"],"y":[44],"type":"bar","name":"Quaas","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"textfont":{"color":"rgba(253,231,37,1)"},"error_y":{"color":"rgba(253,231,37,1)"},"error_x":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9d238b8b457b1f4fa13b" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-9d238b8b457b1f4fa13b">{"x":{"visdat":{"24905a775946":["function () ","plotlyVisDat"]},"cur_data":"24905a775946","attrs":{"24905a775946":{"x":{},"y":{},"color":{},"colors":["#66C2A5","#FC8D62","#8DA0CB"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Squirrel Sounds","xaxis":{"domain":[0,1],"automargin":true,"title":"Sound Type","type":"category","categoryorder":"array","categoryarray":["Kuks","Moans","Quaas"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Kuks"],"y":[89],"type":"bar","name":"Kuks","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Moans"],"y":[1],"type":"bar","name":"Moans","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Quaas"],"y":[44],"type":"bar","name":"Quaas","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Of the three identified squirrel sounds, NYC squirrels most commonly
 “kuk” is the most common sound, and “moans” are rarely heard. To better
 understand the meaning of these sounds, let’s take a look at the type of
@@ -350,8 +355,8 @@ interaction_sounds &lt;- squirrel_census |&gt;
             Quaas = sum(quaas, na.rm = TRUE),
             Moans = sum(moans, na.rm = TRUE)) |&gt;
   pivot_longer(cols = c(Kuks, Quaas, Moans), names_to = &quot;Sound&quot;, values_to = &quot;Count&quot;)</code></pre>
-<pre><code>## `summarise()` has grouped output by &#39;approaches&#39;, &#39;indifferent&#39;. You can override
-## using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;approaches&#39;, &#39;indifferent&#39;. You can
+## override using the `.groups` argument.</code></pre>
 <pre class="r"><code># Creating a new column for interaction type
 interaction_sounds[[&quot;interaction_type&quot;]] &lt;- case_when(
   interaction_sounds[[&quot;approaches&quot;]] == TRUE ~ &quot;Approaches&quot;,
@@ -365,8 +370,8 @@ plot_ly(interaction_sounds, x = ~Sound, y = ~Count, color = ~interaction_type, t
   layout(title = &#39;Distribution of Squirrel Sounds by Human Interaction&#39;,
          xaxis = list(title = &#39;Sound Type&#39;),
          yaxis = list(title = &#39;Count&#39;))</code></pre>
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9d141b73ebe27cdfa89f" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9d141b73ebe27cdfa89f">{"x":{"visdat":{"9f4814fd49be":["function () ","plotlyVisDat"]},"cur_data":"9f4814fd49be","attrs":{"9f4814fd49be":{"x":{},"y":{},"color":{},"colors":["#66C2A5","#FC8D62","#8DA0CB"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Squirrel Sounds by Human Interaction","xaxis":{"domain":[0,1],"automargin":true,"title":"Sound Type","type":"category","categoryorder":"array","categoryarray":["Kuks","Moans","Quaas"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Kuks","Quaas","Moans","Kuks","Quaas","Moans","Kuks","Quaas","Moans","Kuks","Quaas","Moans"],"y":[3,0,0,1,0,0,0,0,0,0,0,0],"type":"bar","name":"Approaches","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Kuks","Quaas","Moans","Kuks","Quaas","Moans"],"y":[30,15,0,2,1,0],"type":"bar","name":"Indifferent","marker":{"color":"rgba(215,162,120,1)","line":{"color":"rgba(215,162,120,1)"}},"textfont":{"color":"rgba(215,162,120,1)"},"error_y":{"color":"rgba(215,162,120,1)"},"error_x":{"color":"rgba(215,162,120,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Kuks","Quaas","Moans"],"y":[26,20,0],"type":"bar","name":"Other","marker":{"color":"rgba(223,148,134,1)","line":{"color":"rgba(223,148,134,1)"}},"textfont":{"color":"rgba(223,148,134,1)"},"error_y":{"color":"rgba(223,148,134,1)"},"error_x":{"color":"rgba(223,148,134,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Kuks","Quaas","Moans"],"y":[27,8,1],"type":"bar","name":"Runs From","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d5925b6a82e61acc8b85" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d5925b6a82e61acc8b85">{"x":{"visdat":{"24906d7e4f57":["function () ","plotlyVisDat"]},"cur_data":"24906d7e4f57","attrs":{"24906d7e4f57":{"x":{},"y":{},"color":{},"colors":["#66C2A5","#FC8D62","#8DA0CB"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Distribution of Squirrel Sounds by Human Interaction","xaxis":{"domain":[0,1],"automargin":true,"title":"Sound Type","type":"category","categoryorder":"array","categoryarray":["Kuks","Moans","Quaas"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Count"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["Kuks","Quaas","Moans","Kuks","Quaas","Moans","Kuks","Quaas","Moans","Kuks","Quaas","Moans"],"y":[3,0,0,1,0,0,0,0,0,0,0,0],"type":"bar","name":"Approaches","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Kuks","Quaas","Moans","Kuks","Quaas","Moans"],"y":[30,15,0,2,1,0],"type":"bar","name":"Indifferent","marker":{"color":"rgba(215,162,120,1)","line":{"color":"rgba(215,162,120,1)"}},"textfont":{"color":"rgba(215,162,120,1)"},"error_y":{"color":"rgba(215,162,120,1)"},"error_x":{"color":"rgba(215,162,120,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Kuks","Quaas","Moans"],"y":[26,20,0],"type":"bar","name":"Other","marker":{"color":"rgba(223,148,134,1)","line":{"color":"rgba(223,148,134,1)"}},"textfont":{"color":"rgba(223,148,134,1)"},"error_y":{"color":"rgba(223,148,134,1)"},"error_x":{"color":"rgba(223,148,134,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["Kuks","Quaas","Moans"],"y":[27,8,1],"type":"bar","name":"Runs From","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>As the plot above shows, squirrels who <code>kuk</code>are frequently
 <code>indifferent,</code> <code>run from,</code> or exhibit
 <code>other</code> behavior when interacting with humans. Squirrels who
@@ -378,6 +383,33 @@ While this is an interesting data point, there is not enough information
 to associate a <code>moan</code> with fear or distress. Without more
 data and a better understanding of what <code>other</code> behavior is,
 we cannot accurately determine what these squirrel sounds mean.</p>
+</div>
+<div id="now-lets-look-at-squirrel-activity" class="section level4">
+<h4>Now, let’s look at squirrel activity</h4>
+<pre class="r"><code># Reshaping data into a long format
+long_data = squirrel_census |&gt;
+  pivot_longer(cols = c(kuks, quaas, moans), names_to = &quot;Sound&quot;, values_to = &quot;Sound_Value&quot;) |&gt;
+  pivot_longer(cols = c(running, chasing, climbing, eating, foraging), names_to = &quot;Activity&quot;, values_to = &quot;Activity_Value&quot;) |&gt;
+  filter(Activity_Value == TRUE, Sound_Value == TRUE) |&gt;
+  count(Activity, Sound)
+
+# Creating a list to store plotly objects
+plots_list = list()
+
+# Looping through each activity to create individual plots
+for(activity in unique(long_data[[&quot;Activity&quot;]])) {
+  activity_data = long_data[long_data[[&quot;Activity&quot;]] == activity, ]
+  p = plot_ly(activity_data, x = ~Sound, y = ~n, type = &#39;bar&#39;, name = activity) |&gt;
+    layout(title = paste(&#39;Squirrel Sounds during&#39;, activity))
+  plots_list[[activity]] = p
+}
+
+# Arranging the plots in a grid layout
+subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE)</code></pre>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1ad8840862b14cae01d4" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1ad8840862b14cae01d4">{"x":{"data":[{"x":["kuks","quaas"],"y":[18,14],"name":"chasing","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["kuks","moans","quaas"],"y":[39,1,13],"name":"climbing","type":"bar","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y2","frame":null},{"x":["kuks","quaas"],"y":[19,6],"name":"eating","type":"bar","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y3","frame":null},{"x":["kuks","moans","quaas"],"y":[26,1,16],"name":"foraging","type":"bar","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y4","frame":null},{"x":["kuks","quaas"],"y":[23,10],"name":"running","type":"bar","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"xaxis":"x","yaxis":"y5","frame":null}],"layout":{"xaxis":{"domain":[0,1],"automargin":true,"title":"Sound","type":"category","categoryorder":"array","categoryarray":["kuks","quaas"],"anchor":"y5"},"yaxis5":{"domain":[0,0.17999999999999997],"automargin":true,"title":"n","anchor":"x"},"yaxis4":{"domain":[0.21999999999999995,0.37999999999999989],"automargin":true,"title":"n","anchor":"x"},"yaxis3":{"domain":[0.41999999999999993,0.57999999999999996],"automargin":true,"title":"n","anchor":"x"},"yaxis2":{"domain":[0.62,0.78000000000000003],"automargin":true,"title":"n","anchor":"x"},"yaxis":{"domain":[0.82000000000000006,1],"automargin":true,"title":"n","anchor":"x"},"annotations":[],"shapes":[],"images":[],"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Squirrel Sounds during running","hovermode":"closest","showlegend":true},"attrs":{"249024226b76":{"x":{},"y":{},"name":"chasing","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"2490350e63b9":{"x":{},"y":{},"name":"climbing","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"249036d45be2":{"x":{},"y":{},"name":"eating","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"24901e8b5a42":{"x":{},"y":{},"name":"foraging","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"24901077147e":{"x":{},"y":{},"name":"running","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 
 
 
