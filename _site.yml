@@ -2,12 +2,20 @@ name: "The Squirrels of Central Park"
 output_dir: "."
 navbar:
   title: "Home"
-  href: index.html
+  left:
+  - text: About
+    menu:
+    - text: "Our Project"
+      href: Report.html
+    - text: "Us"
+      href: Authors.html
+    - text: "Data source"
+      href: About.html
   right:
     - text: "Project Report"
       href: Report.html
     - text: "Home"
-      href: About.html
+      href: index.html
     - text: "Demographic"
       href: descriptives.html
     - text: "Habitat"
