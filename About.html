@@ -13,7 +13,7 @@
 
 <title>Nuts and Bolts: Setting the Stage for Squirrel Stories</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -303,12 +303,13 @@ and <em>make-believe</em>.</p>
 </div>
 <div id="data-dictionary" class="section level3">
 <h3>Data Dictionary</h3>
-<p>The dataset, included <a
-href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29">here</a>,
-includes 3,023 observations and includes the following variables:</p>
+<p>The raw dataset, we utilized can be found here <a
+href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29">here</a>.
+Our cleaned squirrel census dataset includes 2,824 observations and
+includes the following variables:</p>
 <ul>
-<li><code>long</code>: Longitude</li>
-<li><code>lat</code>: Latitude</li>
+<li><code>x</code>: Longitude.</li>
+<li><code>y</code>: Latitude.</li>
 <li><code>unique_squirrel_id</code>: Identification tag for each
 squirrel sightings. The tag is comprised of “Hectare ID” + “Shift” +
 “Date” + “Hectare Squirrel Number.”</li>
@@ -372,7 +373,11 @@ presence.</li>
 seeing them as a threat.</li>
 <li><code>other_interactions</code>: Sighter notes on other types of
 interactions between squirrels and humans.</li>
-<li><code>lat_long</code>: Combined lat long</li>
+<li><code>lat_long</code>: Combined lat long.</li>
+<li><code>day</code>: Day value.</li>
+<li><code>month</code>: Month value.</li>
+<li><code>year</code>: Year value.</li>
+<li><code>date_assembled</code>: Concatenated date of sighting.</li>
 </ul>
 </div>
 
