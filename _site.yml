@@ -12,10 +12,6 @@ navbar:
     - text: "Data source"
       href: About.html
   right:
-    - text: "Project Report"
-      href: Report.html
-    - text: "Home"
-      href: index.html
     - text: "Demographic"
       href: descriptives.html
     - text: "Habitat"
