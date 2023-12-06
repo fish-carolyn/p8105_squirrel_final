@@ -30,20 +30,26 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'))
 
 ```{r}
 ggplot() +
-  geom_sf(data = central_park_map) +
+  geom_sf(data = central_park_map, color = "grey") +
   geom_point(
     data = squirrel_census,
     aes(x = x, y = y, color = primary_fur_color),
-    size = 0.3) +
+    size = 0.3, alpha = 0.75) +
   theme_void(base_size = 15) +
   theme(legend.position = 'bottom') +
   guides(color = guide_legend(
     title.position = "top",
     override.aes = list(size = 3))) +
   labs(color = 'Primary Fur Color',
-       title = 'Squirrels')
+       title = 'Squirrels') +
+  scale_color_manual(values = c("Black" = "black", "Gray" = "azure4", "Cinnamon" = "darkorange3")) 
 ```
 
+```{r}
+squirrel_census |> 
+  group_by(primary_fur_color) |> 
+  summarize(n())
+```
 
 
 ```{r fur_plot}
