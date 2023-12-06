@@ -17,8 +17,13 @@ Your report should include the following topics. Depending on your project type 
 ## Motivation
 Provide an overview of the project goals and motivation.
 
+Squirrels are familiar neighbors to all New Yorkers. Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)1. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral trends and spatial distribution of squirrel sightings in Central Park using 2018 Squirrel Census data. 
+
 ## Related work
+
 Anything that inspired you, such as a paper, a web site, or something we discussed in class.
+
+[The NYC Squirrel Census](https://www.thesquirrelcensus.com/)
 
 ## Initial questions
   * What questions are you trying to answer? 
