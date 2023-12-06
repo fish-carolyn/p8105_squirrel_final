@@ -6,13 +6,13 @@ navbar:
   right:
     - text: "Project Report"
       href: Report.html
-    - text: "About"
+    - text: "Home"
       href: About.html
-    - text: "Squirreling the Stats: A Demographic Tale"
+    - text: "Demographic"
       href: descriptives.html
-    - text: "Nesting Nooks: Exploring Squirrel Habitat"
+    - text: "Habitat"
       href: habitat.html
-    - text: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
+    - text: "Activity"
       href: activities.html
     - text: "Shiny App"
       href: https://selinahsuan.shinyapps.io/shiny_app/ 
