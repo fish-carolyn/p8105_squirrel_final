@@ -3,3 +3,13 @@ title: "Nesting Nooks: Exploring Squirrel Habita"
 ---
 
 tables and whatever about "where the squirrels live"
+
+#### Here is a map of squirrel location based on primary fur color. 
+
+```{r squirrel_fur_plot_test}
+squirrel_fur_graph =
+  squirrel_census |> 
+  select(unique_squirrel_id, x, y, primary_fur_color) |>
+  filter(!is.na(primary_fur_color))
+  plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color)
+```
