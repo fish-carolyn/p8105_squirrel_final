@@ -17,7 +17,7 @@ library(tmap)
 library(tmaptools)
 ```
 
-#### Here is a map of squirrel location based on primary fur color. 
+Here we are loading in the data and a shapefile of Central Park!
 
 ```{r}
 squirrel_census = 
@@ -28,7 +28,8 @@ squirrel_census =
 central_park_map = st_read(here::here('central_park', 'CentralPark.shp'))
 ```
 
-distribution of squirrel color
+#### Here is a map of the squirrels location by primary fur color!
+
 ```{r, fig.width= 6, fig.align='center'}
 ggplot() +
   geom_sf(data = central_park_map, color = "grey") +
@@ -45,6 +46,8 @@ ggplot() +
        title = 'Squirrel Fur Color Distribution') +
   scale_color_manual(values = c("Black" = "black", "Gray" = "azure4", "Cinnamon" = "darkorange3")) 
 ```
+
+#### Here are all the hungry squirrels!
 
 ```{r, fig.width= 6, fig.align='center'}
 squirrel_census |> 
@@ -63,6 +66,7 @@ squirrel_census |>
   scale_color_manual(values = c("TRUE" = "coral"))
 ```
 
+#### If they aren't eating, they are doing some other activity...
 
 ```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
@@ -91,8 +95,43 @@ squirrel_census |>
     color = "Squirrel Activities"
   ) +
   facet_grid(cols = vars(activity))
-  
-  
+```
+
+
+#### Eyes on the ground or to the trees to spot our furry friends?
+
+```{r, fig.width= 6, fig.align='center'}
+squirrel_census |> 
+  ggplot() +
+  geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    aes(x = x, y = y, color = location),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  labs(title = 'Up High or Down Low?',
+       color = "Location")
+```
+
+```{r, fig.width= 6, fig.align='center'}
+squirrel_census |> 
+  filter(age != "?") |> 
+  ggplot() +
+  geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    aes(x = x, y = y, color = age),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  scale_color_manual(values = c("Adult" = "cornsilk2", "Juvenile" = "coral1")) +
+  labs(title = "Squirrel Age",
+       color = "Age")
 ```
 
 
