@@ -14,8 +14,7 @@ library(viridis)
 
 ```{r import_data, message = FALSE}
 squirrel_census = 
-  read_csv("data/clean_squirrel_2018.csv") |> 
-  janitor::clean_names()
+  read_csv("data/clean_squirrel_2018.csv")
 ```
 
 Squirrels are dynamic creatures with a secret language. In a bustling environment like New York City, these animals use unique signals to communicate with each other, other animals, and us. 

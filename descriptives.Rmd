@@ -18,8 +18,7 @@ First, we will import the cleaned squirrel data.
 
 ```{r}
 squirrel_census = 
-  read_csv("data/clean_squirrel_2018.csv") |> 
-  janitor::clean_names()
+  read_csv("data/clean_squirrel_2018.csv")
 ```
 
 There are a total of `r nrow(squirrel_census)` squirrel observations in the data set. 
