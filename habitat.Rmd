@@ -79,10 +79,10 @@ squirrel_census |>
       chasing == "TRUE" ~ "chasing",
       climbing == "TRUE" ~ "climbing",
       foraging == "TRUE" ~ "foraging",
-      .default = "sedintary"
+      .default = "sedentary"
     )
   ) |> 
-  filter(activity != "sedintary") |> 
+  filter(activity != "sedentary") |> 
   ggplot() +
     geom_sf(data = central_park_map, color = "grey") +
   geom_point(
@@ -146,11 +146,12 @@ squirrel_census |>
       chasing == "TRUE" ~ "chasing",
       climbing == "TRUE" ~ "climbing",
       foraging == "TRUE" ~ "foraging",
-      .default = "sedintary"
+      is.na(other_activities) ~ "sedentary",
+      .default = other_activities
     )
   ) |> 
   plot_ly(
-    x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color, text = ~paste(name, age, activity, sep = "<br />"), alpha = 0.5) |> 
+    x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color, text = ~paste(name, age, combination_of_primary_and_highlight_color, activity, sep = "<br />"), alpha = 0.5) |> 
     layout(xaxis = list(title = 'x',
                       showgrid = F,
                       zerolinecolor = '#ffff'

@@ -1,5 +1,46 @@
 ---
 title: "Nutting to Hide: An Expose of the Central Park Squirrels"
+output: 
+  html_document:
+    code_folding: hide
+    always_allow_html: true
 ---
 
+```{r, include = FALSE}
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+```
+
+```{r, include = FALSE}
+squirrel_census = 
+  read_csv("data/clean_squirrel_2018.csv")
+```
+
+
 general project welcome, summary info and link to screen cast 
+
+# Meet the squirrels!
+```{r, fig.width= 6, fig.align='center'}
+squirrel_census |> 
+  mutate(
+    activity = case_when(
+      running == "TRUE" ~ "running",
+      chasing == "TRUE" ~ "chasing",
+      climbing == "TRUE" ~ "climbing",
+      foraging == "TRUE" ~ "foraging",
+      is.na(other_activities) ~ "sedentary",
+      .default = other_activities
+    )
+  ) |> 
+  plot_ly(
+    x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color, text = ~paste(name, age, combination_of_primary_and_highlight_color, activity, sep = "<br />"), alpha = 0.5) |> 
+    layout(xaxis = list(title = 'x',
+                      showgrid = F,
+                      zerolinecolor = '#ffff'
+  ),
+  yaxis = list(title = 'y',
+               zerolinecolor = '#ffff',
+               showgrid = F),
+  plot_bgcolor='white')
+```
