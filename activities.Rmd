@@ -28,22 +28,42 @@ sounds_summary = data.frame(
             sum(squirrel_census[["quaas"]], na.rm = TRUE), 
             sum(squirrel_census[["moans"]], na.rm = TRUE))
 )
+```
 
-# Squirrel sounds distribution 
-ggplot(sounds_summary, aes(x = Sound, y = Count, fill = Sound)) +
-  geom_bar(stat = "identity", show.legend = FALSE) +
-  scale_fill_viridis(discrete = TRUE) +
-  theme_minimal() +
-  labs(title = "Distribution of Squirrel Sounds", x = "Sound Type", y = "Count")
+```{r squirrel_sounds}
+plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = 'bar', colors = viridis::viridis(3)) |>
+  layout(title = 'Distribution of Squirrel Sounds',
+         xaxis = list(title = 'Sound Type'),
+         yaxis = list(title = 'Count'))
+
 ```
 
 Of the three identified squirrel sounds, NYC squirrels most commonly "kuk" is the most common sound, and "moans" are rarely heard. To better understand the meaning of these sounds, let's take a look at the type of activity or interactions the squirrels who made these sounds are engaged in. 
 
+```{r}
+# Summarizing sounds by interaction types
+interaction_sounds <- squirrel_census |>
+  group_by(approaches, indifferent, runs_from) |>
+  summarise(Kuks = sum(kuks, na.rm = TRUE),
+            Quaas = sum(quaas, na.rm = TRUE),
+            Moans = sum(moans, na.rm = TRUE)) |>
+  pivot_longer(cols = c(Kuks, Quaas, Moans), names_to = "Sound", values_to = "Count")
 
+# Creating a new column for interaction type
+interaction_sounds[["interaction_type"]] <- case_when(
+  interaction_sounds[["approaches"]] == TRUE ~ "Approaches",
+  interaction_sounds[["indifferent"]] == TRUE ~ "Indifferent",
+  interaction_sounds[["runs_from"]] == TRUE ~ "Runs From",
+  TRUE ~ "Other"
+)
 
+# Creating sounds by human interaction plot
+plot_ly(interaction_sounds, x = ~Sound, y = ~Count, color = ~interaction_type, type = 'bar', colors = RColorBrewer::brewer.pal(3, "Set2")) |>
+  layout(title = 'Distribution of Squirrel Sounds by Human Interaction',
+         xaxis = list(title = 'Sound Type'),
+         yaxis = list(title = 'Count'))
+```
 
-
-
-
+As the plot above shows, squirrels who `kuk`are frequently `indifferent,` `run from,` or exhibit `other` behavior when interacting with humans. Squirrels who `quaa` also are `indifferent` or exhibit `other` behavior when approached by a human, and `run from` humans less frequently. There is only one instance of a `moan`, and this squirrel `ran from` a human. While this is an interesting data point, there is not enough information to associate a `moan` with fear or distress. Without more data and a better understanding of what `other` behavior is, we cannot accurately determine what these squirrel sounds mean. 
 
 
