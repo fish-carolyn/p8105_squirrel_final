@@ -25,16 +25,16 @@ squirrel_census =
 
 #### Let's take a look at squirrel sounds. 
 
-```{r sound_distribution}
+```{r sound_distribution , warning=FALSE}
 sounds_summary = data.frame(
   Sound = c("Kuks", "Quaas", "Moans"),
   Count = c(sum(squirrel_census[["kuks"]], na.rm = TRUE), 
             sum(squirrel_census[["quaas"]], na.rm = TRUE), 
-            sum(squirrel_census[["moans"]], na.rm = TRUE)),
+            sum(squirrel_census[["moans"]], na.rm = TRUE))
 )
 ```
 
-```{r squirrel_sounds}
+```{r squirrel_sounds , warning=FALSE}
 plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = 'bar', colors = RColorBrewer::brewer.pal(3, "Set2")) |>
   layout(title = 'Distribution of Squirrel Sounds',
          xaxis = list(title = 'Sound Type'),
@@ -44,7 +44,7 @@ plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = 'b
 
 Of the three identified squirrel sounds, NYC squirrels most commonly `kuk` is the most common sound, and `moans` are rarely heard. To better understand the meaning of these sounds, let's take a look at the type of activity or interactions the squirrels who made these sounds are engaged in. 
 
-```{r human_interactions}
+```{r human_interactions ,message=FALSE}
 # Summarizing sounds by interaction types
 interaction_sounds <- squirrel_census |>
   group_by(approaches, indifferent, runs_from) |>
@@ -72,7 +72,7 @@ As the plot above shows, squirrels who `kuk`are frequently `indifferent,` `run f
 
 #### Now, let's look at squirrel activity
 
-```{r sounds_activity}
+```{r sounds_activity , warning=FALSE}
 # Reshaping data into a long format
 long_data = squirrel_census |>
   pivot_longer(cols = c(kuks, quaas, moans), names_to = "Sound", values_to = "Sound_Value") |>
@@ -97,4 +97,23 @@ subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE)
 
 Squirrel who `kuk` and `quaa` were very frequently seen `chasing`. In general, squirrels who `kuk` engaged in all activity types. Similar;y, squirrels who `quaa` also participated in all activities, but with less frequency. This is in line with our sounds distribution, as `quaa` is a rarer sound when compared to `kuks`. Finally we see that squirrels who `moan` were only seen `climbing` or `foraging`. Overall, this distribution gives us hints about the frequency of squirrel sounds and their potential correspondence with different types of activity. However, we do not have enough information to draw conclusions about sound meanings and activity types. 
 
+```{r age_sounds, warning=FALSE}
+# Grouping sounds by age
+sound_summary = squirrel_census |>
+  group_by(age) |>
+  summarise(
+    Kuks = sum(kuks, na.rm = TRUE),
+    Quaas = sum(quaas, na.rm = TRUE),
+    Moans = sum(moans, na.rm = TRUE)
+  ) |>
+  pivot_longer(cols = c(Kuks, Quaas, Moans), names_to = "Sound", values_to = "Count")
+
+# Creating a bubble plot showing sound by squirrel age
+plot_ly(data = sound_summary, x = ~age, y = ~Sound, size = ~Count, type = 'scatter', mode = 'markers', 
+        marker = list(sizemode = 'diameter', opacity = 0.5), color = ~Sound, 
+        hoverinfo = 'text', text = ~paste(Sound, ': ', Count)) |>
+  layout(title = 'Squirrel Sounds by Age',
+         xaxis = list(title = 'Age'),
+         yaxis = list(title = 'Sound Type')) 
+```
 
