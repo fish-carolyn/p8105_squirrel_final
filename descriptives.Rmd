@@ -53,7 +53,7 @@ squirrel_census |>
 
 ```{r}
 squirrel_census |> 
-  filter(!(age %in% c("N/A", "?"))) |> 
+  filter(age != "?") |> 
   group_by(age) |> 
   count(age) |> 
   mutate(Age = fct_reorder(age, n)) |> 
@@ -117,16 +117,19 @@ squirrel_census |>
 #### Is there a difference in primary fur color depending on age? 
 
 ```{r}
-squirrel_census |> 
-  filter(!(age %in% c("N/A", "?"))) |>
-  select(age, primary_fur_color) |> 
+squirrel_fur_age = 
+  squirrel_census |> 
+  filter(age != "?") |> 
   group_by(age, primary_fur_color) |> 
   summarise(count = n()) |> 
-  mutate(percent = count / sum(count) * 100) |> 
+  mutate(percent = round(count / sum(count) * 100, 1))
+
+squirrel_fur_age |> 
+  mutate(hover_text = str_c("Age: ", age, "<br>Primary Fur Color: ", primary_fur_color, "<br>Percent: ", percent, "%")) |> 
   plot_ly (x = ~age, y = ~percent, color = ~primary_fur_color,
-         type = "bar", colors = "viridis") |> 
+         type = "bar", colors = "viridis", text = ~hover_text) |> 
   layout(
     xaxis = list(title = "Age"),   
-    yaxis = list(title = "Percent of Squirrels") 
+    yaxis = list(title = "Percent of Squirrels (%)")
   )
 ```

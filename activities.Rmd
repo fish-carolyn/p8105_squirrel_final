@@ -102,6 +102,7 @@ Squirrel who `kuk` and `quaa` were very frequently seen `chasing`. In general, s
 ```{r age_sounds, warning=FALSE}
 # Grouping sounds by age
 sound_summary = squirrel_census |>
+  filter(age != "?") |> 
   group_by(age) |>
   summarise(
     Kuks = sum(kuks, na.rm = TRUE),
