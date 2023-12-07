@@ -15,6 +15,10 @@ library(tidyverse)
 library(plotly)
 library(ggplot2)
 library(sf)
+library(dplyr)
+library(patchwork)
+library(leaflet)
+library(modelr)
 ```
 
 Here we are loading in the data and a shapefile of Central Park!
@@ -27,26 +31,22 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet 
 ```
 
 #### Let's see where all the hungry squirrels are in Central Park!
-
-```{r, fig.width= 6, fig.align='center'}
-squirrel_census |> 
-  filter(eating == "TRUE") |> 
-  ggplot() +
-  geom_sf(data = central_park_map, color = "grey") +
-  geom_point(
-    aes(x = x, y = y, color = eating),
-    size = 0.5, alpha = 0.75) +
-    theme_void(base_size = 15) +
-  theme(legend.position = 'none') +
-  guides(color = guide_legend(
-    title.position = "top",
-    override.aes = list(size = 3))) +
-  labs(title = "Hungry Squirrels and Where They Eat") +
-  scale_color_manual(values = c("TRUE" = "coral"))
+```{r}
+leaflet() |>  
+  addTiles() |>  
+  addCircleMarkers(data = squirrel_census,
+             lng = ~x,
+             lat = ~y,
+             label = ~name,
+             radius = 1,
+             color = "coral",
+             stroke = TRUE, fillOpacity = 0.75,
+             popup = ~paste("Name:", name,
+                            "<br> Eating:", eating)) |> 
+  addProviderTiles(providers$CartoDB.Positron)
 ```
 
 #### If they aren't eating, they are doing some other activity...
-
 ```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
   mutate(
@@ -74,6 +74,32 @@ squirrel_census |>
     color = "Squirrel Activities"
   ) +
   facet_grid(cols = vars(activity))
+```
+
+```{r}
+squirrel_census |> 
+  mutate(
+    activity = case_when(
+      running == "TRUE" ~ "running",
+      chasing == "TRUE" ~ "chasing",
+      climbing == "TRUE" ~ "climbing",
+      foraging == "TRUE" ~ "foraging",
+      .default = "sedentary"
+    )
+  ) |> 
+  filter(activity != "sedentary") |> 
+leaflet() |>  
+  addTiles() |>  
+  addCircleMarkers(
+             lng = ~x,
+             lat = ~y,
+             label = ~name,
+             radius = 1,
+             color = "coral",
+             stroke = TRUE, fillOpacity = 0.75,
+             popup = ~paste("Name:", name,
+                            "<br> Eating:", activity)) |> 
+  addProviderTiles(providers$CartoDB.Positron)
 ```
 
 

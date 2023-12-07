@@ -10,60 +10,60 @@ Thank you so much for visiting our site! Let us introduce ourselves.
 
 ::: {.col}
 
-```{r, echo=FALSE, out.width="95%"}
+```{r, echo=FALSE, fig.width = 10}
 knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
 ```
 
 **Ghislaine**
 
-<center> *Epidemiology* </center>
+<center> *Depeartment of Epidemiology* </center>
 
 :::
 
 ::: {.col}
 
-```{r, echo=FALSE, out.width="100%", fig.align = 'center'}
+```{r, echo=FALSE, fig.width = 10, fig.align = 'center'}
 knitr::include_graphics("./pictures/authors/sh_headshot.jpeg")
 ```
 
 **Selina**
 
-<center> *Health Policy & Management* </center>
+<center> *Department of Health Policy & Management* </center>
 :::
 
 ::: {.col}
 
-```{r, echo=FALSE, out.width="95%"}
+```{r, echo=FALSE, fig.width = 10}
 knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
 ```
 
 **NOT GHISLAINE (Camille)**
 
-<center> *Sociomedical Sciences* </center>
+<center> *Department of Sociomedical Sciences* </center>
 
 :::
 
 ::: {.col}
 
-```{r, echo=FALSE, out.width="95%"}
+```{r, echo=FALSE, fig.width = 10}
 knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
 ```
 
 **NOT GHISLAINE (Sanika)**
 
-<center> *Sociomedical Sciences* </center>
+<center> *Department of Sociomedical Sciences* </center>
 
 :::
 
 ::: {.col}
 
-```{r, echo=FALSE, out.width="45%"}
+```{r, echo=FALSE, fig.width = 10}
 knitr::include_graphics("./pictures/authors/cf_headshot.jpeg")
 ```
 
 **Carolyn**
 
-*Epidemiology*
+*Department of Epidemiology*
 :::
 
 ::::
