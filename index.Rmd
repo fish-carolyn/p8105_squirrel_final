@@ -22,12 +22,17 @@ squirrel_census =
 ```{r, echo=FALSE, out.width="60%", fig.align = 'center'}
 knitr::include_graphics("./pictures/park_squirrel_fence.jpeg")
 ```
-
-                                            
+<center style="font-size: 10px;"> Photo from:  https://www.centralparknyc.org/ </center>
+     
+<br><br>                                       
 
 Squirrels are familiar neighbors to all New Yorkers. Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels. (That's roughly 2.74 squirrels per acre!)^1^
 
 Our team hopes to close the divide between squirrels and New Yorkers by creating fun and engaging visual descriptions of Manhattan's fuzziest population. Explore our website to learn more about Central Park's squirrels using observational data from the 2018 Squirrel Census^2^. 
+
+
+<br><br>
+
 
 ---
 
@@ -86,6 +91,7 @@ For more informartion about New York's Squirrels, check out these references:
 
 1. https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels
 2. https://www.thesquirrelcensus.com/data
+
 
 
 
