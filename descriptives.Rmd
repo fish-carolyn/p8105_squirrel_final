@@ -17,15 +17,17 @@ knitr::opts_chunk$set(collapse = TRUE, message = FALSE,
 ```{r}
 library(tidyverse)
 library(plotly)
+library(sf)
 ```
 
 #### Who are the Central Park squirrels? Here we report who they are and what they look like. 
-
 
 ```{r}
 #First, we will import the cleaned squirrel data. 
 squirrel_census = 
   read_csv("data/clean_squirrel_2018.csv")
+
+central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet = TRUE)
 ```
 
 In the 2018 census, there are `r nrow(squirrel_census)` unique squirrel sightings documented. As volunteer researchers observed the squirrels, they provided each squirrel with a unique identifier and documented the age and fur colors of each critter. 
@@ -38,7 +40,29 @@ In the 2018 census, there are `r nrow(squirrel_census)` unique squirrel sighting
 
 ::: {}
 
-```{r, fig.align='center', fig.width=5, fig.height=4}
+```{r, fig.width=6, fig.height=5}
+squirrel_census |> 
+  filter(age != "?") |> 
+  ggplot() +
+  geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    aes(x = x, y = y, color = age),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  scale_color_manual(values = c("Adult" = "aquamarine3", "Juvenile" = "slateblue")) +
+  labs(title = "Squirrel Age",
+       color = "Age")
+```
+
+:::
+
+:::{}
+
+```{r, fig.height=4, fig.width=4, fig.align='center'}
 squirrel_census |> 
   filter(!(age %in% c("N/A", "?"))) |> 
   group_by(age) |> 
@@ -51,24 +75,34 @@ squirrel_census |>
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
-It appears that the majority of observed squirrels are adults. 
-
-There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
 
 :::
 
+::::
+
+It appears that the majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
+
+<br><br> 
+
+:::: {style="display: flex;"}
 
 :::{}
-```{r, echo=FALSE, out.width="80%"}
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
 knitr::include_graphics("./pictures/baby_squirrel.jpeg")
 ```
 <center style="font-size: 14px;"> Juvenile gray squirrel </center>
 <br><br> 
 
-```{r, echo=FALSE, out.width="80%"}
+:::
+
+:::{}
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
 knitr::include_graphics("./pictures/adult_squirrel.jpeg")
 ```
 <center style="font-size: 14px;"> Adult cinnamon squirrel </center>
+
 :::
 
 ::::
@@ -85,6 +119,24 @@ Some squirrels model only one fur color, but some extra fashionable squirrels wi
 
 
 ```{r, fig.align='center', fig.width=5, fig.height=4}
+ggplot() +
+  geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    data = squirrel_census,
+    aes(x = x, y = y, color = primary_fur_color),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  labs(color = 'Primary Fur Color',
+       title = 'Squirrel Fur Color Distribution') +
+  scale_color_manual(values = c("Black" = "black", "Gray" = "azure4", "Cinnamon" = "darkorange3")) 
+```
+
+
+```{r}
 squirrel_census |> 
   filter(!(combination_of_primary_and_highlight_color %in% c("N/A", "?"))) |> 
   group_by(primary_fur_color) |> 

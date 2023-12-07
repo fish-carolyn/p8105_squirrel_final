@@ -53,11 +53,11 @@ geo_coord = squirrel_census |>
       climbing == "TRUE" ~ "climbing",
       foraging == "TRUE" ~ "foraging",
       is.na(other_activities) ~ "sedentary") 
-  ) |> select(x, y, name, age, primary_fur_color, activity)
+  ) |> select(x, y, name, age, combination_of_primary_and_highlight_color, primary_fur_color, activity)
 
 map_squirrels = 
   geo_coord |> 
-  mutate(squirrel_deets = str_c(name, age, primary_fur_color, activity, sep = "<br />")) |>
+  mutate(squirrel_deets = str_c(name, age, combination_of_primary_and_highlight_color, activity, sep = "<br />")) |>
   plot_ly(
     lat = ~y,
     lon = ~x,
