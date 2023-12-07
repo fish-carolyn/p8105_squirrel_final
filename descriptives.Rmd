@@ -8,7 +8,10 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE, 
+  fig.width = 6,    
+  fig.height = 4    
+)
 ```
 
 ```{r}
@@ -16,21 +19,26 @@ library(tidyverse)
 library(plotly)
 ```
 
-#### In this section, we will be looking at squirrel demographics, such as fur color and age. 
+#### Who are the Central Park squirrels? Here we report who they are and what they look like. 
 
-First, we will import the cleaned squirrel data. 
 
 ```{r}
+#First, we will import the cleaned squirrel data. 
 squirrel_census = 
   read_csv("data/clean_squirrel_2018.csv")
 ```
 
-There are a total of `r nrow(squirrel_census)` squirrel observations in the data set. 
+In the 2018 census, there are `r nrow(squirrel_census)` unique squirrel sightings documented. As volunteer researchers observed the squirrels, they provided each squirrel with a unique identifier and documented the age and fur colors of each critter. 
 
+<br><br> 
 
 #### Let's first explore squirrel ages. 
 
-```{r}
+:::: {style="display: flex;"}
+
+::: {}
+
+```{r, fig.align='center', fig.width=5, fig.height=4}
 squirrel_census |> 
   filter(!(age %in% c("N/A", "?"))) |> 
   group_by(age) |> 
@@ -43,12 +51,40 @@ squirrel_census |>
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
-It appears that the majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
+It appears that the majority of observed squirrels are adults. 
 
+There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
+
+:::
+
+
+:::{}
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("./pictures/baby_squirrel.jpeg")
+```
+<center style="font-size: 14px;"> Juvenile gray squirrel </center>
+<br><br> 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("./pictures/adult_squirrel.jpeg")
+```
+<center style="font-size: 14px;"> Adult cinnamon squirrel </center>
+:::
+
+::::
+
+<br><br> 
 
 #### Let's also look at primary and highlight fur color.
 
-```{r}
+Some squirrels model only one fur color, but some extra fashionable squirrels will don mixed patterns of multiple fur colors. The primary fur color is the main color of the squirrel and the secondary colors accent the primary color to give some squirrels unique style. 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+
+```{r, fig.align='center', fig.width=5, fig.height=4}
 squirrel_census |> 
   filter(!(combination_of_primary_and_highlight_color %in% c("N/A", "?"))) |> 
   group_by(primary_fur_color) |> 
@@ -58,11 +94,15 @@ squirrel_census |>
          type = "bar", colors = "viridis") |> 
   layout(
     xaxis = list(title = "Primary Fur Color"),   
-    yaxis = list(title = "Number of Squirrels") 
+    yaxis = list(title = "Number of Squirrels"), 
+    legend = list(x = 0, y = 1, orientation = "h")
   )
 ```
+:::
 
-```{r}
+::: {}
+
+```{r, fig.align='center', fig.width=6.5, fig.height=4}
 squirrel_census |> 
   rename(combination_fur_color = combination_of_primary_and_highlight_color) |> 
   count(combination_fur_color) |> 
@@ -70,10 +110,20 @@ squirrel_census |>
   plot_ly (x = ~combination_fur_color, y = ~n, color = ~combination_fur_color,
          type = "bar", colors = "viridis") |> 
   layout(
-    xaxis = list(title = "Fur Color"),   
+    xaxis = list(title = "All Fur Colors",showticklabels = FALSE),   
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
+:::
+
+::::
+
+We can see that most squirrel in Central Park have Gray fur with some Cinnamon or White accents. Squirrels that are black with any accent colors are very rare! Consider yourself lucky if you've ever seen one of them frolicking in the park!
+
+
+<br><br> 
+
+
 
 #### Is there a difference in primary fur color depending on age? 
 
@@ -91,3 +141,13 @@ squirrel_census |>
     yaxis = list(title = "Percent of Squirrels") 
   )
 ```
+
+There does not appear to be any different in fur color by age. Among both the young and the old gray squirrels dominate the counts!
+
+<br><br> 
+
+<br><br> 
+---
+Photo credits: 
+Juvenile squirrel: https://citywildlife.org/found-animal/baby-squirrels/
+Adult Squirrel: https://www.onthewingphotography.com/ 
