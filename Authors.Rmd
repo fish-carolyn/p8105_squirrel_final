@@ -1,5 +1,67 @@
 ---
-title: 
+title: Meet our team
 ---
 
-About us <3
+Thank you so much for visiting our site! Let us introduce ourselves, 
+
+:::: {style="display: flex;"}
+
+::: {.col}
+
+```{r, echo=FALSE, out.width="95%"}
+knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
+```
+
+**Ghislaine**
+
+<center> *Epidemiology* </center>
+
+:::
+
+::: {.col}
+
+```{r, echo=FALSE, out.width="100%", fig.align = 'center'}
+knitr::include_graphics("./pictures/authors/sh_headshot.jpeg")
+```
+
+**Selina**
+
+<center> *Health Policy & Management* </center>
+:::
+
+::: {.col}
+
+```{r, echo=FALSE, out.width="95%"}
+knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
+```
+
+**NOT GHISLAINE (Camille)**
+
+<center> *Sociomedical Sciences* </center>
+
+:::
+
+::: {.col}
+
+```{r, echo=FALSE, out.width="95%"}
+knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
+```
+
+**NOT GHISLAINE (Sanika)**
+
+<center> *Sociomedical Sciences* </center>
+
+:::
+
+::: {.col}
+
+```{r, echo=FALSE, out.width="45%"}
+knitr::include_graphics("./pictures/authors/cf_headshot.jpeg")
+```
+
+**Carolyn**
+
+*Epidemiology*
+:::
+
+::::
