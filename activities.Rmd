@@ -1,5 +1,5 @@
 ---
-title: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Activity"
+title: "Scurrying Secrets: Unraveling the Tapestry of Squirrel Language"
 output: 
   html_document:
     code_folding: hide
@@ -7,8 +7,6 @@ output:
 ---
 
 we could also name this "Acorn Adventures: Unraveling the Tapestry of Squirrel Activity"
-
-tables and whatever about "what squirrels do"
 
 ```{r libraries, include = FALSE}
 library(tidyverse)
@@ -43,6 +41,8 @@ plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = 'b
 ```
 
 Of the three identified squirrel sounds, NYC squirrels most commonly `kuk` is the most common sound, and `moans` are rarely heard. To better understand the meaning of these sounds, let's take a look at the type of activity or interactions the squirrels who made these sounds are engaged in. 
+
+#### Next, let's look at what sounds squirrels make when interacting with humans
 
 ```{r human_interactions ,message=FALSE}
 # Summarizing sounds by interaction types
@@ -97,6 +97,8 @@ subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE)
 
 Squirrel who `kuk` and `quaa` were very frequently seen `chasing`. In general, squirrels who `kuk` engaged in all activity types. Similar;y, squirrels who `quaa` also participated in all activities, but with less frequency. This is in line with our sounds distribution, as `quaa` is a rarer sound when compared to `kuks`. Finally we see that squirrels who `moan` were only seen `climbing` or `foraging`. Overall, this distribution gives us hints about the frequency of squirrel sounds and their potential correspondence with different types of activity. However, we do not have enough information to draw conclusions about sound meanings and activity types. 
 
+#### Finally, lets crown the noisiest squirrels.
+
 ```{r age_sounds, warning=FALSE}
 # Grouping sounds by age
 sound_summary = squirrel_census |>
@@ -117,3 +119,4 @@ plot_ly(data = sound_summary, x = ~age, y = ~Sound, size = ~Count, type = 'scatt
          yaxis = list(title = 'Sound Type')) 
 ```
 
+Our plot shows us that adults were the most frequently identified squirrel in our sample. For both adults and juveniles, `kuks` were the most common sound. However, adults `kuked` far more than their juvenile counterparts. Again, there is not enough data to conclude that adults are noiser than their juvenile counterparts, but for our purposes, we are crowning `kukking` adult squirrels as the chattiest in New York City!
