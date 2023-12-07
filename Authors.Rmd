@@ -2,7 +2,9 @@
 title: Meet our team
 ---
 
-Thank you so much for visiting our site! Let us introduce ourselves, 
+Thank you so much for visiting our site! Let us introduce ourselves. 
+
+<br><br>   
 
 :::: {style="display: flex;"}
 
