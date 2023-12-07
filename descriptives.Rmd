@@ -14,21 +14,42 @@ knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 ```{r}
 library(tidyverse)
 library(plotly)
+library(sf)
 ```
 
 #### In this section, we will be looking at squirrel demographics, such as fur color and age. 
 
-First, we will import the cleaned squirrel data. 
+First, we will import the cleaned squirrel data and a shapefile of Central Park. 
 
 ```{r}
 squirrel_census = 
   read_csv("data/clean_squirrel_2018.csv")
+
+central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet = TRUE)
 ```
 
 There are a total of `r nrow(squirrel_census)` squirrel observations in the data set. 
 
 
 #### Let's first explore squirrel ages. 
+
+```{r, fig.width= 6, fig.align='center'}
+squirrel_census |> 
+  filter(age != "?") |> 
+  ggplot() +
+  geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    aes(x = x, y = y, color = age),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  scale_color_manual(values = c("Adult" = "aquamarine3", "Juvenile" = "coral1")) +
+  labs(title = "Squirrel Age",
+       color = "Age")
+```
 
 ```{r}
 squirrel_census |> 
@@ -45,8 +66,26 @@ squirrel_census |>
 ```
 It appears that the majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
 
-
 #### Let's also look at primary and highlight fur color.
+
+
+```{r, fig.width= 6, fig.align='center'}
+ggplot() +
+  geom_sf(data = central_park_map, color = "grey") +
+  geom_point(
+    data = squirrel_census,
+    aes(x = x, y = y, color = primary_fur_color),
+    size = 0.5, alpha = 0.75) +
+    theme_void(base_size = 15) +
+  theme(legend.position = 'bottom') +
+  guides(color = guide_legend(
+    title.position = "top",
+    override.aes = list(size = 3))) +
+  labs(color = 'Primary Fur Color',
+       title = 'Squirrel Fur Color Distribution') +
+  scale_color_manual(values = c("Black" = "black", "Gray" = "azure4", "Cinnamon" = "darkorange3")) 
+```
+
 
 ```{r}
 squirrel_census |> 
