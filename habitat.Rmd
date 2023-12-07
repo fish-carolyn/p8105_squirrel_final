@@ -46,9 +46,7 @@ leaflet() |>
   addProviderTiles(providers$CartoDB.Positron)
 ```
 
-
 #### If they aren't eating, they are doing some other activity...
-
 ```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
   mutate(
@@ -76,6 +74,32 @@ squirrel_census |>
     color = "Squirrel Activities"
   ) +
   facet_grid(cols = vars(activity))
+```
+
+```{r}
+squirrel_census |> 
+  mutate(
+    activity = case_when(
+      running == "TRUE" ~ "running",
+      chasing == "TRUE" ~ "chasing",
+      climbing == "TRUE" ~ "climbing",
+      foraging == "TRUE" ~ "foraging",
+      .default = "sedentary"
+    )
+  ) |> 
+  filter(activity != "sedentary") |> 
+leaflet() |>  
+  addTiles() |>  
+  addCircleMarkers(
+             lng = ~x,
+             lat = ~y,
+             label = ~name,
+             radius = 1,
+             color = "coral",
+             stroke = TRUE, fillOpacity = 0.75,
+             popup = ~paste("Name:", name,
+                            "<br> Eating:", activity)) |> 
+  addProviderTiles(providers$CartoDB.Positron)
 ```
 
 
