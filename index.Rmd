@@ -35,7 +35,11 @@ Our team hopes to close the divide between squirrels and New Yorkers by creating
 
 ---
 
+<<<<<<< HEAD
 ### Meet the squirrels!
+=======
+# Meet the squirrels!
+>>>>>>> 31474a80caf558a93d72c30bbd19e8dfbe4ef68f
 Hover over each point on the map to learn more about the name, age, and fur color of the squirrel spotted at that location!
 ```{r, fig.width= 8, fig.align='right'}
 geo_coord = squirrel_census |> 
