@@ -119,4 +119,4 @@ plot_ly(data = sound_summary, x = ~age, y = ~Sound, size = ~Count, type = 'scatt
          yaxis = list(title = 'Sound Type')) 
 ```
 
-Our plot shows us that adults were the most frequently identified squirrel in our sample. For both adults and juveniles, `kuks` were the most common sound. However, adults `kuked` far more than their juvenile counterparts. Again, there is not enough data to conclude that adults are noiser than their juvenile counterparts, but for our purposes, we are crowning `kukking` adult squirrels as the chattiest in New York City!
+Our plot shows us that adults were the most frequently identified squirrel in our sample. For both adults and juveniles, `kuks` were the most common sound. However, adults `kuked` far more than their juvenile counterparts. Again, there is not enough data to conclude that adults are noisier than their juvenile counterparts, but for our purposes, we are crowning `kukking` adult squirrels as the chattiest in New York City!
