@@ -17,14 +17,18 @@ squirrel_census =
   read_csv("data/clean_squirrel_2018.csv")
 ```
 
+---
+
+```{r, echo=FALSE, out.width="60%", fig.align = 'center'}
+knitr::include_graphics("./pictures/park_squirrel_fence.jpeg")
+```
+
+                                            
 
 Squirrels are familiar neighbors to all New Yorkers. Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels. (That's roughly 2.74 squirrels per acre!)^1^
 
 Our team hopes to close the divide between squirrels and New Yorkers by creating fun and engaging visual descriptions of Manhattan's fuzziest population. Explore our website to learn more about Central Park's squirrels using observational data from the 2018 Squirrel Census^2^. 
 
-```{r, echo=FALSE, out.width="60%", fig.cap="One of Central Park's many furry residents", fig.align = 'center'}
-knitr::include_graphics("./pictures/park_squirrel_fence.jpeg")
-```
 ---
 
 #### Link to screen cast 
@@ -32,7 +36,8 @@ knitr::include_graphics("./pictures/park_squirrel_fence.jpeg")
 ---
 
 # Meet the squirrels!
-```{r, fig.width= 6, fig.align='center'}
+Hover over each point on the map to learn more about the name, age, and fur color of the squirrel spotted at that location!
+```{r, fig.width= 8, fig.align='right'}
 geo_coord = squirrel_census |> 
   mutate(
     activity = case_when(
@@ -67,7 +72,6 @@ map_squirrels =
 
 map_squirrels 
 ```
-Hover over each point on the map to learn more about the squirrel spotted at that location!
 
 
 
