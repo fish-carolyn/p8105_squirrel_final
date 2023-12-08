@@ -133,3 +133,54 @@ squirrel_fur_age |>
     yaxis = list(title = "Percent of Squirrels (%)")
   )
 ```
+
+
+### Hypothesis Testing
+
+
+We're interested in investigating the relationship between `shift` (morning or afternoon sighting) and the locations of the squirrels (ground plane, or above ground)
+
+##### State Hypotheses
+
+* H0: There is no significant association between shift and location
+* H1: There is a significant association between shift and location
+
+##### Assumptions
+
+The Chi-Square Test of Independence assumes that
+
+1. Observations must be independent
+
+2. Data must be categorical in nature
+
+3. The expected frequency in each cell in the contingency table should be greater than 5
+
+4. Data should be collected via random sampling
+
+5. The overall sample size should be large 
+
+We know assumptions 1, 2, 4, 5 and five are met. Let's double check the cell frequencies by generating a contingency table.
+
+##### Create contingency table
+```{r}
+contingency_table =
+  squirrel_census |> 
+  select(shift, location) |> 
+  summarise_all(factor) |> 
+  table()
+```
+
+
+##### Conduct Test
+```{r}
+chi_square_result = chisq.test(contingency_table)
+
+print(chi_square_result)
+```
+
+
+##### Final Conclusion
+At the 0.05 level of significance, there is evidence to suggest that the distribution of locations is not independent of the shift;
+in other words, there is a significant association between the time of day and the location where squirrels are observed.
+
+This may mean that squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
