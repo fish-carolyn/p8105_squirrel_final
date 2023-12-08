@@ -56,7 +56,7 @@ knitr::include_graphics("./pictures/authors/ss_headshot.jpg")
 
 ::: {.col}
 
-```{r, echo=FALSE, fig.width = 10}
+```{r, echo=FALSE, out.fig.width= "20%"}
 knitr::include_graphics("./pictures/authors/cf_headshot.jpeg")
 ```
 
