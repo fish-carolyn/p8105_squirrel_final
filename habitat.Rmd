@@ -252,7 +252,9 @@ fit_logistic |>
   knitr::kable()
 ```
 
-Based on this output, we see that almost all of our results are statistically significant at the 5% level. Woohoo! Let's look at some model diagnostics. 
+Based on this output, we see that almost all of our results are statistically significant at the 5% level. Woohoo! Based on this output, we see that almost all of our results are statistically significant at the 5% level. Woohoo! A squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging. The effect of chasing was not statistically significant at the 0.05 level. Squirrels spotted on the ground plane also have a likelihood to be spotted at night.
+
+Let's look at some model diagnostics. 
 
 ```{r}
 squirrel_census |> 
@@ -270,11 +272,7 @@ squirrel_census |>
   ggplot(aes(x = location, y = resid, fill= location)) +
   scale_fill_viridis_d() + 
   geom_violin() + 
-  theme_bw() +
-  theme(
-    legend.position= "bottom", 
-    labs(title = "Distribution of residuals")
-  )
+  theme_bw()
 ```
 
 :::
