@@ -1,5 +1,5 @@
 ---
-title: "Shiny Dashboard"
+title: "Interactive Squirrel Map"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -30,6 +30,46 @@ selectInput (
   label = "Select Fur Color",
   choices = fur_vec
   )
+
+
+activity_vec = 
+  squirrel_census |>   
+  mutate(activity = case_when(
+      running == "TRUE" ~ "Running",
+      chasing == "TRUE" ~ "Chasing",
+      climbing == "TRUE" ~ "Climbing",
+      foraging == "TRUE" ~ "Foraging",
+      .default = "Sedentary"
+    )
+  ) |> 
+  filter(activity != "Sedentary") |> 
+  pull(activity) |> 
+  unique ()
+
+selectInput (
+  inputId = "activity_choice",
+  label = "Select Activity",
+  choices = activity_vec
+  )
+
+
+shift_vec = squirrel_census |> pull(shift) |> unique()
+  
+selectInput (
+  inputId = "shift_choice",
+  label = "Select Time of Day",
+  choices = shift_vec
+  )
+
+
+location_vec = squirrel_census |> pull(location) |> unique()
+  
+selectInput (
+  inputId = "location_choice",
+  label = "Select Location",
+  choices = location_vec, 
+  selected = "Ground Plane"
+  )
 ```
 
 
@@ -43,12 +83,36 @@ Column {data-width=650}
 renderPlotly({
   squirrel_fur_graph =
     squirrel_census |> 
-    select(unique_squirrel_id, x, y, primary_fur_color) |>
+    mutate(
+      activity = case_when(
+        running == "TRUE" ~ "Running",
+        chasing == "TRUE" ~ "Chasing",
+        climbing == "TRUE" ~ "Climbing",
+        foraging == "TRUE" ~ "Foraging",
+        .default = "Sedentary")
+  ) |> 
+    select(x, y, primary_fur_color, activity, shift, age, location) |> 
     filter(!is.na(primary_fur_color))
+  
           
   squirrel_fur_graph |> 
     filter(primary_fur_color == input[["fur_choice"]]) |> 
-    plot_ly(x = ~x, y = ~y, type = "scatter", mode = "markers", color = ~primary_fur_color)
+    filter(activity == input[["activity_choice"]]) |> 
+    filter(shift == input[["shift_choice"]]) |> 
+    filter(location == input[["location_choice"]]) |> 
+    plot_ly(lat = ~y,
+    lon = ~x,
+    color = ~age,
+    colors = "Set2",
+    marker = list(color = "Dark"),
+    type = 'scattermapbox',
+    mode   = 'markers', 
+    alpha = 0.7) |> 
+    layout(
+    mapbox = list(
+      style = 'carto-positron',
+      zoom = 12.75,
+      center = list(lon = -73.96473, lat = 40.78396))) 
 })
 
 

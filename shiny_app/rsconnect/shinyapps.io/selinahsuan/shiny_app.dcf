@@ -5,6 +5,6 @@ account: selinahsuan
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10729334
-bundleId: 8012959
+bundleId: 8026431
 url: https://selinahsuan.shinyapps.io/shiny_app/
 version: 1
