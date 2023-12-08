@@ -45,10 +45,20 @@ Our data was uploaded in the form of a csv file. *Describe cleaning process*
   * Visualizations, summaries, and exploratory statistical analyses. 
   * Justify the steps you took, and show any major changes to your ideas.
   
+Our exploratory analysis is segmented into three distinct areas of focus: Squirreling the Stats ([demographic](descriptives.html)), Nesting Nooks ([activity](activity.html)), and Scurrying Secrets ([communication](communication.html)). 
+
+In the Demographic section, look at the ages and fur color of squirrels in Central Park. The results are displayed with a combination of bar graphs and maps. We make sure to filter out observations that are "N/A" or unknown for age or fur color, and we create a detailed fur color graph that includes both primary and highlight fur color. 
+
+*add details about other sections*
+  
+  
 After performing exploratory analyses, primarily in the form of visualizations, there did not appear to be as much variation in Central Park squirrels as we had initially thought. For example, the vast majority of squirrels are adults with gray fur, and they appear to engage in all activities in all areas of the park. Most squirrels do not engage with humans, and they make the same sounds regardless of the activity they are engaged in. As a result, we decided to focus more on visualizations and interactivity, particularly in the form of maps. 
   
 ## Additional analysis
+
 If you undertake formal statistical analyses, describe these in detail
+
+Despite our findings, we wanted to perform some statistical analyses. 
 
 ## Discussion
   * What were your findings? 
