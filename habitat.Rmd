@@ -21,6 +21,7 @@ library(dplyr)
 library(patchwork)
 library(leaflet)
 library(modelr)
+library(viridis)
 ```
 
 
@@ -272,7 +273,12 @@ squirrel_census |>
   ggplot(aes(x = location, y = resid, fill= location)) +
   scale_fill_viridis_d() + 
   geom_violin() + 
-  theme_bw()
+  theme_bw() +
+  theme(
+    legend.position= "bottom"
+  ) +
+  labs(title = "Distribution of residuals")
+
 ```
 
 :::
