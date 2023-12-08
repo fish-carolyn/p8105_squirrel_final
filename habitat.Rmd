@@ -222,9 +222,11 @@ This may mean that squirrels exhibit different location preferences or behaviors
 
 We want to see if we can create a logistic regression model to predict the likelihood of a squirrel being observed on the "ground plane," based on time of squirrel sighting (`shift`) and the following behavioral variables: `running`, `chasing`, `climbing`, `eating` and `foraging`. 
 
-##### Fitting a Model
+
 
 ```{r model}
+# Fitting a Model
+
 set.seed(1)
 
 squirrel_census_df =
@@ -238,9 +240,11 @@ fit_logistic =
                     family = binomial())
 ```
 
-Let's tidy up the output. 
+ 
 
 ```{r}
+#Let's tidy up the output.
+
 fit_logistic |> 
  broom::tidy() |> 
   mutate(OR = exp(estimate)) |> 
@@ -256,31 +260,56 @@ squirrel_census |>
   mutate(fitted_prob = boot::inv.logit(pred))
 ```
 
-```{r}
+:::: {style="display: flex;"}
+
+:::{}
+
+```{r, fig.height=4, fig.width=4}
 squirrel_census |> 
   modelr::add_residuals(fit_logistic) |> 
-  ggplot(aes(x = location, y = resid)) +
-  geom_violin()
+  ggplot(aes(x = location, y = resid, fill= location)) +
+  scale_fill_viridis_d() + 
+  geom_violin() + 
+  theme_bw() +
+  theme(
+    legend.position= "bottom", 
+    labs(title = "Distribution of residuals")
+  )
 ```
 
-```{r}
+:::
+
+:::{}
+
+```{r, fig.height=4, fig.width=4}
 squirrel_census |> 
   modelr::add_predictions(fit_logistic) |> 
   modelr::add_residuals(fit_logistic) |> 
   ggplot(aes(x = pred, y = resid)) +
-  geom_point() +
+  geom_point(fill= "slateblue2") +
     labs(title = "Residuals vs. Fitted Values",
        x = "Fitted Values",
-       y = "Residuals") 
+       y = "Residuals") +
+  theme_bw()
 ```
 
-```{r}
+:::
+
+:::{}
+
+```{r, fig.height=4, fig.width=4}
 squirrel_census |> 
   modelr::add_residuals(fit_logistic) |> 
   ggplot(aes(sample = resid)) +
   stat_qq() +
-  stat_qq_line()
+  stat_qq_line() +
+  theme_bw()+ 
+  labs(title = "QQ plot of residuals")
 ```
+
+:::
+
+::::
 
 From the QQPlot and our residuals plot, this model really isn't too awful. 
 
