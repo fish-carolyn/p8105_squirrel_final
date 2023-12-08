@@ -18,7 +18,7 @@ library(sf)
 library(knitr)
 ```
 
-#### In this section, we will be looking at squirrel demographics, such as fur color and age. 
+#### Who are the Central Park squirrels? Here we report who they are and what they look like. 
 
 First, we will import the cleaned squirrel data and a shapefile of Central Park. 
 
@@ -28,31 +28,42 @@ squirrel_census =
 
 central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet = TRUE)
 ```
+In the 2018 census, there are `r nrow(squirrel_census)` unique squirrel sightings documented. As volunteer researchers observed the squirrels, they provided each squirrel with a unique identifier and documented the age and fur colors of each critter. 
 
-There are a total of `r nrow(squirrel_census)` squirrel observations in the data set. 
-
+<br><br> 
 
 #### Let's first explore squirrel ages. 
 
-```{r, fig.width= 6, fig.align='center'}
+:::: {style="display: flex;"}
+
+::: {}
+
+```{r, fig.align='center', fig.width=6, fig.height=6}
 squirrel_census |> 
   filter(age != "?") |> 
   ggplot() +
   geom_sf(data = central_park_map, color = "grey") +
   geom_point(
     aes(x = x, y = y, color = age),
-    size = 0.5, alpha = 0.75) +
+    size = 0.5, alpha = 0.5) +
     theme_void(base_size = 15) +
   theme(legend.position = 'bottom') +
   guides(color = guide_legend(
     title.position = "top",
     override.aes = list(size = 3))) +
-  scale_color_manual(values = c("Adult" = "aquamarine3", "Juvenile" = "coral1")) +
-  labs(title = "Squirrel Age",
-       color = "Age")
+  scale_color_manual(values = c("Adult" = "aquamarine3", "Juvenile" = "slateblue3")) +
+  labs(color = "Age")
 ```
 
-```{r}
+:::
+
+
+:::{}
+
+<br><br>
+<br><br>
+
+```{r, fig.align='center', fig.width=4, fig.height=3.5, fig.align='center'}
 squirrel_census |> 
   filter(age != "?") |> 
   group_by(age) |> 
@@ -65,9 +76,44 @@ squirrel_census |>
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
-It appears that the majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
+
+
+
+:::
+
+::::
+
+The majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels.
+
+We can also see that juvenile squirrels can be frequently observed in some areas of the Central Park, such as Central Park West between 72nd St. and 66th St. 
+
+<br><br> 
+
+::::{style="display: flex;"}
+
+:::{}
+```{r, echo=FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("./pictures/baby_squirrel.jpeg")
+```
+<center style="font-size: 14px;"> Juvenile gray squirrel </center>
+<br><br> 
+
+:::
+:::{}
+
+```{r, echo=FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("./pictures/adult_squirrel.jpeg")
+```
+<center style="font-size: 14px;"> Adult cinnamon squirrel </center>
+:::
+
+::::
+
+<br><br> 
 
 #### Let's also look at primary and highlight fur color.
+
+Some squirrels model only one fur color, but some extra fashionable squirrels will don mixed patterns of multiple fur colors. The primary fur color is the main color of the squirrel and the secondary colors accent the primary color to give some squirrels unique style. 
 
 
 ```{r, fig.width= 6, fig.align='center'}
@@ -87,8 +133,11 @@ ggplot() +
   scale_color_manual(values = c("Black" = "black", "Gray" = "azure4", "Cinnamon" = "darkorange3")) 
 ```
 
+:::: {style="display: flex;"}
 
-```{r}
+::: {}
+
+```{r, fig.align='center', fig.width=5, fig.height=4}
 squirrel_census |> 
   filter(!(combination_of_primary_and_highlight_color %in% c("N/A", "?"))) |> 
   group_by(primary_fur_color) |> 
@@ -98,11 +147,16 @@ squirrel_census |>
          type = "bar", colors = "viridis") |> 
   layout(
     xaxis = list(title = "Primary Fur Color"),   
-    yaxis = list(title = "Number of Squirrels") 
+    yaxis = list(title = "Number of Squirrels"),
+    legend = list(x = 0, y = 1, orientation = "h")
   )
 ```
 
-```{r}
+:::
+
+:::{}
+
+```{r, fig.align='center', fig.width=6.5, fig.height=4}
 squirrel_census |> 
   rename(combination_fur_color = combination_of_primary_and_highlight_color) |> 
   count(combination_fur_color) |> 
@@ -110,10 +164,20 @@ squirrel_census |>
   plot_ly (x = ~combination_fur_color, y = ~n, color = ~combination_fur_color,
          type = "bar", colors = "viridis") |> 
   layout(
-    xaxis = list(title = "Fur Color"),   
+    xaxis = list(title = "All Fur Colors",showticklabels = FALSE),   
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
+
+:::
+
+::::
+
+We can see that most squirrel in Central Park have Gray fur with some Cinnamon or White accents. Squirrels that are black with any accent colors are very rare! Consider yourself lucky if you've ever seen one of them frolicking in the park!
+
+
+<br><br> 
+
 
 #### Is there a difference in primary fur color depending on age? 
 
@@ -135,6 +199,12 @@ squirrel_fur_age |>
   )
 ```
 
+
+There does not appear to be any different in fur color by age. Among both the young and the old gray squirrels dominate the counts!
+
+<br><br> 
+
+<br><br> 
 
 ### Hypothesis Testing
 
