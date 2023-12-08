@@ -15,25 +15,37 @@ The written report produced by your team is central to this project. This will d
 Your report should include the following topics. Depending on your project type the amount of discussion you devote to each of them will vary:
 
 ## Motivation
+
 Provide an overview of the project goals and motivation.
 
-Squirrels are familiar neighbors to all New Yorkers. Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)1. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral trends and spatial distribution of squirrel sightings in Central Park using 2018 Squirrel Census data. 
+The motivation behind our project is to perform a comprehensive analysis on the squirrels of Central Park in New York City. Squirrels are familiar neighbors to all New Yorkers, and Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)1. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral trends and spatial distribution of squirrel sightings in Central Park. 
 
 ## Related work
 
 Anything that inspired you, such as a paper, a web site, or something we discussed in class.
 
-[The NYC Squirrel Census](https://www.thesquirrelcensus.com/)
+We were inspired to perform this analysis after discovering 2018 squirrel data from [The NYC Squirrel Census](https://www.thesquirrelcensus.com/). The Squirrel Census is "a multimedia science, design, and storytelling project," and their 2018 data set can be found on [NYC OpenData](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw). Since the data set contains the latitude and longitude of each squirrel sighting, as well as several variables related to squirrel activity, we thought it would provide a great opportunity to explore the visualization and interactivity topics discussed in class. 
 
 ## Initial questions
   * What questions are you trying to answer? 
   * How did these questions evolve over the course of the project? 
   * What new questions did you consider in the course of your analysis?
-* Data: Source, scraping method, cleaning, etc.
+
+Our initial questions focused on discovering trends in demographic, activity, or other behaviors of Central Park Squirrels. We were interested in the following: 
+
+  1. Are certain fur colors more prevalent than others in different areas of the park? 
+  2. Are there relationships between the sounds that squirrels make and the activities they are engaged in? 
+  3. Are certain types of squirrels more likely to engage with humans? 
+
+##  Data: Source, scraping method, cleaning, etc.
+
+Our data was uploaded in the form of a csv file. *Describe cleaning process*
 
 ## Exploratory analysis
   * Visualizations, summaries, and exploratory statistical analyses. 
   * Justify the steps you took, and show any major changes to your ideas.
+  
+After performing exploratory analyses, primarily in the form of visualizations, there did not appear to be as much variation in Central Park squirrels as we had initially thought. For example, the vast majority of squirrels are adults with gray fur, and they appear to engage in all activities in all areas of the park. Most squirrels do not engage with humans, and they make the same sounds regardless of the activity they are engaged in. As a result, we decided to focus more on visualizations and interactivity, particularly in the form of maps. 
   
 ## Additional analysis
 If you undertake formal statistical analyses, describe these in detail
