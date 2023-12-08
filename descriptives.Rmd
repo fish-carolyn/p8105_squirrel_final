@@ -4,6 +4,8 @@ output:
   html_document:
     code_folding: hide
     always_allow_html: true
+    toc: true
+    toc_float: true
 ---
   
 ```{r setup, include=FALSE}
@@ -30,7 +32,9 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet 
 In the 2018 census, there are `r nrow(squirrel_census)` unique squirrel sightings documented. As volunteer researchers observed the squirrels, they provided each squirrel with a unique identifier and documented the age and fur colors of each critter. 
 
 <br><br> 
-  
+
+### How mature? 
+
 #### Let's first explore squirrel ages. 
   
 :::: {style="display: flex;"}
@@ -108,7 +112,8 @@ knitr::include_graphics("./pictures/adult_squirrel.jpeg")
   
 ::::
   
-  
+### What color? 
+
 #### Let's also look at primary and highlight fur color.
   
 Some squirrels model only one fur color, but some extra fashionable squirrels will don mixed patterns of multiple fur colors. The primary fur color is the main color of the squirrel and the secondary colors accent the primary color to give some squirrels unique style. 
@@ -196,7 +201,7 @@ ggplot() +
 
 <br><br> 
 
-
+### Are age and color related? 
 
 #### Is there a difference in primary fur color depending on age? 
 
