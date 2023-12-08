@@ -15,6 +15,7 @@ knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 library(tidyverse)
 library(plotly)
 library(sf)
+library(knitr)
 ```
 
 #### In this section, we will be looking at squirrel demographics, such as fur color and age. 
@@ -166,18 +167,20 @@ We know assumptions 1, 2, 4, 5 and five are met. Let's double check the cell fre
 contingency_table =
   squirrel_census |> 
   select(shift, location) |> 
-  summarise_all(factor) |> 
+  mutate_all(as.factor) |> 
   table()
 ```
 
+```{r}
+kable(contingency_table)
+```
+
+We can see from the contingency table that our cell counts are well above the required frequency of 5. Let's continue on with our chi square analysis.
 
 ##### Conduct Test
 ```{r}
 chi_square_result = chisq.test(contingency_table)
-
-print(chi_square_result)
 ```
-
 
 ##### Final Conclusion
 At the 0.05 level of significance, there is evidence to suggest that the distribution of locations is not independent of the shift;
