@@ -22,7 +22,7 @@ library(modelr)
 ```
 
 
-Every squirrel in Central Park has a very busy schedule. Here, we describe the various activities and tasks squirrels do all over the park, and where those activities occur. Scroll down to learn more about where, what, and when squirrels get their work done. 
+Every squirrel in Central Park has a very busy schedule. Here, we describe the various activities and tasks squirrels do all over the park, and where those activities occur. Scroll down to learn more about where and when squirrels get their work done. 
 
 
 ```{r}
