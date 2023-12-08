@@ -23,16 +23,18 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-fur_vec = squirrel_census |> pull(primary_fur_color) |> unique ()
+fur_vec = c("All", squirrel_census |> pull(primary_fur_color) |> unique())
   
 selectInput (
   inputId = "fur_choice",
   label = "Select Fur Color",
-  choices = fur_vec
+  choices = fur_vec,
+  selected = "All"
   )
 
 
 activity_vec = 
+  c("All",
   squirrel_census |>   
   mutate(activity = case_when(
       running == "TRUE" ~ "Running",
@@ -45,30 +47,33 @@ activity_vec =
   filter(activity != "Sedentary") |> 
   pull(activity) |> 
   unique ()
+  )
 
 selectInput (
   inputId = "activity_choice",
   label = "Select Activity",
-  choices = activity_vec
+  choices = activity_vec,
+  selected = "All"
   )
 
 
-shift_vec = squirrel_census |> pull(shift) |> unique()
+shift_vec = c("All", squirrel_census |> pull(shift) |> unique())
   
 selectInput (
   inputId = "shift_choice",
   label = "Select Time of Day",
-  choices = shift_vec
+  choices = shift_vec,
+  selected = "All"
   )
 
 
-location_vec = squirrel_census |> pull(location) |> unique()
+location_vec = c("All", squirrel_census |> pull(location) |> unique())
   
 selectInput (
   inputId = "location_choice",
   label = "Select Location",
   choices = location_vec, 
-  selected = "Ground Plane"
+  selected = "All"
   )
 ```
 
@@ -92,14 +97,31 @@ renderPlotly({
         .default = "Sedentary")
   ) |> 
     select(x, y, primary_fur_color, activity, shift, age, location) |> 
-    filter(!is.na(primary_fur_color))
+    filter(!is.na(primary_fur_color)) |> 
+    filter(age != "?") 
+    
   
-          
+  fur_choice = input[["fur_choice"]]
+  if (fur_choice != "All") {
+    squirrel_fur_graph <- squirrel_fur_graph |> filter(primary_fur_color == fur_choice)
+  }
+  
+  activity_choice = input[["activity_choice"]]
+  if(activity_choice != "All"){
+    squirrel_fur_graph <- squirrel_fur_graph |> filter(activity == activity_choice)
+  }
+  
+  shift_choice = input[["shift_choice"]]
+  if(shift_choice != "All"){
+    squirrel_fur_graph <- squirrel_fur_graph |> filter(shift == shift_choice)
+  }
+  
+  location_choice = input[["location_choice"]]
+  if(location_choice != "All"){
+    squirrel_fur_graph <- squirrel_fur_graph |> filter(location == location_choice)
+  }
+    
   squirrel_fur_graph |> 
-    filter(primary_fur_color == input[["fur_choice"]]) |> 
-    filter(activity == input[["activity_choice"]]) |> 
-    filter(shift == input[["shift_choice"]]) |> 
-    filter(location == input[["location_choice"]]) |> 
     plot_ly(lat = ~y,
     lon = ~x,
     color = ~age,
