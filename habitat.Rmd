@@ -218,6 +218,72 @@ in other words, **there is a significant association between the time of day and
 
 This may mean that squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
 
+#### What About a Logistic Regression Model?
+
+We want to see if we can create a logistic regression model to predict the likelihood of a squirrel being observed on the "ground plane," based on time of squirrel sighting (`shift`) and the following behavioral variables: `running`, `chasing`, `climbing`, `eating` and `foraging`. 
+
+##### Fitting a Model
+
+```{r model}
+set.seed(1)
+
+squirrel_census_df =
+  squirrel_census|> 
+  mutate_all(as.factor)
+
+fit_logistic =
+  squirrel_census |> 
+  glm(location == "Ground Plane" ~ shift + running + chasing + climbing + eating + foraging, 
+                    data = _, 
+                    family = binomial())
+```
+
+Let's tidy up the output. 
+
+```{r}
+fit_logistic |> 
+ broom::tidy() |> 
+  mutate(OR = exp(estimate)) |> 
+  select(term, estimate, OR, p.value) |> 
+  knitr::kable()
+```
+
+Based on this output, we see that almost all of our results are statistically significant at the 5% level. Woohoo! Let's look at some model diagnostics. 
+
+```{r}
+squirrel_census |> 
+  modelr::add_predictions(fit_logistic) |> 
+  mutate(fitted_prob = boot::inv.logit(pred))
+```
+
+```{r}
+squirrel_census |> 
+  modelr::add_residuals(fit_logistic) |> 
+  ggplot(aes(x = location, y = resid)) +
+  geom_violin()
+```
+
+```{r}
+squirrel_census |> 
+  modelr::add_predictions(fit_logistic) |> 
+  modelr::add_residuals(fit_logistic) |> 
+  ggplot(aes(x = pred, y = resid)) +
+  geom_point() +
+    labs(title = "Residuals vs. Fitted Values",
+       x = "Fitted Values",
+       y = "Residuals") 
+```
+
+```{r}
+squirrel_census |> 
+  modelr::add_residuals(fit_logistic) |> 
+  ggplot(aes(sample = resid)) +
+  stat_qq() +
+  stat_qq_line()
+```
+
+From the QQPlot and our residuals plot, this model really isn't too awful. 
+
 
 ```{r, echo=FALSE, out.width= "40%", fig.align = 'center'}
 knitr::include_graphics("./pictures/bagel.jpeg")
