@@ -8,39 +8,33 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE, message = FALSE, 
-  fig.width = 6,    
-  fig.height = 4    
-)
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 ```
 
 ```{r}
 library(tidyverse)
 library(plotly)
 library(sf)
+library(knitr)
 ```
 
-#### Who are the Central Park squirrels? Here we report who they are and what they look like. 
+#### In this section, we will be looking at squirrel demographics, such as fur color and age. 
+
+First, we will import the cleaned squirrel data and a shapefile of Central Park. 
 
 ```{r}
-#First, we will import the cleaned squirrel data. 
 squirrel_census = 
   read_csv("data/clean_squirrel_2018.csv")
 
 central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet = TRUE)
 ```
 
-In the 2018 census, there are `r nrow(squirrel_census)` unique squirrel sightings documented. As volunteer researchers observed the squirrels, they provided each squirrel with a unique identifier and documented the age and fur colors of each critter. 
+There are a total of `r nrow(squirrel_census)` squirrel observations in the data set. 
 
-<br><br> 
 
 #### Let's first explore squirrel ages. 
 
-:::: {style="display: flex;"}
-
-::: {}
-
-```{r, fig.width=6, fig.height=5}
+```{r, fig.width= 6, fig.align='center'}
 squirrel_census |> 
   filter(age != "?") |> 
   ggplot() +
@@ -53,18 +47,14 @@ squirrel_census |>
   guides(color = guide_legend(
     title.position = "top",
     override.aes = list(size = 3))) +
-  scale_color_manual(values = c("Adult" = "aquamarine3", "Juvenile" = "slateblue")) +
+  scale_color_manual(values = c("Adult" = "aquamarine3", "Juvenile" = "coral1")) +
   labs(title = "Squirrel Age",
        color = "Age")
 ```
 
-:::
-
-:::{}
-
-```{r, fig.height=4, fig.width=4, fig.align='center'}
+```{r}
 squirrel_census |> 
-  filter(!(age %in% c("N/A", "?"))) |> 
+  filter(age != "?") |> 
   group_by(age) |> 
   count(age) |> 
   mutate(Age = fct_reorder(age, n)) |> 
@@ -75,50 +65,12 @@ squirrel_census |>
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
-
-:::
-
-::::
-
 It appears that the majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels. 
-
-<br><br> 
-
-:::: {style="display: flex;"}
-
-:::{}
-
-```{r, echo=FALSE, out.width="100%", fig.align='center'}
-knitr::include_graphics("./pictures/baby_squirrel.jpeg")
-```
-<center style="font-size: 14px;"> Juvenile gray squirrel </center>
-<br><br> 
-
-:::
-
-:::{}
-
-```{r, echo=FALSE, out.width="100%", fig.align='center'}
-knitr::include_graphics("./pictures/adult_squirrel.jpeg")
-```
-<center style="font-size: 14px;"> Adult cinnamon squirrel </center>
-
-:::
-
-::::
-
-<br><br> 
 
 #### Let's also look at primary and highlight fur color.
 
-Some squirrels model only one fur color, but some extra fashionable squirrels will don mixed patterns of multiple fur colors. The primary fur color is the main color of the squirrel and the secondary colors accent the primary color to give some squirrels unique style. 
 
-:::: {style="display: flex;"}
-
-::: {}
-
-
-```{r, fig.align='center', fig.width=5, fig.height=4}
+```{r, fig.width= 6, fig.align='center'}
 ggplot() +
   geom_sf(data = central_park_map, color = "grey") +
   geom_point(
@@ -146,15 +98,11 @@ squirrel_census |>
          type = "bar", colors = "viridis") |> 
   layout(
     xaxis = list(title = "Primary Fur Color"),   
-    yaxis = list(title = "Number of Squirrels"), 
-    legend = list(x = 0, y = 1, orientation = "h")
+    yaxis = list(title = "Number of Squirrels") 
   )
 ```
-:::
 
-::: {}
-
-```{r, fig.align='center', fig.width=6.5, fig.height=4}
+```{r}
 squirrel_census |> 
   rename(combination_fur_color = combination_of_primary_and_highlight_color) |> 
   count(combination_fur_color) |> 
@@ -162,44 +110,80 @@ squirrel_census |>
   plot_ly (x = ~combination_fur_color, y = ~n, color = ~combination_fur_color,
          type = "bar", colors = "viridis") |> 
   layout(
-    xaxis = list(title = "All Fur Colors",showticklabels = FALSE),   
+    xaxis = list(title = "Fur Color"),   
     yaxis = list(title = "Number of Squirrels") 
   )
 ```
-:::
-
-::::
-
-We can see that most squirrel in Central Park have Gray fur with some Cinnamon or White accents. Squirrels that are black with any accent colors are very rare! Consider yourself lucky if you've ever seen one of them frolicking in the park!
-
-
-<br><br> 
-
-
 
 #### Is there a difference in primary fur color depending on age? 
 
 ```{r}
-squirrel_census |> 
-  filter(!(age %in% c("N/A", "?"))) |>
-  select(age, primary_fur_color) |> 
+squirrel_fur_age = 
+  squirrel_census |> 
+  filter(age != "?") |> 
   group_by(age, primary_fur_color) |> 
   summarise(count = n()) |> 
-  mutate(percent = count / sum(count) * 100) |> 
+  mutate(percent = round(count / sum(count) * 100, 1))
+
+squirrel_fur_age |> 
+  mutate(hover_text = str_c("Age: ", age, "<br>Primary Fur Color: ", primary_fur_color, "<br>Percent: ", percent, "%")) |> 
   plot_ly (x = ~age, y = ~percent, color = ~primary_fur_color,
-         type = "bar", colors = "viridis") |> 
+         type = "bar", colors = "viridis", text = ~hover_text) |> 
   layout(
     xaxis = list(title = "Age"),   
-    yaxis = list(title = "Percent of Squirrels") 
+    yaxis = list(title = "Percent of Squirrels (%)")
   )
 ```
 
-There does not appear to be any different in fur color by age. Among both the young and the old gray squirrels dominate the counts!
 
-<br><br> 
+### Hypothesis Testing
 
-<br><br> 
----
-Photo credits: 
-Juvenile squirrel: https://citywildlife.org/found-animal/baby-squirrels/
-Adult Squirrel: https://www.onthewingphotography.com/ 
+
+We're interested in investigating the relationship between `shift` (morning or afternoon sighting) and the locations of the squirrels (ground plane, or above ground)
+
+##### State Hypotheses
+
+* H0: There is no significant association between shift and location
+* H1: There is a significant association between shift and location
+
+##### Assumptions
+
+The Chi-Square Test of Independence assumes that
+
+1. Observations must be independent
+
+2. Data must be categorical in nature
+
+3. The expected frequency in each cell in the contingency table should be greater than 5
+
+4. Data should be collected via random sampling
+
+5. The overall sample size should be large 
+
+We know assumptions 1, 2, 4, 5 and five are met. Let's double check the cell frequencies by generating a contingency table.
+
+##### Create contingency table
+```{r}
+contingency_table =
+  squirrel_census |> 
+  select(shift, location) |> 
+  mutate_all(as.factor) |> 
+  table()
+```
+
+```{r}
+kable(contingency_table)
+```
+
+We can see from the contingency table that our cell counts are well above the required frequency of 5. Let's continue on with our chi square analysis.
+
+##### Conduct Test
+```{r}
+chi_square_result = chisq.test(contingency_table)
+```
+
+##### Final Conclusion
+At the 0.05 level of significance, there is evidence to suggest that the distribution of locations is not independent of the shift;
+in other words, there is a significant association between the time of day and the location where squirrels are observed.
+
+This may mean that squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
