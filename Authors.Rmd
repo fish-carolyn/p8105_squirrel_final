@@ -40,16 +40,15 @@ knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
 **NOT GHISLAINE (Camille)**
 
 <center> *Department of Sociomedical Sciences* </center>
-
 :::
 
 ::: {.col}
 
 ```{r, echo=FALSE, fig.width = 10}
-knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
+knitr::include_graphics("./pictures/authors/ss_headshot.jpg")
 ```
 
-**NOT GHISLAINE (Sanika)**
+**Sanika**
 
 <center> *Department of Sociomedical Sciences* </center>
 
