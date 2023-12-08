@@ -16,7 +16,7 @@ knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
 
 **Ghislaine**
 
-<center> *Depeartment of Epidemiology* </center>
+<center> *Department of Epidemiology* </center>
 
 :::
 
