@@ -14,9 +14,9 @@ navbar:
   right:
     - text: "Demographic"
       href: descriptives.html
-    - text: "Habitat"
-      href: habitat.html
     - text: "Activity"
+      href: habitat.html
+    - text: "Communication"
       href: activities.html
     - text: "Shiny App"
       href: https://selinahsuan.shinyapps.io/shiny_app/ 
