@@ -13,7 +13,7 @@
 
 <title>P8105 FINAL PROJECT REPORT</title>
 
-<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -312,10 +312,6 @@ document.</strong></p>
 </div>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
-<<<<<<< HEAD
-=======
-<p>Provide an overview of the project goals and motivation.</p>
->>>>>>> ed1d7c257093ca714cdcccedcd624c58d1bbff49
 <p>The motivation behind our project is to perform a comprehensive
 analysis on the squirrels of Central Park in New York City. Squirrels
 are familiar neighbors to all New Yorkers, and Central Park provides
@@ -375,8 +371,6 @@ analyses.</li>
 <li>Justify the steps you took, and show any major changes to your
 ideas.</li>
 </ul>
-<<<<<<< HEAD
-=======
 <p>Our exploratory analysis is segmented into three distinct areas of
 focus: Squirreling the Stats (<a
 href="descriptives.html">demographic</a>), Nesting Nooks (<a
@@ -388,7 +382,6 @@ of bar graphs and maps. We make sure to filter out observations that are
 “N/A” or unknown for age or fur color, and we create a detailed fur
 color graph that includes both primary and highlight fur color.</p>
 <p><em>add details about other sections</em></p>
->>>>>>> ed1d7c257093ca714cdcccedcd624c58d1bbff49
 <p>After performing exploratory analyses, primarily in the form of
 visualizations, there did not appear to be as much variation in Central
 Park squirrels as we had initially thought. For example, the vast
@@ -402,8 +395,21 @@ visualizations and interactivity, particularly in the form of maps.</p>
 <h2>Additional analysis</h2>
 <p>If you undertake formal statistical analyses, describe these in
 detail</p>
-<p>Despite our findings, we wanted to perform some statistical
-analyses.</p>
+<p>Despite our findings, we wanted to perform some statistical analyses.
+We were puzzled with what direction any statistical analysis should
+shape into due to the nature of this data. The variables in this datset
+are categorical, so we opted to investigate relationships by using a Chi
+Square Analysis and a Logistic Regression. The Chi Square Analysis we
+conducted took the form of a formal hypothesis test exploring the
+relationship between the <code>shift</code> and <code>location</code>
+variables. After tidying a subset of the data, we formed a contingency
+table and ran a chi square test. The goal of our logistic regression
+analysis was to investigate if we could predict the likelihood of a
+squirrel being observed on the “ground plane,” based on time of squirrel
+sighting (shift) and the following behavioral variables: running,
+chasing, climbing, eating and foraging. We created a binomial model,
+tidied the output to include the p-value, estimate, and odds ratios. We
+also did some residual plotting and visualizations.</p>
 </div>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
