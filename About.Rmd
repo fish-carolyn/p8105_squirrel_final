@@ -45,3 +45,4 @@ The raw dataset we utilized can be found  [here](https://github.com/rfordatascie
 * `month`: Month value.
 * `year`: Year value.
 * `date_assembled`: Concatenated date of sighting.
+* `name`: Unique squirrel name. 
