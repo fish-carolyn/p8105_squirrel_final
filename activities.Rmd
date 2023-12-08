@@ -6,8 +6,6 @@ output:
     always_allow_html: true
 ---
 
-we could also name this "Acorn Adventures: Unraveling the Tapestry of Squirrel Activity"
-
 ```{r libraries, include = FALSE}
 library(tidyverse)
 library(plotly)
@@ -19,32 +17,46 @@ squirrel_census =
   read_csv("data/clean_squirrel_2018.csv")
 ```
 
-### Squirrels are dynamic creatures with a secret language. In a bustling environment like New York City, these animals use unique signals to communicate with each other and us. 
+Squirrels are dynamic creatures with a secret language. In a bustling environment like New York City, these animals use unique signals to communicate with each other and us. 
 
-#### Let's take a look at squirrel sounds. 
+<br><br>
 
-```{r sound_distribution , warning=FALSE}
+#### Let's take a look at the sounds squirrels use to communicate. 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+```{r sound_distribution , warning=FALSE, fig.align='center', fig.width=5, fig.height=4}
 sounds_summary = data.frame(
   Sound = c("Kuks", "Quaas", "Moans"),
   Count = c(sum(squirrel_census[["kuks"]], na.rm = TRUE), 
             sum(squirrel_census[["quaas"]], na.rm = TRUE), 
             sum(squirrel_census[["moans"]], na.rm = TRUE))
 )
-```
 
-```{r squirrel_sounds , warning=FALSE}
-plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = 'bar', colors = RColorBrewer::brewer.pal(3, "Set2")) |>
-  layout(title = 'Distribution of Squirrel Sounds',
+plot_ly(data = sounds_summary, x = ~Sound, y = ~Count, color = ~Sound, type = 'bar', colors = RColorBrewer::brewer.pal(3, "Accent")) |>
+  layout(
          xaxis = list(title = 'Sound Type'),
-         yaxis = list(title = 'Count'))
-
+         yaxis = list(title = 'Number of Squirrels'))
 ```
+
+:::
+
+:::{}
 
 Of the three identified squirrel sounds, NYC squirrels most commonly `kuk` is the most common sound, and `moans` are rarely heard. To better understand the meaning of these sounds, let's take a look at the type of activity or interactions the squirrels who made these sounds are engaged in. 
 
-#### Next, let's look at what sounds squirrels make when interacting with humans
+:::
+::::
 
-```{r human_interactions ,message=FALSE}
+#### Next, let's look at what sounds squirrels make when interacting with humans. 
+
+:::: {style="display: flex;"}
+
+::: {}
+
+```{r human_interactions ,message=FALSE, fig.align='center', fig.width=5, fig.height=4}
 # Summarizing sounds by interaction types
 interaction_sounds <- squirrel_census |>
   group_by(approaches, indifferent, runs_from) |>
@@ -62,23 +74,50 @@ interaction_sounds[["interaction_type"]] <- case_when(
 )
 
 # Creating sounds by human interaction plot
-plot_ly(interaction_sounds, x = ~Sound, y = ~Count, color = ~interaction_type, type = 'bar', colors = RColorBrewer::brewer.pal(3, "Set2")) |>
+plot_ly(interaction_sounds, x = ~Sound, y = ~Count, color = ~interaction_type, type = 'bar', colors = RColorBrewer::brewer.pal(3, "Accent")) |>
   layout(title = 'Distribution of Squirrel Sounds by Human Interaction',
          xaxis = list(title = 'Sound Type'),
-         yaxis = list(title = 'Count'))
+         yaxis = list(title = 'Number of Squirrels'))
+
 ```
 
-As the plot above shows, squirrels who `kuk`are frequently `indifferent,` `run from,` or exhibit `other` behavior when interacting with humans. Squirrels who `quaa` also are `indifferent` or exhibit `other` behavior when approached by a human, and `run from` humans less frequently. There is only one instance of a `moan`, and this squirrel `ran from` a human. While this is an interesting data point, there is not enough information to associate a `moan` with fear or distress. Without more data and a better understanding of what `other` behavior is, we cannot accurately determine what these squirrel sounds mean. 
+:::
 
-#### Now, let's look at squirrel activity
+::: {}
+<br><br>
 
-```{r sounds_activity , warning=FALSE}
+As this plot (right) shows, squirrels who `kuk`are frequently `indifferent,` `run from,` or exhibit `other` behavior when interacting with humans. Squirrels who `quaa` also are `indifferent` or exhibit `other` behavior when approached by a human, and `run from` humans less frequently. 
+
+<br><br>
+
+There is only one instance of a `moan`, and this squirrel `ran from` a human. While this is an interesting data point, there is not enough information to associate a `moan` with fear or distress. Without more data and a better understanding of what `other` behavior is, we cannot accurately determine what these squirrel sounds mean. 
+
+:::
+
+::::
+
+#### Now, let's look at the sounds squirrels make by the activity they were doing. 
+:::: {style="display: flex;"}
+
+::: {}
+<br><br>
+
+Squirrels who `kuk` and `quaa` were very frequently seen `chasing`. In general, squirrels who `kuk` engaged in all activity types. Similarly, squirrels who `quaa` also participated in all activities, but with less frequency. This is in line with our sounds distribution, as `quaa` is a rarer sound when compared to `kuks`. 
+
+<br><br>
+
+Additionally, we see that squirrels who `moan` were only seen `climbing` or `foraging`. Overall, this distribution gives us hints about the frequency of squirrel sounds and their potential correspondence with different types of activity. However, we do not have enough information to draw conclusions about sound meanings and activity types. 
+:::
+
+:::{}
+```{r sounds_activity , warning=FALSE, fig.align='center', fig.width=5, fig.height=6}
 # Reshaping data into a long format
 long_data = squirrel_census |>
   pivot_longer(cols = c(kuks, quaas, moans), names_to = "Sound", values_to = "Sound_Value") |>
   pivot_longer(cols = c(running, chasing, climbing, eating, foraging), names_to = "Activity", values_to = "Activity_Value") |>
   filter(Activity_Value == TRUE, Sound_Value == TRUE) |>
-  count(Activity, Sound)
+  count(Activity, Sound) |> 
+  rename(`Squirrels` = n)
 
 # Creating a list to store plotly objects
 plots_list = list()
@@ -86,20 +125,26 @@ plots_list = list()
 # Looping through each activity to create individual plots
 for(activity in unique(long_data[["Activity"]])) {
   activity_data = long_data[long_data[["Activity"]] == activity, ]
-  p = plot_ly(activity_data, x = ~Sound, y = ~n, type = 'bar', name = activity) |>
+  p = plot_ly(activity_data, x = ~Sound, y = ~`Squirrels`, type = 'bar', name = activity) |>
     layout(title = paste('Squirrel Sounds by Activity Type'))
   plots_list[[activity]] = p
 }
 
 # Arranging the plots in a grid layout
-subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE)
+subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE) 
 ```
 
-Squirrel who `kuk` and `quaa` were very frequently seen `chasing`. In general, squirrels who `kuk` engaged in all activity types. Similarly, squirrels who `quaa` also participated in all activities, but with less frequency. This is in line with our sounds distribution, as `quaa` is a rarer sound when compared to `kuks`. Finally we see that squirrels who `moan` were only seen `climbing` or `foraging`. Overall, this distribution gives us hints about the frequency of squirrel sounds and their potential correspondence with different types of activity. However, we do not have enough information to draw conclusions about sound meanings and activity types. 
+:::
+
+::::
 
 #### Finally, lets crown the noisiest squirrels.
 
-```{r age_sounds, warning=FALSE}
+:::: {style="display: flex;"}
+
+::: {}
+
+```{r age_sounds, warning=FALSE, fig.align='center', fig.width=4, fig.height=4}
 # Grouping sounds by age
 sound_summary = squirrel_census |>
   filter(age != "?") |> 
@@ -120,4 +165,14 @@ plot_ly(data = sound_summary, x = ~age, y = ~Sound, size = ~Count, type = 'scatt
          yaxis = list(title = 'Sound Type')) 
 ```
 
+:::
+
+:::{}
+
+<br><br>
+
 Our plot shows us that adults were the most frequently identified squirrel in our sample. For both adults and juveniles, `kuks` were the most common sound. However, adults `kuked` far more than their juvenile counterparts. Again, there is not enough data to conclude that adults are noisier than their juvenile counterparts, but for our purposes, we are crowning `kukking` adult squirrels as the chattiest in New York City!
+
+:::
+
+::::
