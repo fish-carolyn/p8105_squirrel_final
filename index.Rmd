@@ -4,6 +4,8 @@ output:
   html_document:
     code_folding: hide
     always_allow_html: true
+    toc: true
+    toc_float: true
 ---
 
 ```{r, include = FALSE}
@@ -18,6 +20,8 @@ squirrel_census =
 ```
 
 ---
+
+### Welcome
 
 ```{r, echo=FALSE, out.width="60%", fig.align = 'center'}
 knitr::include_graphics("./pictures/park_squirrel_fence.jpeg")
@@ -36,7 +40,7 @@ Our team hopes to close the divide between squirrels and New Yorkers by creating
 
 ---
 
-#### Link to screen cast 
+### Link to screen cast 
 
 ---
 

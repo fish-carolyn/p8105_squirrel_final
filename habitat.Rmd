@@ -4,6 +4,8 @@ output:
   html_document:
     code_folding: hide
     always_allow_html: true
+    toc: true
+    toc_float: true
 ---
 
 ```{r setup, include = FALSE}
@@ -35,6 +37,8 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet 
 
 <br><br>
 
+### Snacky
+
 #### Let's see where all the hungry squirrels are in Central Park!
 
 
@@ -57,6 +61,8 @@ leaflet() |>
 ```
 
 <br><br>
+
+### Sporty
 
 #### If they aren't eating, they are doing some other activity...
 ```{r, fig.width= 10, fig.align='center'}
@@ -117,6 +123,8 @@ leaflet() |>
 
 <br><br>
 
+### Up high or down below? 
+
 #### Where should one up high or down low to spot our furry friends?
 
 
@@ -145,7 +153,10 @@ Our furry friends can most often be seen on the ground, as shown by the yellow p
 
 <br><br>
 
-#### Day or night? Up or down? 
+
+### Day or night?
+
+
 Is there a relationship between morning or afternoon sightings and the locations of the squirrels (ground plane, or above ground)?
 
 <br><br>

@@ -4,6 +4,8 @@ output:
   html_document:
     code_folding: hide
     always_allow_html: true
+    toc: true
+    toc_float: true
 ---
 
 ```{r libraries, include = FALSE}
@@ -20,6 +22,8 @@ squirrel_census =
 Squirrels are dynamic creatures with a secret language. In a bustling environment like New York City, these animals use unique signals to communicate with each other and us. 
 
 <br><br>
+
+### Squirrel-to-squirrel
 
 #### Let's take a look at the sounds squirrels use to communicate. 
 
@@ -49,6 +53,8 @@ Of the three identified squirrel sounds, NYC squirrels most commonly `kuk` is th
 
 :::
 ::::
+
+### Squirrel-to-human
 
 #### Next, let's look at what sounds squirrels make when interacting with humans. 
 
@@ -96,6 +102,8 @@ There is only one instance of a `moan`, and this squirrel `ran from` a human. Wh
 
 ::::
 
+### Singing while working
+
 #### Now, let's look at the sounds squirrels make by the activity they were doing. 
 :::: {style="display: flex;"}
 
@@ -138,6 +146,8 @@ subplot(plots_list, nrows = length(plots_list), shareX = TRUE, shareY = TRUE)
 
 ::::
 
+### Does age have to do with being noisy? 
+
 #### Finally, lets crown the noisiest squirrels.
 
 :::: {style="display: flex;"}
@@ -154,15 +164,18 @@ sound_summary = squirrel_census |>
     Quaas = sum(quaas, na.rm = TRUE),
     Moans = sum(moans, na.rm = TRUE)
   ) |>
-  pivot_longer(cols = c(Kuks, Quaas, Moans), names_to = "Sound", values_to = "Count")
+  pivot_longer(cols = c(Kuks, Quaas, Moans), names_to = "Sound", values_to = "Count") |> 
+  mutate(
+    perc_vocals = (Count/ sum(Count))*100
+  )
 
 # Creating a bubble plot showing sound by squirrel age
-plot_ly(data = sound_summary, x = ~age, y = ~Sound, size = ~Count, type = 'scatter', mode = 'markers', 
+plot_ly(data = sound_summary, x = ~age, y = ~perc_vocals, size = ~Count, type = 'scatter', mode = 'markers', 
         marker = list(sizemode = 'diameter', opacity = 0.5), color = ~Sound, 
         hoverinfo = 'text', text = ~paste(Sound, ': ', Count)) |>
   layout(title = 'Squirrel Sounds by Age',
          xaxis = list(title = 'Age'),
-         yaxis = list(title = 'Sound Type')) 
+         yaxis = list(title = 'Percent of Sound Type')) 
 ```
 
 :::
