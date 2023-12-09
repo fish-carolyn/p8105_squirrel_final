@@ -13,7 +13,7 @@
 
 <title>Report</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -334,29 +334,68 @@ visualization and interactivity topics discussed in class.</p>
 </div>
 <div id="initial-questions" class="section level2">
 <h2>Initial questions</h2>
-<ul>
-<li>What questions are you trying to answer?</li>
-<li>How did these questions evolve over the course of the project?</li>
-<li>What new questions did you consider in the course of your
-analysis?</li>
-</ul>
 <p>Our initial questions focused on discovering trends in demographic,
 activity, or other behaviors of Central Park Squirrels. We were
 interested in the following:</p>
 <ol style="list-style-type: decimal">
-<li>Are certain fur colors more prevalent than others in different areas
-of the park?</li>
-<li>Are there relationships between the sounds that squirrels make and
-the activities they are engaged in?</li>
-<li>Are certain types of squirrels more likely to engage with
-humans?</li>
+<li><p>Are certain fur colors more prevalent than others in different
+areas of the park?</p></li>
+<li><p>Are there relationships between the sounds that squirrels make
+and the activities they are engaged in?</p></li>
+<li><p>Are certain types of squirrels more likely to engage with
+humans?</p></li>
+</ol>
+<p>After exploratory analysis and better understanding the strengths
+(large sample) and limitations (few obvious spacial trends, short
+observation period) of our data, we adjusted our questions to be:</p>
+<ol style="list-style-type: decimal">
+<li>Are squirrels demographically similar throughout the park?</li>
+<li>Is there an observable trend between squirrel’s age or and their
+primary fur color?</li>
+<li>Are squirrels observed using different areas of the park for
+different activities?</li>
+<li>Does the frequency of squirrels observed in trees (above ground) or
+on the ground differ by time of day (AM versus PM)? Does this
+relationship exist after adjusting for various activities?</li>
+<li>What sounds do squirrels make and how does this differ by their
+activity or maturity?</li>
 </ol>
 </div>
 <div id="data-source-scraping-method-cleaning-etc."
 class="section level2">
 <h2>Data: Source, scraping method, cleaning, etc.</h2>
-<p>Our data was uploaded in the form of a csv file. <em>Describe
-cleaning process</em></p>
+<p>Our data was downloaded from the Squirrel Census github as a .csv
+file. The Squirrel Census relies on field observations so despite the
+data appearing quite “clean” upon download from the source github, we
+utilized some standard data cleaning checks to ensure the data was clean
+and ready to be used for our analysis.</p>
+<p>The data was cleaned in RStudio to meet the following criteria:</p>
+<ul>
+<li><p>Every squirrel (observation) required a unique identifier
+(<code>unique_squirrel_id</code>).</p></li>
+<li><p>Every squirrel had complete location/ geo data
+(<code>hectare</code>, <code>x</code> (latitude), and <code>y</code>
+(longitude).</p></li>
+<li><p>Every squirrel required non-missing data for <code>age</code>,
+<code>primary</code> fur color, <code>location</code>,
+<code>activity</code>, and <code>date</code> observed.</p></li>
+<li><p>All continuous variables were numeric and stored as
+such.</p></li>
+<li><p>Dates must be saved in date format.</p></li>
+</ul>
+<p>The source data set contained 3,023 observations and 31 variables.
+After the removal of observations with missing data, the “clean” data
+set used for site analyses had 2,824 observations and 36 variables.
+Variables for <code>day</code>, <code>month</code>, <code>year</code>,
+<code>date_assembled</code>, and <code>name</code> were added to the
+final data set after some manipulation was done to adjust the date
+variable. The name variable was created by randomly assigning squirrels
+names from an R generated list of first and last squirrel names. The
+<code>unique_squirrel_id</code> variable is a character variable of 11
+values and characters, so it could be a mouthful when trying to consider
+individual observations. We also believe each squirrel deserves a fun
+name.</p>
+<p>The final</p>
 </div>
 <div id="exploratory-analysis" class="section level2">
 <h2>Exploratory analysis</h2>
@@ -408,12 +447,11 @@ test exploring the relationship between the <code>shift</code> and
 formed a contingency table and ran a chi square test. The goal of our
 logistic regression analysis was to investigate if we could predict the
 likelihood of a squirrel being observed on the “ground plane,” based on
-time of squirrel sighting (<code>shift</code>) and the following
-behavioral variables: <code>running</code>, <code>chasing</code>,
-<code>climbing</code>, <code>eating</code> and <code>foraging</code>. We
-created a binomial model, tidied the output to include the p-value,
-estimate, and odds ratios. We also did some residual plotting and
-visualizations.</p>
+time of squirrel sighting (shift) and the following behavioral
+variables: running, chasing, climbing, eating and foraging. We created a
+binomial model, tidied the output to include the p-value, estimate, and
+odds ratios. We also did some residual plotting and visualizations to
+detect outliers and ensure our model was appropriate for the data.</p>
 </div>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
@@ -425,6 +463,30 @@ visualizations.</p>
 <p>As this will be your only chance to describe your project in detail,
 <strong>make sure that your report is a standalone document that fully
 describes your process and results.</strong></p>
+<p>From the Chi-Square Test, we rejected the null hypothesis and found
+at the 5% level of significance, there is evidence to suggest there is a
+significant association between the time of day and the location where
+squirrels are observed. From our research, squirrels exhibit different
+location preferences or behaviors during the morning (AM) compared to
+the afternoon (PM). Squirrels are known to be diurnal animals, so the
+results of the chi-square test serves as additional evidence. Since
+squirrels have been observed to be active more during dawn and dusk,
+this aligns with the <a
+href="https://www.esf.edu/aec/adks/mammals/gray_squirrel.php">literature</a>
+on this topic. From the logistic regression, we found that the
+<code>shift</code>, <code>running</code>, <code>climbing</code>,
+<code>eating</code>, and <code>foraging</code> predictors in our model
+were statistically significant at the 5% level. A squirrel spotted on
+the ground plane is most likely to be seen running, climbing, eating, or
+foraging. The effect of chasing was not statistically significant at the
+0.05 level. Squirrels spotted on the ground plane also have a likelihood
+to be spotted at night. The QQ plot showed the distribution of our model
+to be approximately normal. The predicted values plotted against
+residuals along with the violin plot showed evidence of skew for both
+the above ground and ground plane plots. For optimization purposes,
+before running a formal analysis this indicates to us we should check
+for collinearity and run some additional diagnostic tests to see if we
+can create a better model.</p>
 <p>We also expect you to write high-quality code that is understandable
 to an outside reader. Coding collaboratively and actively reviewing code
 within the team will help with this!</p>
