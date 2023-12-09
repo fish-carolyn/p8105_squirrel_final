@@ -29,6 +29,7 @@ knitr::include_graphics("./pictures/authors/sh_headshot.jpg")
 **Selina**
 
 <center> *Department of Health Policy & Management* </center>
+
 :::
 
 ::: {.col}
@@ -40,6 +41,7 @@ knitr::include_graphics("./pictures/authors/co_headshot.jpg")
 **Camille**
 
 <center> *Department of Sociomedical Sciences* </center>
+
 :::
 
 ::: {.col}
@@ -63,6 +65,7 @@ knitr::include_graphics("./pictures/authors/cf_headshot.jpg")
 **Carolyn**
 
 *Department of Epidemiology*
+
 :::
 
 ::::
