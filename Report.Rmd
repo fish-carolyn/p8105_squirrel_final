@@ -38,9 +38,9 @@ After exploratory analysis and better understanding the strengths (large sample)
 
 ## Data: Source, scraping method, cleaning, etc.
 
-Our data was downloaded from the Squirrel Census github as a .csv file. The Squirrel Census relies on field observations so despite the data appearing quite "clean" upon download from the source github, we utilized some standard data cleaning checks to ensure the data was clean and ready to be used for our analysis.
+Our data was downloaded from the Squirrel Census [github](%5Bhttps://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29)](<https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29>).) as a .csv file. The Squirrel Census relies on field observations so despite the data appearing quite "clean" upon download from the source github, we utilized some standard data cleaning checks to ensure the data was clean and ready to be used for our analysis.
 
-The data was cleaned in RStudio to meet the following criteria:
+The data was cleaned using RStudio/RMarkdown to meet the following criteria:
 
 -   Every squirrel (observation) required a unique identifier (`unique_squirrel_id`).
 
@@ -52,9 +52,46 @@ The data was cleaned in RStudio to meet the following criteria:
 
 -   Dates must be saved in date format.
 
-The source data set contained 3,023 observations and 31 variables. After the removal of observations with missing data, the "clean" data set used for site analyses had 2,824 observations and 36 variables. Variables for `day`, `month`, `year`, `date_assembled`, and `name` were added to the final data set after some manipulation was done to adjust the date variable. The name variable was created by randomly assigning squirrels names from an R generated list of first and last squirrel names. The `unique_squirrel_id` variable is a character variable of 11 values and characters, so it could be a mouthful when trying to consider individual observations. We also believe each squirrel deserves a fun name.
+The source data set contained 3,023 observations and 31 variables. After the removal of observations with missing data, the "clean" data set used for site analyses had 2,824 observations and 36 variables. Variables for `day`, `month`, `year`, `date_assembled`, and `name` were added to the final data set after some manipulation was done to adjust the date variable. The name variable was created by randomly assigning squirrels names from an R generated list of first and last squirrel names. The `unique_squirrel_id` variable is a character variable of 11 values and characters, so it could be a mouthful when trying to consider individual observations. We also believe each squirrel deserves a fun name. The data used was collected between 2018-10-06 and 2018-10-20.
 
-The final
+The final data used for analysis, saved [here](%5Bhttps://github.com/fish-carolyn/p8105_squirrel_final.git)](<https://github.com/fish-carolyn/p8105_squirrel_final.git>),) contains the following variables:
+
+-   `x`: Longitude.
+-   `y`: Latitude.
+-   `unique_squirrel_id`: Identification tag for each squirrel sightings. The tag is comprised of "Hectare ID" + "Shift" + "Date" + "Hectare Squirrel Number."
+-   `hectare`: ID tag, which is derived from the hectare grid used to divide and count the park area. One axis that runs predominantly north-to-south is numerical (1-42), and the axis that runs predominantly east-to-west is roman characters (A-I).
+-   `shift`: Value is either "AM" or "PM," to communicate whether or not the sighting session occurred in the morning or late afternoon.
+-   `date`: Concatenation of the sighting session day and month.
+-   `hectare_squirrel_number`: Number within the chronological sequence of squirrel sightings for a discrete sighting session.
+-   `age`: Value is either "Adult" or "Juvenile."
+-   `primary_fur_color`: Value is either "Gray," "Cinnamon" or "Black."
+-   `highlight_fur_color`: Discrete value or string values comprised of "Gray," "Cinnamon" or "Black."
+-   `combination_of_primary_and_highlight_color`: A combination of the previous two columns; this column gives the total permutations of primary and highlight colors observed.
+-   `color_notes`: Sighters occasionally added commentary on the squirrel fur conditions. These notes are provided here.
+-   `location`: Value is either "Ground Plane" or "Above Ground." Sighters were instructed to indicate the location of where the squirrel was when first sighted.
+-   `above_ground_sighter_measurement`: For squirrel sightings on the ground plane, fields were populated with a value of "FALSE."
+-   `specific_location`: Sighters occasionally added commentary on the squirrel location. These notes are provided here.
+-   `running`: Squirrel was seen running.
+-   `chasing`: Squirrel was seen chasing.
+-   `climbing`: Squirrel was seen climbing.
+-   `eating`: Squirrel was seen eating.
+-   `foraging`: Squirrel was seen foraging.
+-   `other_activites`: Other activities.
+-   `kuks`: Squirrel was heard kukking, a chirpy vocal communication used for a variety of reasons.
+-   `quaas`: Squirrel was heard quaaing, an elongated vocal communication which can indicate the presence of a ground predator such as a dog.
+-   `moans`: Squirrel was heard moaning, a high-pitched vocal communication which can indicate the presence of an air predator such as a hawk.
+-   `tail_flags`: Squirrel was seen flagging its tail. Flagging is a whipping motion used to exaggerate squirrel's size and confuse rivals or predators. Looks as if the squirrel is scribbling with tail into the air.
+-   `tail_twitches`: Squirrel was seen flagging its tail. Flagging is a whipping motion used to exaggerate squirrel's size and confuse rivals or predators. Looks as if the squirrel is scribbling with tail into the air.
+-   `approaches`: Squirrel was seen approaching human, seeking food.
+-   `indifferent`: Squirrel was indifferent to human presence.
+-   `runs_from`: Squirrel was seen running from humans, seeing them as a threat.
+-   `other_interactions`: Sighter notes on other types of interactions between squirrels and humans.
+-   `lat_long`: Combined lat long.
+-   `day`: Day value.
+-   `month`: Month value.
+-   `year`: Year value.
+-   `date_assembled`: Concatenated date of sighting.
+-   `name`: Unique squirrel name.
 
 ## Exploratory analysis
 
@@ -63,7 +100,7 @@ The final
 
 Our exploratory analysis is segmented into three distinct areas of focus: Squirreling the Stats ([demographic](descriptives.html)), Nesting Nooks ([activity](activity.html)), and Scurrying Secrets ([communication](communication.html)).
 
-In the Demographic section, we looked at the ages and fur color of squirrels in Central Park. The results are displayed with a combination of bar graphs and maps. We make sure to filter out observations that are "N/A" or unknown for age or fur color, and we create a detailed fur color graph that includes both primary and highlight fur color.
+In the Demographic section, we looked at the distribution of ages and fur color of squirrels in Central Park. Using plots of the distribution of juvenile and adult squirrels thoughout central
 
 When creating the Nesting Nooks page, we thought about different aspects of the data that would be interesting to explore spatially. Originally, maps of primary fur color and age were on the Nesting Nooks page, but eventually we pivoted the page to be more about activity, moving those maps to the demographics page. We were hoping to see more spatial clustering of certain activities, but when mapped the data points were randomly distributed around Central Park.
 
@@ -75,7 +112,7 @@ After performing exploratory analyses, primarily in the form of visualizations, 
 
 If you undertake formal statistical analyses, describe these in detail
 
-Despite our findings, we wanted to perform some statistical analyses. We were puzzled with what direction any statistical analysis should shape into due to the categorical nature of this data. The lack of continuous variables limited our options of analysis, so we opted to investigate relationships by using a Chi Square Analysis and a Logistic Regression. The Chi Square Analysis we conducted was a formal hypothesis test exploring the relationship between the `shift` and `location` variables. After tidying a subset of the data, we formed a contingency table and ran a chi square test. The goal of our logistic regression analysis was to investigate if we could predict the likelihood of a squirrel being observed on the “ground plane,” based on time of squirrel sighting (shift) and the following behavioral variables: running, chasing, climbing, eating and foraging. We created a binomial model, tidied the output to include the p-value, estimate, and odds ratios. We also did some residual plotting and visualizations to detect outliers and ensure our model was appropriate for the data.
+Despite our findings, we wanted to perform some statistical analyses. We were puzzled with what direction any statistical analysis should shape into due to the categorical nature of this data. The lack of continuous variables limited our options of analysis, so we opted to investigate relationships by using a Chi Square Analysis and a Logistic Regression. The Chi Square Analysis we conducted was a formal hypothesis test exploring the relationship between the `shift` and `location` variables. After tidying a subset of the data, we formed a contingency table and ran a chi square test. The goal of our logistic regression analysis was to investigate if we could predict the likelihood of a squirrel being observed on the "ground plane," based on time of squirrel sighting (shift) and the following behavioral variables: running, chasing, climbing, eating and foraging. We created a binomial model, tidied the output to include the p-value, estimate, and odds ratios. We also did some residual plotting and visualizations to detect outliers and ensure our model was appropriate for the data.
 
 ## Discussion
 
