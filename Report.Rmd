@@ -8,60 +8,81 @@ knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 
 Selina Hsuan (sh4354), Ghislaine Jumonville (gj2356), Carolyn Fish (csf2135), Camille Okonkwo (co2554), Sanika Sule (ss6692)
 
-
 The written report produced by your team is central to this project. This will detail how you completed your project, and should cover data collection and cleaning, exploratory analyses, alternative strategies, descriptions of approaches, and a discussion of results. We anticipate that your project will change somewhat over time; these changes and the reasons for them should be documented! **You will write one report document per group, and be sure to include all group member names in the document.**
 
 ## Motivation
 
-The motivation behind our project is to perform a comprehensive analysis on the squirrels of Central Park in New York City. Squirrels are familiar neighbors to all New Yorkers, and Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)^1^. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral patterns and spatial distribution of squirrel sightings in Central Park. 
+The motivation behind our project is to perform a comprehensive analysis on the squirrels of Central Park in New York City. Squirrels are familiar neighbors to all New Yorkers, and Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)^1^. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral patterns and spatial distribution of squirrel sightings in Central Park.
 
 ## Related work
 
-We were inspired to perform this analysis after discovering 2018 squirrel data from [The NYC Squirrel Census](https://www.thesquirrelcensus.com/). The Squirrel Census is "a multimedia science, design, and storytelling project," and their 2018 data set can be found on [NYC OpenData](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw). Since the data set contains the latitude and longitude of each squirrel sighting, as well as several variables related to squirrel activity, we thought it would provide a great opportunity to explore the visualization and interactivity topics discussed in class. 
+We were inspired to perform this analysis after discovering 2018 squirrel data from [The NYC Squirrel Census](https://www.thesquirrelcensus.com/). The Squirrel Census is "a multimedia science, design, and storytelling project," and their 2018 data set can be found on [NYC OpenData](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw). Since the data set contains the latitude and longitude of each squirrel sighting, as well as several variables related to squirrel activity, we thought it would provide a great opportunity to explore the visualization and interactivity topics discussed in class.
 
 ## Initial questions
-  * What questions are you trying to answer? 
-  * How did these questions evolve over the course of the project? 
-  * What new questions did you consider in the course of your analysis?
 
-Our initial questions focused on discovering trends in demographic, activity, or other behaviors of Central Park Squirrels. We were interested in the following: 
+Our initial questions focused on discovering trends in demographic, activity, or other behaviors of Central Park Squirrels. We were interested in the following:
 
-  1. Are certain fur colors more prevalent than others in different areas of the park? 
-  2. Are there relationships between the sounds that squirrels make and the activities they are engaged in? 
-  3. Are certain types of squirrels more likely to engage with humans? 
+1.  Are certain fur colors more prevalent than others in different areas of the park?
 
-##  Data: Source, scraping method, cleaning, etc.
+2.  Are there relationships between the sounds that squirrels make and the activities they are engaged in?
 
-Our data was uploaded in the form of a csv file. *Describe cleaning process*
+3.  Are certain types of squirrels more likely to engage with humans?
+
+After exploratory analysis and better understanding the strengths (large sample) and limitations (few obvious spacial trends, short observation period) of our data, we adjusted our questions to be:
+
+1.  Are squirrels demographically similar throughout the park?
+2.  Is there an observable trend between squirrel's age or and their primary fur color?
+3.  Are squirrels observed using different areas of the park for different activities?
+4.  Does the frequency of squirrels observed in trees (above ground) or on the ground differ by time of day (AM versus PM)? Does this relationship exist after adjusting for various activities?
+5.  What sounds do squirrels make and how does this differ by their activity or maturity?
+
+## Data: Source, scraping method, cleaning, etc.
+
+Our data was downloaded from the Squirrel Census github as a .csv file. The Squirrel Census relies on field observations so despite the data appearing quite "clean" upon download from the source github, we utilized some standard data cleaning checks to ensure the data was clean and ready to be used for our analysis.
+
+The data was cleaned in RStudio to meet the following criteria:
+
+-   Every squirrel (observation) required a unique identifier (`unique_squirrel_id`).
+
+-   Every squirrel had complete location/ geo data (`hectare`, `x` (latitude), and `y` (longitude).
+
+-   Every squirrel required non-missing data for `age`, `primary` fur color, `location`, `activity`, and `date` observed.
+
+-   All continuous variables were numeric and stored as such.
+
+-   Dates must be saved in date format.
+
+The source data set contained 3,023 observations and 31 variables. After the removal of observations with missing data, the "clean" data set used for site analyses had 2,824 observations and 36 variables. Variables for `day`, `month`, `year`, `date_assembled`, and `name` were added to the final data set after some manipulation was done to adjust the date variable. The name variable was created by randomly assigning squirrels names from an R generated list of first and last squirrel names. The `unique_squirrel_id` variable is a character variable of 11 values and characters, so it could be a mouthful when trying to consider individual observations. We also believe each squirrel deserves a fun name.
+
+The final
 
 ## Exploratory analysis
-  * Visualizations, summaries, and exploratory statistical analyses. 
-  * Justify the steps you took, and show any major changes to your ideas.
-  
-Our exploratory analysis is segmented into three distinct areas of focus: Squirreling the Stats ([demographic](descriptives.html)), Nesting Nooks ([activity](activity.html)), and Scurrying Secrets ([communication](communication.html)). 
 
-In the Demographic section, we looked at the ages and fur color of squirrels in Central Park. The results are displayed with a combination of bar graphs and maps. We make sure to filter out observations that are "N/A" or unknown for age or fur color, and we create a detailed fur color graph that includes both primary and highlight fur color. 
+-   Visualizations, summaries, and exploratory statistical analyses.
+-   Justify the steps you took, and show any major changes to your ideas.
+
+Our exploratory analysis is segmented into three distinct areas of focus: Squirreling the Stats ([demographic](descriptives.html)), Nesting Nooks ([activity](activity.html)), and Scurrying Secrets ([communication](communication.html)).
+
+In the Demographic section, we looked at the ages and fur color of squirrels in Central Park. The results are displayed with a combination of bar graphs and maps. We make sure to filter out observations that are "N/A" or unknown for age or fur color, and we create a detailed fur color graph that includes both primary and highlight fur color.
 
 When creating the Nesting Nooks page, we thought about different aspects of the data that would be interesting to explore spatially. Originally, maps of primary fur color and age were on the Nesting Nooks page, but eventually we pivoted the page to be more about activity, moving those maps to the demographics page. We were hoping to see more spatial clustering of certain activities, but when mapped the data points were randomly distributed around Central Park.
 
 *add details about other sections*
-  
-  
-After performing exploratory analyses, primarily in the form of visualizations, there did not appear to be as much variation in Central Park squirrels as we had initially thought. For example, the vast majority of squirrels are adults with gray fur, and they appear to engage in all activities in all areas of the park. Most squirrels do not engage with humans, and they make the same sounds regardless of the activity they are engaged in. As a result, we decided to focus more on visualizations and interactivity, particularly in the form of maps. 
-  
+
+After performing exploratory analyses, primarily in the form of visualizations, there did not appear to be as much variation in Central Park squirrels as we had initially thought. For example, the vast majority of squirrels are adults with gray fur, and they appear to engage in all activities in all areas of the park. Most squirrels do not engage with humans, and they make the same sounds regardless of the activity they are engaged in. As a result, we decided to focus more on visualizations and interactivity, particularly in the form of maps.
+
 ## Additional analysis
 
 If you undertake formal statistical analyses, describe these in detail
 
-Despite our findings, we wanted to perform some statistical analyses. We were puzzled with what direction any statistical analysis should shape into due to the categorical nature of this data. The lack of continuous variables limited our options of analysis, so we opted to investigate relationships by using a Chi Square Analysis and a Logistic Regression. The Chi Square Analysis we conducted was a formal hypothesis test exploring the relationship between the `shift` and `location` variables. After tidying a subset of the data, we formed a contingency table and ran a chi square test. The goal of our logistic regression analysis was to investigate if we could predict the likelihood of a squirrel being observed on the “ground plane,” based on time of squirrel sighting (shift) and the following behavioral variables: running, chasing, climbing, eating and foraging. We created a binomial model, tidied the output to include the p-value, estimate, and odds ratios. We also did some residual plotting and visualizations. 
+Despite our findings, we wanted to perform some statistical analyses. We were puzzled with what direction any statistical analysis should shape into due to the categorical nature of this data. The lack of continuous variables limited our options of analysis, so we opted to investigate relationships by using a Chi Square Analysis and a Logistic Regression. The Chi Square Analysis we conducted was a formal hypothesis test exploring the relationship between the `shift` and `location` variables. After tidying a subset of the data, we formed a contingency table and ran a chi square test. The goal of our logistic regression analysis was to investigate if we could predict the likelihood of a squirrel being observed on the "ground plane," based on time of squirrel sighting (shift) and the following behavioral variables: running, chasing, climbing, eating and foraging. We created a binomial model, tidied the output to include the p-value, estimate, and odds ratios. We also did some residual plotting and visualizations.
 
 ## Discussion
-  * What were your findings? 
-  * Are they what you expect? 
-  * What insights into the data can you make?
 
+-   What were your findings?
+-   Are they what you expect?
+-   What insights into the data can you make?
 
 As this will be your only chance to describe your project in detail, **make sure that your report is a standalone document that fully describes your process and results.**
 
 We also expect you to write high-quality code that is understandable to an outside reader. Coding collaboratively and actively reviewing code within the team will help with this!
-
