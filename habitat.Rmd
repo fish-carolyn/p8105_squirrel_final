@@ -234,8 +234,7 @@ chi_square_result = chisq.test(contingency_table)
 
 ##### Conclusion
 
-At the 0.05 level of significance, there is evidence to suggest that the distribution of locations is not independent of the shift;
-in other words, **there is a significant association between the time of day and the location where squirrels are observed.**
+The results of the Chi-Square Test gives us a χ2 value of 30.835 and a p-value that is smaller than 0.05. At the 5% level of significance, there is evidence to suggest that the distribution of locations is not independent of the shift. In other words, **there is a significant association between the time of day and the location where squirrels are observed.**
 
 This may mean that squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
 
@@ -272,7 +271,7 @@ fit_logistic |>
  broom::tidy() |> 
   mutate(OR = exp(estimate)) |> 
   select(term, estimate, OR, p.value) |> 
-  knitr::kable()
+  knitr::kable(digits = 4)
 ```
 
 Based on this output, we see that almost all of our results are statistically significant at the 5% level. A squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging. The effect of chasing was not statistically significant at the 0.05 level. Squirrels spotted on the ground plane also have a likelihood to be spotted at night.
