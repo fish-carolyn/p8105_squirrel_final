@@ -43,7 +43,9 @@ Our data was uploaded in the form of a csv file. *Describe cleaning process*
   
 Our exploratory analysis is segmented into three distinct areas of focus: Squirreling the Stats ([demographic](descriptives.html)), Nesting Nooks ([activity](activity.html)), and Scurrying Secrets ([communication](communication.html)). 
 
-In the Demographic section, look at the ages and fur color of squirrels in Central Park. The results are displayed with a combination of bar graphs and maps. We make sure to filter out observations that are "N/A" or unknown for age or fur color, and we create a detailed fur color graph that includes both primary and highlight fur color. 
+In the Demographic section, we looked at the ages and fur color of squirrels in Central Park. The results are displayed with a combination of bar graphs and maps. We make sure to filter out observations that are "N/A" or unknown for age or fur color, and we create a detailed fur color graph that includes both primary and highlight fur color. 
+
+When creating the Nesting Nooks page, we thought about different aspects of the data that would be interesting to explore spatially. Originally, maps of primary fur color and age were on the Nesting Nooks page, but eventually we pivoted the page to be more about activity, moving those maps to the demographics page. We were hoping to see more spatial clustering of certain activities, 
 
 *add details about other sections*
   
