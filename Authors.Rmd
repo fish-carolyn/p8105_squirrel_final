@@ -11,7 +11,7 @@ Thank you so much for visiting our site! Let us introduce ourselves.
 ::: {.col}
 
 ```{r, echo=FALSE, fig.width = 10}
-knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
+knitr::include_graphics("./pictures/authors/gj_headshot.jpg")
 ```
 
 **Ghislaine**
@@ -23,23 +23,25 @@ knitr::include_graphics("./pictures/authors/gj_headshot.jpeg")
 ::: {.col}
 
 ```{r, echo=FALSE, fig.width = 10, fig.align = 'center'}
-knitr::include_graphics("./pictures/authors/sh_headshot.jpeg")
+knitr::include_graphics("./pictures/authors/sh_headshot.jpg")
 ```
 
 **Selina**
 
 <center> *Department of Health Policy & Management* </center>
+
 :::
 
 ::: {.col}
 
 ```{r, echo=FALSE, fig.width = 10}
-knitr::include_graphics("./pictures/authors/co_headshot.jpeg")
+knitr::include_graphics("./pictures/authors/co_headshot.jpg")
 ```
 
 **Camille**
 
 <center> *Department of Sociomedical Sciences* </center>
+
 :::
 
 ::: {.col}
@@ -56,13 +58,14 @@ knitr::include_graphics("./pictures/authors/ss_headshot.jpg")
 
 ::: {.col}
 
-```{r, echo=FALSE, out.fig.width= "20%"}
-knitr::include_graphics("./pictures/authors/cf_headshot.jpeg")
+```{r, echo=FALSE, fig.width= 10}
+knitr::include_graphics("./pictures/authors/cf_headshot.jpg")
 ```
 
 **Carolyn**
 
 *Department of Epidemiology*
+
 :::
 
 ::::
