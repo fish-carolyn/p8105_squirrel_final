@@ -228,7 +228,7 @@ This may mean that squirrels exhibit different location preferences or behaviors
 
 <br><br>
 
-### Regression of time of location by time of day and activity
+### Regression of location by time of day and activity
 
 We want to see if we can create a logistic regression model to predict the likelihood of a squirrel being observed on the `ground plane`, based on time of squirrel sighting (`shift`) and the following behavioral variables: `running`, `chasing`, `climbing`, `eating` and `foraging`. 
 
