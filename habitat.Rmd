@@ -42,7 +42,6 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet 
 
 #### Let's see where all the hungry squirrels are in Central Park!
 
-
 Each green dot on the map below represents a squirrel that was spotted eating a snack. Zoom in to explore where squirrels dine in Central Park!
 ```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
@@ -59,6 +58,27 @@ leaflet() |>
              popup = ~paste("Name:", name,
                             "<br> Eating:", eating)) |> 
   addProviderTiles(providers$CartoDB.Positron)
+```
+
+There is not a lot of data about what the squirrels were eating when they were spotted, but here is a list of what some of the squirrels were eating:
+
+* mushroom
+* nut
+* peanuts with shells
+* red berries/berries
+* osage orange
+* bread
+
+```{r}
+library(rvest)
+
+squirrel_census |> 
+filter(str_detect(other_activities, "eating")) |> 
+select(other_activities)
+```
+
+```{r, echo=FALSE, out.width= "40%", fig.align = 'center'}
+knitr::include_graphics("./pictures/squirrel_w_nut.jpg")
 ```
 
 <br><br>
