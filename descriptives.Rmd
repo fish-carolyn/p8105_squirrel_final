@@ -149,8 +149,8 @@ If you'd like to try your luck and observe a black squirrel in "the wild", we'd 
 
 <br><br> 
 
-```{r, echo=FALSE, out.width="80%", fig.align='center'}
-knitr::include_graphics("./pictures/black_squirrel.jpeg")
+```{r, echo=FALSE, out.width="60%", fig.align='center'}
+knitr::include_graphics("./pictures/black_squirrel2.jpg")
 ```
 <center style="font-size: 14px;"> A rare black squirrel! </center>
 <br><br> 
