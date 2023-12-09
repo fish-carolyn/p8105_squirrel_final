@@ -12,7 +12,7 @@ navbar:
     - text: "Data source"
       href: About.html
   right:
-    - text: "Demographic"
+    - text: "Demographics"
       href: descriptives.html
     - text: "Activity"
       href: habitat.html
