@@ -129,7 +129,7 @@ The squirrels can be observed doing every type of squirrel activity all across t
 
 ::: {}
 
-```{r, fig.align='center'}
+```{r, out.width= "200%" }
 squirrel_census |> 
   ggplot() +
   geom_sf(data = central_park_map, color = "grey") +
