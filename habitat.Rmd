@@ -239,7 +239,9 @@ in other words, **there is a significant association between the time of day and
 
 This may mean that squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
 
-#### What About a Logistic Regression Model?
+<br><br>
+
+### What About a Logistic Regression Model?
 
 We want to see if we can create a logistic regression model to predict the likelihood of a squirrel being observed on the "ground plane," based on time of squirrel sighting (`shift`) and the following behavioral variables: `running`, `chasing`, `climbing`, `eating` and `foraging`. 
 
@@ -273,7 +275,7 @@ fit_logistic |>
   knitr::kable()
 ```
 
-Based on this output, we see that almost all of our results are statistically significant at the 5% level. Woohoo! Based on this output, we see that almost all of our results are statistically significant at the 5% level. Woohoo! A squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging. The effect of chasing was not statistically significant at the 0.05 level. Squirrels spotted on the ground plane also have a likelihood to be spotted at night.
+Based on this output, we see that almost all of our results are statistically significant at the 5% level. A squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging. The effect of chasing was not statistically significant at the 0.05 level. Squirrels spotted on the ground plane also have a likelihood to be spotted at night.
 
 Let's look at some model diagnostics. 
 
