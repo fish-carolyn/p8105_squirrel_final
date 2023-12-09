@@ -97,21 +97,24 @@ squirrel_census |>
       .default = "sedentary"
     )
   ) |> 
-  filter(activity != "sedentary") |> 
+  filter(activity != "sedentary") |>
   ggplot() +
     geom_sf(data = central_park_map, color = "grey") +
-  geom_point(
-    aes(x = x, y = y, color = activity),
-    size = 0.5, alpha = 0.75) +
-  scale_color_viridis_d() + 
-    theme_void(base_size = 15) +
-  theme(legend.position = 'None', 
-        plot.title = element_text(size = 20))  +
-  facet_grid(cols = vars(activity)) +
-  guides(color = guide_legend(
-    title.position = "top",
-    override.aes = list(size = 20))
-  )
+  stat_density_2d(
+    aes(
+      x= x, y= y,
+      fill = ..level..
+      ),
+    geom = "polygon",
+    show.legend = TRUE, 
+    contour = TRUE
+  ) +
+  scale_fill_viridis_c() +
+  scale_alpha_continuous(range = c(0.0, 0.25))+
+  theme_void(base_size = 15) +
+  theme(legend.position = 'right', 
+        plot.title = element_text(size = 6))  +
+  facet_grid(cols = vars(activity))
 ```
 
 The squirrels can be observed doing every type of squirrel activity all across the park. There are no bad places to go to watch squirrels chase each other, climb, forage, and run!
