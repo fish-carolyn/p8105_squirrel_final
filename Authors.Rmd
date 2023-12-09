@@ -2,7 +2,7 @@
 title: Meet our team
 ---
 
-Thank you so much for visiting our site! Let us introduce ourselves. 
+Thank you so much for visiting our site! We are a team of MPH students at the Columbia University Mailman School of Public Health. While we come from many different backgrounds and programs within Mailman, we've convened here to improve our understanding of applied biostatistics, data science, and squirrels!  
 
 <br><br>   
 
@@ -16,7 +16,7 @@ knitr::include_graphics("./pictures/authors/gj_headshot.jpg")
 
 **Ghislaine**
 
-<center> *Department of Epidemiology* </center>
+*Dept. of Epidemiology*
 
 :::
 
@@ -28,7 +28,7 @@ knitr::include_graphics("./pictures/authors/sh_headshot.jpg")
 
 **Selina**
 
-<center> *Department of Health Policy & Management* </center>
+*Dept. of Health Policy & Management*
 
 :::
 
@@ -40,7 +40,7 @@ knitr::include_graphics("./pictures/authors/co_headshot.jpg")
 
 **Camille**
 
-<center> *Department of Sociomedical Sciences* </center>
+*Dept. of Sociomedical Sciences*
 
 :::
 
@@ -52,7 +52,7 @@ knitr::include_graphics("./pictures/authors/ss_headshot.jpg")
 
 **Sanika**
 
-<center> *Department of Sociomedical Sciences* </center>
+*Dept. of Sociomedical Sciences*
 
 :::
 
@@ -64,7 +64,7 @@ knitr::include_graphics("./pictures/authors/cf_headshot.jpg")
 
 **Carolyn**
 
-*Department of Epidemiology*
+*Dept. of Epidemiology*
 
 :::
 

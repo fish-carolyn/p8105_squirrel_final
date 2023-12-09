@@ -86,9 +86,9 @@ squirrel_census |>
   
 ::::
   
-The majority of observed squirrels are adults. There are 2503 adult squirrels in the data set and only 319 juvenile squirrels.
+The majority of observed squirrels are `adults.` There are 2503 `adult` squirrels in the data set and only 319 `juvenile` squirrels.
 
-We can also see that juvenile squirrels can be frequently observed in some areas of the Central Park, such as Central Park West between 72nd St. and 66th St. 
+We can also see that `juvenile` squirrels can be frequently observed in some areas of the Central Park, such as Central Park West between 72nd St. and 66th St. 
 
 <br><br> 
   
@@ -116,7 +116,7 @@ knitr::include_graphics("./pictures/adult_squirrel.jpeg")
 
 #### Let's also look at primary and highlight fur color.
   
-Some squirrels model only one fur color, but some extra fashionable squirrels will don mixed patterns of multiple fur colors. The primary fur color is the main color of the squirrel and the secondary colors accent the primary color to give some squirrels unique style. 
+Some squirrels model only one fur color, but some extra fashionable squirrels will don mixed patterns of multiple fur colors. The `primary` fur color is the main color of the squirrel and the `secondary` colors accent the `primary` color to give some squirrels unique style. 
 
 
 
@@ -142,9 +142,9 @@ squirrel_census |>
 
 <br><br>  
 
-We can see that most squirrels in Central Park have Gray fur with some Cinnamon or White accents (above). Squirrels that are black with any accent colors are very rare! Consider yourself lucky if you've ever seen one of them frolicking in the park! 
+We can see that most squirrels in Central Park have `gray` fur with some `cinnamon` or `white` accents (above). Squirrels that are `black` with or without any accent colors are very rare! Consider yourself lucky if you've ever seen one of them frolicking in the park! 
 
-If you'd like to try your luck and observe a black squirrel in "the wild", we'd recommend hanging around some specific spots that the black squirrels seem to cluster in, like the South-East corner of the park or the North Woods above 96th St, as shown on the map (right). 
+If you'd like to try your luck and observe a `black` squirrel in "the wild", we'd recommend hanging around some specific spots that the `black` squirrels seem to cluster in, like the South-East corner of the park or the North Woods above 96th St, as shown on the map (right). 
 
 
 <br><br> 
@@ -211,7 +211,7 @@ ggplot() +
 
 <br><br> 
 
-The squirrel census did not report any difference in fur color by the age of the squirrel (left). Among both the young and the old, gray squirrels dominate the counts!
+Using the squirrel census data, we do not observe any difference in `primary` fur color by the `age` of the squirrel (right). Among `juveniles` and `adults`, `gray` squirrels dominate the counts!
 
 <br><br> 
 

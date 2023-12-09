@@ -30,6 +30,7 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
@@ -219,6 +220,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -290,6 +294,14 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Nuts and Bolts: Setting the Stage for
@@ -298,6 +310,7 @@ Squirrel Stories</h1>
 </div>
 
 
+<p><br><br></p>
 <div id="about-our-data" class="section level3">
 <h3>About Our Data</h3>
 <p>The data from this project was collected from the <a
@@ -306,19 +319,23 @@ by the Department of Data - NYC, and available for download at <a
 href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw">NYC
 OpenData</a>. The Squirrel Census is a multimedia science, design, art,
 and storytelling project focusing on the Eastern gray (<em>Sciurus
-carolinensis</em>). The aims of this project is to count squirrels and
-and present their findings to the public in the form of “comprehensive
-maps, data visualizations, 45-RPM records, anthropomorphic storytelling,
-live presentations, semi-true videos, and other fun stuff”. We love and
+carolinensis</em>). The aim of this project is to count squirrels and
+present findings to the public in the form of “comprehensive maps, data
+visualizations, 45-RPM records, anthropomorphic storytelling, live
+presentations, semi-true videos, and other fun stuff”. We love and
 embrace their mission of serving as a liaison for the <em>believe</em>
 and <em>make-believe</em>.</p>
+<p><br><br></p>
+<pre class="r"><code>squirrel_census = 
+  read_csv(&quot;data/clean_squirrel_2018.csv&quot;)</code></pre>
 </div>
 <div id="data-dictionary" class="section level3">
 <h3>Data Dictionary</h3>
 <p>The raw dataset we utilized can be found <a
 href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29">here</a>.
-Our cleaned squirrel census dataset has 2,824 observations and includes
-the following variables:</p>
+Our cleaned squirrel census dataset, available on our project <a
+href="https://github.com/fish-carolyn/p8105_squirrel_final.git">github</a>,
+has 2824 observations and includes the following variables:</p>
 <ul>
 <li><code>x</code>: Longitude.</li>
 <li><code>y</code>: Latitude.</li>
@@ -427,6 +444,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

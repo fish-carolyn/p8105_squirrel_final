@@ -1,14 +1,33 @@
 ---
 title: "Nuts and Bolts: Setting the Stage for Squirrel Stories"
+output: 
+  html_document:
+    code_folding: hide
+    always_allow_html: true
 ---
+<br><br>
 
 ### About Our Data
 
-The data from this project was collected from the [The Squirrel Census](https://www.thesquirrelcensus.com/), ran by the Department of Data - NYC, and available for download at [NYC OpenData](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw). The Squirrel Census is a multimedia science, design, art, and storytelling project focusing on the Eastern gray (*Sciurus carolinensis*). The aims of this project is to count squirrels and and present their findings to the public in the form of "comprehensive maps, data visualizations, 45-RPM records, anthropomorphic storytelling, live presentations, semi-true videos, and other fun stuff". We love and embrace their mission of serving as a liaison for the *believe* and *make-believe*.
+The data from this project was collected from the [The Squirrel Census](https://www.thesquirrelcensus.com/), ran by the Department of Data - NYC, and available for download at [NYC OpenData](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw). The Squirrel Census is a multimedia science, design, art, and storytelling project focusing on the Eastern gray (*Sciurus carolinensis*). The aim of this project is to count squirrels and present findings to the public in the form of "comprehensive maps, data visualizations, 45-RPM records, anthropomorphic storytelling, live presentations, semi-true videos, and other fun stuff". We love and embrace their mission of serving as a liaison for the *believe* and *make-believe*.
+
+<br><br>
+
+```{r setup, include = FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
+
+library(tidyverse)
+```
+
+```{r}
+squirrel_census = 
+  read_csv("data/clean_squirrel_2018.csv")
+```
+
 
 ### Data Dictionary
 
-The raw dataset we utilized can be found  [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29). Our cleaned squirrel census dataset has 2,824 observations and includes the following variables:
+The raw dataset we utilized can be found  [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29). Our cleaned squirrel census dataset, available on our project [github](https://github.com/fish-carolyn/p8105_squirrel_final.git), has `r nrow(squirrel_census)` observations and includes the following variables:
 
 * `x`: Longitude.
 * `y`: Latitude.
