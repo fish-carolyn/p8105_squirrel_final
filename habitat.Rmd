@@ -1,5 +1,5 @@
 ---
-title: "Nesting Nooks: Exploring Squirrel Habitat"
+title: "Nesting Nooks: Exploring Squirrel Habitat & Activity"
 output: 
   html_document:
     code_folding: hide
