@@ -11,9 +11,9 @@
 
 
 
-<title>P8105 FINAL PROJECT REPORT</title>
+<title>Report</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -292,15 +292,13 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">P8105 FINAL PROJECT REPORT</h1>
+<h1 class="title toc-ignore">Report</h1>
 
 </div>
 
 
 <p>Selina Hsuan (sh4354), Ghislaine Jumonville (gj2356), Carolyn Fish
 (csf2135), Camille Okonkwo (co2554), Sanika Sule (ss6692)</p>
-<div id="report" class="section level4">
-<h4>Report</h4>
 <p>The written report produced by your team is central to this project.
 This will detail how you completed your project, and should cover data
 collection and cleaning, exploratory analyses, alternative strategies,
@@ -309,23 +307,20 @@ that your project will change somewhat over time; these changes and the
 reasons for them should be documented! <strong>You will write one report
 document per group, and be sure to include all group member names in the
 document.</strong></p>
-</div>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
 <p>The motivation behind our project is to perform a comprehensive
 analysis on the squirrels of Central Park in New York City. Squirrels
 are familiar neighbors to all New Yorkers, and Central Park provides
 over 800 acres of prime habitat for approximately 2,300 squirrels
-(roughly 2.74 squirrels per acre)1. Given the high prevalence of
-squirrels in New York City and their versatile role as friends, pests,
-vectors for diseases, such as rabies, and snacks to local predators, we
-aim to describe behavioral trends and spatial distribution of squirrel
-sightings in Central Park.</p>
+(roughly 2.74 squirrels per acre)<sup>1</sup>. Given the high prevalence
+of squirrels in New York City and their versatile role as friends,
+pests, vectors for diseases, such as rabies, and snacks to local
+predators, we aim to describe behavioral patterns and spatial
+distribution of squirrel sightings in Central Park.</p>
 </div>
 <div id="related-work" class="section level2">
 <h2>Related work</h2>
-<p>Anything that inspired you, such as a paper, a web site, or something
-we discussed in class.</p>
 <p>We were inspired to perform this analysis after discovering 2018
 squirrel data from <a href="https://www.thesquirrelcensus.com/">The NYC
 Squirrel Census</a>. The Squirrel Census is “a multimedia science,
@@ -416,8 +411,7 @@ likelihood of a squirrel being observed on the “ground plane,” based on
 time of squirrel sighting (shift) and the following behavioral
 variables: running, chasing, climbing, eating and foraging. We created a
 binomial model, tidied the output to include the p-value, estimate, and
-odds ratios. We also did some residual plotting and visualizations to
-detect outliers and ensure our model was appropriate for the data.</p>
+odds ratios. We also did some residual plotting and visualizations.</p>
 </div>
 <div id="discussion" class="section level2">
 <h2>Discussion</h2>
@@ -426,31 +420,6 @@ detect outliers and ensure our model was appropriate for the data.</p>
 <li>Are they what you expect?</li>
 <li>What insights into the data can you make?</li>
 </ul>
-<p><strong>add findings from your section</strong></p>
-<p>From the Chi-Square Test, we rejected the null hypothesis and found
-at the 5% level of significance, there is evidence to suggest there is a
-significant association between the time of day and the location where
-squirrels are observed. From our research, squirrels exhibit different
-location preferences or behaviors during the morning (AM) compared to
-the afternoon (PM). Squirrels are known to be diurnal animals, so the
-results of the chi-square test serves as additional evidence. Since
-squirrels have been observed to be active more during dawn and dusk,
-this aligns with the <a
-href="https://www.esf.edu/aec/adks/mammals/gray_squirrel.php">literature</a>
-on this topic. From the logistic regression, we found that the
-<code>shift</code>, <code>running</code>, <code>climbing</code>,
-<code>eating</code>, and <code>foraging</code> predictors in our model
-were statistically significant at the 5% level. A squirrel spotted on
-the ground plane is most likely to be seen running, climbing, eating, or
-foraging. The effect of chasing was not statistically significant at the
-0.05 level. Squirrels spotted on the ground plane also have a likelihood
-to be spotted at night. The QQ plot showed the distribution of our model
-to be approximately normal. The predicted values plotted against
-residuals along with the violin plot showed evidence of skew for both
-the above ground and ground plane plots. For optimization purposes,
-before running a formal analysis this indicates to us we should check
-for collinearity and run some additional diagnostic tests to see if we
-can create a better model.</p>
 <p>As this will be your only chance to describe your project in detail,
 <strong>make sure that your report is a standalone document that fully
 describes your process and results.</strong></p>

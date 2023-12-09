@@ -25,7 +25,7 @@ library(viridis)
 ```
 
 
-Every squirrel in Central Park has a very busy schedule. Here, we describe the various activities and tasks squirrels do all over the park, and where those activities occur. Scroll down to learn more about where and when squirrels get their work done. 
+Every squirrel in Central Park has a very busy schedule. Here, we describe the various activities and tasks squirrels do all over the park, and where those activities occur. Scroll down to learn more about where and when squirrels eat and snacks and get their work done. 
 
 
 ```{r}
@@ -38,11 +38,11 @@ central_park_map = st_read(here::here('central_park', 'CentralPark.shp'), quiet 
 
 <br><br>
 
-### Snacky
+### Where do they eat? 
 
 #### Let's see where all the hungry squirrels are in Central Park!
 
-Each green dot on the map below represents a squirrel that was spotted eating a snack. Zoom in to explore where squirrels dine in Central Park!
+Each green dot on the map below represents a squirrel that was spotted `eating` a snack. Zoom in to explore where squirrels dine in Central Park!
 ```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
   filter(eating == TRUE) |> view()
@@ -60,13 +60,13 @@ leaflet() |>
   addProviderTiles(providers$CartoDB.Positron)
 ```
 
-There is not a lot of data about what the squirrels were eating when they were spotted, but here is a list of what some of the squirrels were eating:
+There is not a lot of data about what the squirrels were `eating` when they were spotted, but here is a list of what some of the squirrels were spotted snacking on:
 
-* mushroom
-* nut
+* mushrooms
+* nuts
 * peanuts with shells
 * red berries/berries
-* osage orange
+* osage oranges
 * bread
 
 ```{r}
@@ -83,9 +83,9 @@ knitr::include_graphics("./pictures/squirrel_w_nut.jpg")
 
 <br><br>
 
-### Sporty
+### Where do they play? 
 
-#### If they aren't eating, they are doing some other activity...
+#### If the active squirrels aren't eating, they are surely doing some other activity.
 ```{r, fig.width= 10, fig.align='center'}
 squirrel_census |> 
   mutate(
@@ -117,33 +117,7 @@ squirrel_census |>
   facet_grid(cols = vars(activity))
 ```
 
-The squirrels can be observed doing every type of squirrel activity all across the park. There are no bad places to go to watch squirrels chase each other, climb, forage, and run!
-
-```{r, include=FALSE}
-squirrel_census |> 
-  mutate(
-    activity = case_when(
-      running == "TRUE" ~ "running",
-      chasing == "TRUE" ~ "chasing",
-      climbing == "TRUE" ~ "climbing",
-      foraging == "TRUE" ~ "foraging",
-      .default = "sedentary"
-    )
-  ) |> 
-  filter(activity != "sedentary") |> 
-leaflet() |>  
-  addTiles() |>  
-  addCircleMarkers(
-             lng = ~x,
-             lat = ~y,
-             label = ~name,
-             radius = 1,
-             color = "coral",
-             stroke = TRUE, fillOpacity = 0.75,
-             popup = ~paste("Name:", name,
-                            "<br> Activity:", activity)) |> 
-  addProviderTiles(providers$CartoDB.Positron)
-```
+The squirrels can be observed doing every type of squirrel activity all across the park. There are no bad places to go to watch squirrels `chase` each other, `climb`, `forage`, and `run`! Looking at density plots of where squirrels were observed doing different activities (above), we see that squirrels seem to gather en masse to `forage` around the Central Park Lake, as shown by the yellow density clustering in the area. Further, squirrels can commonly be found `chasing` each other and `running` around the southern-most areas of the park. 
 
 <br><br>
 
@@ -151,6 +125,9 @@ leaflet() |>
 
 #### Where should one up high or down low to spot our furry friends?
 
+:::: {style="display: flex;"}
+
+::: {}
 
 ```{r, fig.align='center'}
 squirrel_census |> 
@@ -169,26 +146,34 @@ squirrel_census |>
        color = "Location")
 ```
 
-<br><br>
+:::
 
-Our furry friends can most often be seen on the ground, as shown by the yellow points on the map (left). However, squirrels were also spotted in the trees all through the park!
-
-<br><br>
+:::{}
 
 <br><br>
 
+Our furry friends can most often be seen on the `ground plane`, as shown by the yellow points on the map (left). However, squirrels were also spotted `above ground` in the trees all through the park!
 
-### Day or night?
+<br><br>
+
+:::
+
+::::
+
+<br><br>
 
 
-Is there a relationship between morning or afternoon sightings and the locations of the squirrels (ground plane, or above ground)?
+### Chi-square of location by time of day
+
+
+Is there a relationship between morning or afternoon sightings (`shifts`) and the locations of the squirrels (`ground plane` or `above ground`)?
 
 <br><br>
 
 ###### State Hypotheses
 
-* H0: There is no significant association between shift and location
-* H1: There is a significant association between shift and location
+* H0: There is no significant association between `shift` and `location`
+* H1: There is a significant association between `shift` and `location`
 
 <br><br>
 
@@ -237,15 +222,15 @@ chi_square_result = chisq.test(contingency_table)
 
 ##### Conclusion
 
-The results of the Chi-Square Test gives us a χ2 value of 30.835 and a p-value that is smaller than 0.05. At the 5% level of significance, there is evidence to suggest that the distribution of locations is not independent of the shift. In other words, **there is a significant association between the time of day and the location where squirrels are observed.**
+The results of the Chi-Square Test gives us a χ2 value of 30.835 and a p-value that is smaller than 0.05. At the 5% level of significance, there is evidence to suggest that the distribution of `locations` is not independent of the `shift.` In other words, **there is a significant association between the time of day and the location where squirrels are observed.**
 
-This may mean that squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
+This may mean that squirrels exhibit different location preferences or behaviors during the morning (`AM`) compared to the afternoon (`PM`). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this makes a lot of sense. 
 
 <br><br>
 
-### What About a Logistic Regression Model?
+### Regression of time of location by time of day and activity
 
-We want to see if we can create a logistic regression model to predict the likelihood of a squirrel being observed on the "ground plane," based on time of squirrel sighting (`shift`) and the following behavioral variables: `running`, `chasing`, `climbing`, `eating` and `foraging`. 
+We want to see if we can create a logistic regression model to predict the likelihood of a squirrel being observed on the `ground plane`, based on time of squirrel sighting (`shift`) and the following behavioral variables: `running`, `chasing`, `climbing`, `eating` and `foraging`. 
 
 
 
@@ -277,7 +262,7 @@ fit_logistic |>
   knitr::kable(digits = 4)
 ```
 
-Based on this output, we see that almost all of our results are statistically significant at the 5% level. A squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging. The effect of chasing was not statistically significant at the 0.05 level. Squirrels spotted on the ground plane also have a likelihood to be spotted at night.
+Based on this output, we see that almost all of our results are statistically significant at the 5% level. A squirrel spotted on the `ground plane` is most likely to be seen `running`, `climbing`, `eating`, or `foraging.` The effect of `chasing` was not statistically significant at the 0.05 level. Squirrels spotted on the `ground plane` also have a likelihood to be spotted at night.
 
 Let's look at some model diagnostics. 
 
@@ -339,7 +324,7 @@ squirrel_census |>
 
 ::::
 
-From the QQPlot and our residuals plot, this model really isn't too awful. 
+From the QQPlot and our residuals plot, this model fit isn't too awful. 
 
 
 ```{r, echo=FALSE, out.width= "40%", fig.align = 'center'}

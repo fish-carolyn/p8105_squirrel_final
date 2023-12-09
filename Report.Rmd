@@ -1,5 +1,5 @@
 ---
-title: "P8105 FINAL PROJECT REPORT"
+title: "Report"
 ---
 
 ```{r setup, include=FALSE}
@@ -8,17 +8,14 @@ knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 
 Selina Hsuan (sh4354), Ghislaine Jumonville (gj2356), Carolyn Fish (csf2135), Camille Okonkwo (co2554), Sanika Sule (ss6692)
 
-#### Report
 
 The written report produced by your team is central to this project. This will detail how you completed your project, and should cover data collection and cleaning, exploratory analyses, alternative strategies, descriptions of approaches, and a discussion of results. We anticipate that your project will change somewhat over time; these changes and the reasons for them should be documented! **You will write one report document per group, and be sure to include all group member names in the document.**
 
 ## Motivation
 
-The motivation behind our project is to perform a comprehensive analysis on the squirrels of Central Park in New York City. Squirrels are familiar neighbors to all New Yorkers, and Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)1. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral trends and spatial distribution of squirrel sightings in Central Park. 
+The motivation behind our project is to perform a comprehensive analysis on the squirrels of Central Park in New York City. Squirrels are familiar neighbors to all New Yorkers, and Central Park provides over 800 acres of prime habitat for approximately 2,300 squirrels (roughly 2.74 squirrels per acre)^1^. Given the high prevalence of squirrels in New York City and their versatile role as friends, pests, vectors for diseases, such as rabies, and snacks to local predators, we aim to describe behavioral patterns and spatial distribution of squirrel sightings in Central Park. 
 
 ## Related work
-
-Anything that inspired you, such as a paper, a web site, or something we discussed in class.
 
 We were inspired to perform this analysis after discovering 2018 squirrel data from [The NYC Squirrel Census](https://www.thesquirrelcensus.com/). The Squirrel Census is "a multimedia science, design, and storytelling project," and their 2018 data set can be found on [NYC OpenData](https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw). Since the data set contains the latitude and longitude of each squirrel sighting, as well as several variables related to squirrel activity, we thought it would provide a great opportunity to explore the visualization and interactivity topics discussed in class. 
 
@@ -56,16 +53,13 @@ After performing exploratory analyses, primarily in the form of visualizations, 
 
 If you undertake formal statistical analyses, describe these in detail
 
-Despite our findings, we wanted to perform some statistical analyses. We were puzzled with what direction any statistical analysis should shape into due to the categorical nature of this data. The lack of continuous variables limited our options of analysis, so we opted to investigate relationships by using a Chi Square Analysis and a Logistic Regression. The Chi Square Analysis we conducted was a formal hypothesis test exploring the relationship between the `shift` and `location` variables. After tidying a subset of the data, we formed a contingency table and ran a chi square test. The goal of our logistic regression analysis was to investigate if we could predict the likelihood of a squirrel being observed on the “ground plane,” based on time of squirrel sighting (shift) and the following behavioral variables: running, chasing, climbing, eating and foraging. We created a binomial model, tidied the output to include the p-value, estimate, and odds ratios. We also did some residual plotting and visualizations to detect outliers and ensure our model was appropriate for the data. 
+Despite our findings, we wanted to perform some statistical analyses. We were puzzled with what direction any statistical analysis should shape into due to the categorical nature of this data. The lack of continuous variables limited our options of analysis, so we opted to investigate relationships by using a Chi Square Analysis and a Logistic Regression. The Chi Square Analysis we conducted was a formal hypothesis test exploring the relationship between the `shift` and `location` variables. After tidying a subset of the data, we formed a contingency table and ran a chi square test. The goal of our logistic regression analysis was to investigate if we could predict the likelihood of a squirrel being observed on the “ground plane,” based on time of squirrel sighting (shift) and the following behavioral variables: running, chasing, climbing, eating and foraging. We created a binomial model, tidied the output to include the p-value, estimate, and odds ratios. We also did some residual plotting and visualizations. 
 
 ## Discussion
   * What were your findings? 
   * Are they what you expect? 
   * What insights into the data can you make?
-  
-**add findings from your section**
 
-From the Chi-Square Test, we rejected the null hypothesis and found at the 5% level of significance, there is evidence to suggest there is a significant association between the time of day and the location where squirrels are observed. From our research, squirrels exhibit different location preferences or behaviors during the morning (AM) compared to the afternoon (PM). Squirrels are known to be diurnal animals, so the results of the chi-square test serves as additional evidence. Since squirrels have been observed to be active more during dawn and dusk, this aligns with the [literature](https://www.esf.edu/aec/adks/mammals/gray_squirrel.php) on this topic. From the logistic regression, we found that the `shift`, `running`, `climbing`, `eating`, and `foraging` predictors in our model were statistically significant at the 5% level. A squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging. The effect of chasing was not statistically significant at the 0.05 level. Squirrels spotted on the ground plane also have a likelihood to be spotted at night. The QQ plot showed the distribution of our model to be approximately normal. The predicted values plotted against residuals along with the violin plot showed evidence of skew for both the above ground and ground plane plots. For optimization purposes, before running a formal analysis this indicates to us we should check for collinearity and run some additional diagnostic tests to see if we can create a better model.
 
 As this will be your only chance to describe your project in detail, **make sure that your report is a standalone document that fully describes your process and results.**
 
