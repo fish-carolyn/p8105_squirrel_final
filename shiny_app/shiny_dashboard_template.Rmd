@@ -1,5 +1,5 @@
 ---
-title: "Interactive Squirrel Map"
+title: "NYC Central Park Squirrels"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -23,12 +23,14 @@ squirrel_census =
 Select Squirrel Details {.sidebar}
 -----------------------------------------------------------------------
 
+### Select Squirrel Details
+
 ```{r}
 age_vec = c("All", squirrel_census |> filter(age != "?") |> pull(age) |> unique())
   
 selectInput (
   inputId = "age_choice",
-  label = "Select Age",
+  label = "Age",
   choices = age_vec,
   selected = "All"
   )
@@ -52,7 +54,7 @@ activity_vec =
 
 selectInput (
   inputId = "activity_choice",
-  label = "Select Activity",
+  label = "Activity",
   choices = activity_vec,
   selected = "All"
   )
@@ -62,7 +64,7 @@ shift_vec = c("All", squirrel_census |> pull(shift) |> unique())
   
 selectInput (
   inputId = "shift_choice",
-  label = "Select Time of Day",
+  label = "Time of Day",
   choices = shift_vec,
   selected = "All"
   )
@@ -72,7 +74,7 @@ location_vec = c("All", squirrel_census |> pull(location) |> unique())
   
 selectInput (
   inputId = "location_choice",
-  label = "Select Location",
+  label = "Location",
   choices = location_vec, 
   selected = "All"
   )
