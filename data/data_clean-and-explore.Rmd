@@ -98,7 +98,7 @@ for (i in 1:num_iterations) {
 The squirrel names are exported as a .csv (`squirrel_names_final`). I am not showing this here because I do not want to overwrite the `squirrel_names_final` file every time this .Rmd is knit. 
 
 ```{r}
-squirrel_names_final = read_csv("squirrel_names_final.csv")
+squirrel_names_final = read_csv("data/squirrel_names_final.csv")
 
 df_clean_squirrel_names <- df_clean_squirrel  |> 
   mutate(name_key = row_number())
@@ -120,7 +120,7 @@ df_clean_squirrel_names <- df_clean_squirrel_names  |>
 
 ### Export clean data
 ```{r}
-save_path = "clean_squirrel_2018.csv"
+save_path = "data/clean_squirrel_2018.csv"
 
 write_csv(df_clean_squirrel_names, save_path, na="")
 ```
