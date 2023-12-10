@@ -300,7 +300,7 @@ Park Squirrels</h1>
 
 <p><em>Selina Hsuan (sh4354), Ghislaine Jumonville (gj2356), Carolyn
 Fish (csf2135), Camille Okonkwo (co2554), Sanika Sule (ss6692)</em></p>
-<p><br><br> <br><br></p>
+<p><br><br></p>
 <div id="motivation" class="section level3">
 <h3>Motivation</h3>
 <p>The motivation behind our project is to perform a comprehensive
@@ -341,6 +341,7 @@ and the activities they are engaged in?</p></li>
 <li><p>Are certain types of squirrels more likely to engage with
 humans?</p></li>
 </ol>
+<p><br><br></p>
 <p>After exploratory analysis and better understanding the strengths
 (large sample) and limitations (few obvious spacial trends, short
 observation period) of our data, we adjusted our questions to be:</p>
@@ -474,12 +475,6 @@ interactions between squirrels and humans.</li>
 </div>
 <div id="exploratory-analysis" class="section level3">
 <h3>Exploratory analysis</h3>
-<ul>
-<li>Visualizations, summaries, and exploratory statistical
-analyses.</li>
-<li>Justify the steps you took, and show any major changes to your
-ideas.</li>
-</ul>
 <p>Our exploratory analysis is segmented into three distinct areas of
 focus: Squirreling the Stats (<a
 href="descriptives.html">demographic</a>), Nesting Nooks (<a
@@ -518,9 +513,9 @@ Using several plots and graphs, we discovered that there were no obvious
 relationships between the sounds that squirrels make and their
 interactions with humans or engagement in the aforementioned activities,
 but in every case “kuks” were the most common sound and moans are fairly
-rare. Finally we looked into the relationship between age and
+rare. Finally, we looked into the relationship between age and
 vocalizations. The observed trends in vocalizations did not vary between
-adults and juveniles; squirrels “kuk” most often.</p>
+adults and juveniles; squirrels “kuk” most often at all ages.</p>
 <p>In summary, after performing exploratory analyses, primarily in the
 form of visualizations, there did not appear to be as much spatial or
 physical variation in Central Park squirrels as we had initially
@@ -552,10 +547,10 @@ to investigate if we could predict the likelihood of a squirrel being
 observed on the “ground plane,” based on time of squirrel sighting
 (<code>shift</code>) and the following behavioral variables:
 <code>running</code>, <code>chasing</code>, <code>climbing</code>,
-<code>eatin</code>g and foraging. We created a binomial model, tidied
-the output to include the p-value, estimate, and odds ratios. We also
-did some residual plotting and visualizations to detect outliers and
-ensure our model was appropriate for the data.</p>
+<code>eating</code> and <code>foraging.</code> We created a binomial
+model, tidied the output to include the p-value, estimate, and odds
+ratios. We also did some residual plotting and visualizations to detect
+outliers and ensure our model was appropriate for the data.</p>
 <p>From the Chi-Square Test, we rejected the null hypothesis and found
 at the 5% level of significance, there is evidence to suggest there is a
 significant association between the time of day and the location where
@@ -569,17 +564,16 @@ href="https://www.esf.edu/aec/adks/mammals/gray_squirrel.php">literature</a>
 on this topic. From the logistic regression, we found that the
 <code>shift</code>, <code>running</code>, <code>climbing</code>,
 <code>eating</code>, and <code>foraging</code> predictors in our model
-were statistically significant at the 5% level. A squirrel spotted on
-the ground plane is most likely to be seen running, climbing, eating, or
-foraging. The effect of chasing was not statistically significant at the
-0.05 level. Squirrels spotted on the ground plane also have a likelihood
-to be spotted at night. The QQ plot showed the distribution of our model
-to be approximately normal. The predicted values plotted against
-residuals along with the violin plot showed evidence of skew for both
-the above ground and ground plane plots. For optimization purposes,
-before running a formal analysis this indicates to us we should check
-for collinearity and run some additional diagnostic tests to see if we
-can create a better model.</p>
+were statistically significant at the 5% level. The effect of chasing
+was not statistically significant at the 0.05 level. Squirrels spotted
+on the ground plane also have a greater likelihood of being spotted at
+night compared to during the day (OR: 1.50, p-value: 0.0003). The QQ
+plot showed the distribution of our model to be approximately normal.
+The predicted values plotted against residuals along with the violin
+plot showed evidence of skew for both the above ground and ground plane
+plots. For optimization purposes, before running a formal analysis this
+indicates to us we should check for collinearity and run some additional
+diagnostic tests to see if we can create a better model.</p>
 <p><br><br></p>
 </div>
 <div id="discussion" class="section level3">
@@ -594,21 +588,21 @@ set was the large number of observations- the squirrel census has plenty
 of squirrels to collect data on. However, the analyses for this report
 were limited by the consistency in squirrel presence and behavior
 throughout the park. Additionally, the squirrel census uses a
-cross-sectional studyn design; all the observations were collected
-within a few days of October 2018. Had longitudinal data been available,
-seasonal variation in behavior could have been investigated which could
+cross-sectional study design; all the observations were collected within
+a few days of October 2018. Had longitudinal data been available,
+seasonal variation in behavior could have been investigated which may
 have shown some very interesting trends in squirrel behavior over time.
-The Squirrel Census data may not reveal variable trends, however it
-could be interesting to compare Squirrel Census data from years other
-than 2018 or in relation to other geospatial measures for Central Park,
-like placement of trash bins or foot traffic patterns.</p>
+The 2018 Squirrel Census data alone may not have revealed variable
+trends, however it could be interesting to compare Squirrel Census data
+from years other than 2018 or in relation to other geospatial measures
+for Central Park, like placement of trash bins or human foot traffic
+patterns.</p>
 <p>From our statistical analyses, we found that there is a significant
 association between the time of day and the location where squirrels are
 observed. Squirrels are more likely to be observed on the ground plane
-during the PM shift (OR: 1.50, p-value: 0.0003), adjusting for the
-activity they were observed doing.</p>
-<p>Our project also features an interactive map created with Shiny to
-enable viewers to explore the spatial distribution of squirrels with
+during the PM shift, adjusting for the activity they were observed
+doing. Our project also features an interactive map created with Shiny
+to enable viewers to explore the spatial distribution of squirrels with
 various combinations of attributes. The map includes landmarks and
 streets of Central Park so that specific locations can be recognized.
 Although there does not appear to be many obvious trends from our
