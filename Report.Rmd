@@ -10,8 +10,7 @@ knitr::opts_chunk$set(collapse = TRUE, message = FALSE)
 
 The written report produced by your team is central to this project. This will detail how you completed your project, and should cover data collection and cleaning, exploratory analyses, alternative strategies, descriptions of approaches, and a discussion of results. We anticipate that your project will change somewhat over time; these changes and the reasons for them should be documented! **You will write one report document per group, and be sure to include all group member names in the document.**
 
-<br><br>
-<br><br>
+<br><br> <br><br>
 
 ### Motivation
 
@@ -38,22 +37,26 @@ Our initial questions focused on discovering trends in demographic, activity, or
 After exploratory analysis and better understanding the strengths (large sample) and limitations (few obvious spacial trends, short observation period) of our data, we adjusted our questions to be:
 
 1.  Are squirrels demographically similar throughout the park?
+
 2.  Is there an observable trend between squirrel's age or and their primary fur color?
+
 3.  Are squirrels observed using different areas of the park for different activities?
+
 4.  Does the frequency of squirrels observed in trees (above ground) or on the ground differ by time of day (AM versus PM)? Does this relationship exist after adjusting for various activities?
+
 5.  What sounds do squirrels make and how does this differ by their activity or maturity?
 
 <br><br>
 
 ### Data
 
-Our data was downloaded from the Squirrel Census [github](<https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29>). as a .csv file. The Squirrel Census relies on field observations so despite the data appearing quite "clean" upon download from the source github, we utilized some standard data cleaning checks to ensure the data was clean and ready to be used for our analysis.
+Our data was downloaded from the Squirrel Census [github](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-29). as a .csv file. The Squirrel Census relies on field observations so despite the data appearing quite "clean" upon download from the source github, we utilized some standard data cleaning checks to ensure the data was clean and ready to be used for our analysis.
 
 The data was cleaned using RStudio/RMarkdown to meet the following criteria:
 
 -   Every squirrel (observation) required a unique identifier (`unique_squirrel_id`).
 
--   Every squirrel had complete location/ geo data (`hectare`, `x` (latitude), and `y` (longitude).
+-   Every squirrel had complete location/ geo data (`hectare`, `x` (latitude), and `y` (longitude)).
 
 -   Every squirrel required non-missing data for `age`, `primary` fur color, `location`, `activity`, and `date` observed.
 
@@ -63,7 +66,7 @@ The data was cleaned using RStudio/RMarkdown to meet the following criteria:
 
 The source data set contained 3,023 observations and 31 variables. After the removal of observations with missing data, the "clean" data set used for site analyses had 2,824 observations and 36 variables. Variables for `day`, `month`, `year`, `date_assembled`, and `name` were added to the final data set after some manipulation was done to adjust the date variable. The name variable was created by randomly assigning squirrels names from an R generated list of first and last squirrel names. The `unique_squirrel_id` variable is a character variable of 11 values and characters, so it could be a mouthful when trying to consider individual observations. We also believe each squirrel deserves a fun name. The data used was collected between 2018-10-06 and 2018-10-20.
 
-The final data used for analysis, saved [here](<https://github.com/fish-carolyn/p8105_squirrel_final.git>), contains the following variables:
+The final data used for analysis, saved [here](https://github.com/fish-carolyn/p8105_squirrel_final.git), contains the following variables:
 
 -   `x`: Longitude.
 -   `y`: Latitude.
@@ -113,11 +116,11 @@ Our exploratory analysis is segmented into three distinct areas of focus: Squirr
 
 In the Demographic section, we looked at the distribution of ages and fur color of squirrels in Central Park. Using plots of the distribution of juvenile and adult squirrels throughout Central Park, there were almost 8 times the number of adults to juveniles observed. Both adults and juveniles were scattered throughout the park, but the juvenile squirrels tended to cluster and were seen quite close to each other, which may be indicative of squirrel nests in the area. Looking at the distribution of squirrel fur color, the majority of Central Park's squirrels are gray (\~80%), while few cinnamon (16%) and black (4%) squirrels were observed. When comparing the distribution of primary fur color by age, we saw that these fur color trends were consistent between adults and juveniles.
 
-When creating the Nesting Nooks page, we thought about different aspects of the data that would be interesting to explore spatially. Originally, maps of primary fur color and age were on the Nesting Nooks page, but eventually we pivoted the page to be more about activity, moving those maps to the demographics page. We were hoping to see more spatial clustering of certain activities, but when mapped the data points were randomly distributed around Central Park.
+When creating the Nesting Nooks page, we thought about different aspects of the data that would be interesting to explore spatially. Originally, maps of primary fur color and age were on the Nesting Nooks page, but eventually we pivoted the page to be more about activity, moving those maps to the demographics page. We were hoping to see more spatial clustering of certain activities, but when mapped the data points were randomly distributed around Central Park. Activities, such as eating, chasing, climbing, and running were observed throughout the park. Using density plots, we observed a modest cluster of increased density for foraging in the center of the park, near The Lake. Next, we looked into the frequency and distribution of squirrels observed on the ground compared to above ground plane (in a tree, on a building, etc.), but saw no spatial trends.
 
-In terms of communication, we wanted to see if there were any trends in the sounds made by squirrels and the activities they were engaged in. Using several plots and graphs, we discovered that there were no obvious relationships between the sounds that squirrels make and their interactions with humans or engagement in certain activities. 
+In our final exploratory analysis of communication and vocalizations, we wanted to see if there were any trends in the sounds made by squirrels (kuks, quaas, or moans) and the activities they were engaged in when making sound (climbing, chasing, foraging, eating, running). Using several plots and graphs, we discovered that there were no obvious relationships between the sounds that squirrels make and their interactions with humans or engagement in the aforementioned activities, but in every case "kuks" were the most common sound and moans are fairly rare. Finally we looked into the relationship between age and vocalizations. The observed trends in vocalizations did not vary between adults and juveniles; squirrels "kuk" most often.
 
-In summary, after performing exploratory analyses, primarily in the form of visualizations, there did not appear to be as much spatial or physical variation in Central Park squirrels as we had initially thought. For example, the vast majority of squirrels are adults with gray fur, and they appear to engage in all activities in all areas of the park. Most squirrels do not engage with humans, and they make the same sounds regardless of the activity they are engaged in. As a result, we decided to focus more on visualizations and interactivity, particularly in the form of maps.
+In summary, after performing exploratory analyses, primarily in the form of visualizations, there did not appear to be as much spatial or physical variation in Central Park squirrels as we had initially thought. Our analysis suggests the vast majority of squirrels in Central Park are adults with gray fur, and they appear to engage in all activities in all areas of the park. Most squirrels do not engage with humans, and they make the same sounds regardless of the activity they are engaged in or age. As a result, we decided to focus our project less on the difference between different groups of squirrels and more on providing descriptive visualizations, particularly in the form of maps, with interactivity features for readers to generally learn more about each squirrel, who they are, and what they do.
 
 <br><br>
 
@@ -137,15 +140,15 @@ From the Chi-Square Test, we rejected the null hypothesis and found at the 5% le
 
 As this will be your only chance to describe your project in detail, **make sure that your report is a standalone document that fully describes your process and results.**
 
-Overall, we found that squirrels are relatively similar throughout the park, both demographically and in terms of behavior. There are no observable trends between squirrel ages and primary fur colors, and squirrels are observed engaing in all activities in all areas of the park. Squirrels also make the same sounds regardless of maturity or activity. 
+Overall, we found that squirrels are relatively similar throughout the park, both demographically and in terms of behavior. There are no observable trends between squirrel ages and primary fur colors, and squirrels are observed engaging in all activities in all areas of the park. Squirrels also make the same sounds regardless of maturity, activity, or interaction with humans.
 
-From our statistical analyses, we found that there is a significant association between the time of day and the location where squirrels are observed. Additionally, a squirrel spotted on the ground plane is most likely to be seen running, climbing, eating, or foraging.
+From our statistical analyses, we found that there is a significant association between the time of day and the location where squirrels are observed. Squirrels are more likely to be observed on the ground plane during the PM shift (OR: 1.50, p-value: 0.0003), adjusting for the activity they were observed doing.
 
-Our project also includes an interactive map created with Shiny to enable viewers to explore the spatial distribution of squirrels with various combinations of attributes. The map includes landmarks and streets of Central Park so that specific locations can be recognized. Although there does not appear to be many obvious trends from our analysis of Central Park squirrels, a goal of our project is for viewers to be able to make their own insights based on recognizable locations of the park. We hope that viewers will be able to walk away with more awareness of the squirrels in their surroundings during their next visit to the park.
-
+Our project also features an interactive map created with Shiny to enable viewers to explore the spatial distribution of squirrels with various combinations of attributes. The map includes landmarks and streets of Central Park so that specific locations can be recognized. Although there does not appear to be many obvious trends from our analysis of Central Park squirrels, a goal of our project is for viewers to be able to make their own insights and discoveries based on recognizable locations of the park. We hope that viewers will be able to walk away with more awareness and perhaps a newfound appreciation of the nearby squirrels during their next visit to Central Park.
 
 <br><br>
 
 ### References
-1. https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels
-2. https://www.thesquirrelcensus.com/data
+
+1.  <https://www.centralparknyc.org/articles/getting-to-know-central-parks-squirrels>
+2.  <https://www.thesquirrelcensus.com/data>
